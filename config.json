@@ -4,7 +4,7 @@
 	"PORT" : "",
 	"POSTGRES_DB_URL" : "",
 	"PUBLIC_KEY" : "",
-  "proxyForceHttps" : false,
+  "proxyForceHttps" : true,
   "identityServerUrl" : "https://ident.archivers.space",
   "ANALYTICS_TOKEN" : "FwUGnmKzryJpDpApVzdQy9rmwwWSiK1M"
 }
