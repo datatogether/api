@@ -1,0 +1,4 @@
+.DS_Store
+config.*.json
+patchbay
+gin-bin
