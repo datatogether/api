@@ -89,7 +89,6 @@ func initConfig(mode string) (cfg *config, err error) {
 	err = requireConfigStrings(map[string]string{
 		"PORT":            cfg.Port,
 		"POSTGRES_DB_URL": cfg.PostgresDbUrl,
-		"PUBLIC_KEY":      cfg.PublicKey,
 	})
 
 	return
