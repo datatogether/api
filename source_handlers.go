@@ -5,32 +5,32 @@ import (
 	"net/http"
 )
 
-func PrimerHandler(w http.ResponseWriter, r *http.Request) {
+func SourceHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "OPTIONS":
 		EmptyOkHandler(w, r)
 	case "GET":
-		GetPrimerHandler(w, r)
+		GetSourceHandler(w, r)
 	default:
 		NotFoundHandler(w, r)
 	}
 }
 
-func PrimersHandler(w http.ResponseWriter, r *http.Request) {
+func SourcesHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		ListPrimersHandler(w, r)
+		ListSourcesHandler(w, r)
 	default:
 		NotFoundHandler(w, r)
 	}
 }
 
-func GetPrimerHandler(w http.ResponseWriter, r *http.Request) {
-	res := &archive.Primer{}
-	args := &PrimersGetArgs{
-		Id: r.URL.Path[len("/v0/primers/"):],
+func GetSourceHandler(w http.ResponseWriter, r *http.Request) {
+	res := &archive.Source{}
+	args := &SourcesGetArgs{
+		Id: r.URL.Path[len("/v0/sources/"):],
 	}
-	err := new(Primers).Get(args, res)
+	err := new(Sources).Get(args, res)
 	if err != nil {
 		writeErrResponse(w, http.StatusInternalServerError, err)
 		return
@@ -38,14 +38,14 @@ func GetPrimerHandler(w http.ResponseWriter, r *http.Request) {
 	writeResponse(w, res)
 }
 
-func ListPrimersHandler(w http.ResponseWriter, r *http.Request) {
+func ListSourcesHandler(w http.ResponseWriter, r *http.Request) {
 	p := PageFromRequest(r)
-	res := make([]*archive.Primer, p.Size)
-	args := &PrimersListArgs{
+	res := make([]*archive.Source, p.Size)
+	args := &SourcesListArgs{
 		Page:    p,
 		OrderBy: "created",
 	}
-	err := new(Primers).List(args, &res)
+	err := new(Sources).List(args, &res)
 	if err != nil {
 		writeErrResponse(w, http.StatusInternalServerError, err)
 		return

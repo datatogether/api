@@ -38,10 +38,10 @@ func main() {
 	// m.Handle("/v0/users", middleware(UserHandler))
 	// m.Handle("/v0/users/", middleware(UsersHandler))
 
-	// m.Handle("/v0/primers", middleware())
-	// m.Handle("/v0/primers/", middleware())
-	// m.Handle("/v0/sources", middleware())
-	// m.Handle("/v0/sources/", middleware())
+	m.Handle("/v0/primers", middleware(PrimersHandler))
+	m.Handle("/v0/primers/", middleware(PrimerHandler))
+	m.Handle("/v0/sources", middleware(SourcesHandler))
+	m.Handle("/v0/sources/", middleware(SourceHandler))
 
 	m.Handle("/v0/urls", middleware(UrlsHandler))
 	m.Handle("/v0/urls/", middleware(UrlHandler))
