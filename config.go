@@ -79,6 +79,7 @@ func initConfig(mode string) (cfg *config, err error) {
 	cfg.AllowedOrigins = readEnvStringSlice("ALLOWED_ORIGINS", cfg.AllowedOrigins)
 	cfg.CertbotResponse = readEnvString("CERTBOT_RESPONSE", cfg.CertbotResponse)
 	cfg.AnalyticsToken = readEnvString("ANALYTICS_TOKEN", cfg.AnalyticsToken)
+	cfg.PostgresDbUrl = readEnvString("POSTGRES_DB_URL", cfg.PostgresDbUrl)
 
 	// make sure port is set
 	if cfg.Port == "" {
