@@ -30,14 +30,23 @@ func main() {
 
 	s := &http.Server{}
 	m := http.NewServeMux()
+
+	m.HandleFunc("/", NotFoundHandler)
+	m.Handle("/status", middleware(HealthCheckHandler))
 	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
 
-	m.Handle("/", middleware(HealthCheckHandler))
+	// m.Handle("/v0/users", middleware(UserHandler))
+	// m.Handle("/v0/users/", middleware(UsersHandler))
 
-	// m.Handle("/v0/users", middleware())
-	// m.Handle("/v0/users/", middleware())
-	m.Handle("/v0/urls", middleware(UrlHandler))
-	m.Handle("/v0/urls/", middleware(UrlsHandler))
+	// m.Handle("/v0/primers", middleware())
+	// m.Handle("/v0/primers/", middleware())
+	// m.Handle("/v0/sources", middleware())
+	// m.Handle("/v0/sources/", middleware())
+
+	m.Handle("/v0/urls", middleware(UrlsHandler))
+	m.Handle("/v0/urls/", middleware(UrlHandler))
+	// m.Handle("/v0/links", middleware(UrlHandler))
+	// m.Handle("/v0/links/", middleware(UrlsHandler))
 
 	// m.Handle("/v0/content", middleware())
 	// m.Handle("/v0/content/", middleware())
@@ -45,10 +54,6 @@ func main() {
 	// m.Handle("/v0/metadata/", middleware())
 	// m.Handle("/v0/consensus", middleware())
 	// m.Handle("/v0/consensus/", middleware())
-	// m.Handle("/v0/primers", middleware())
-	// m.Handle("/v0/primers/", middleware())
-	// m.Handle("/v0/sources", middleware())
-	// m.Handle("/v0/sources/", middleware())
 
 	// connect mux to server
 	s.Handler = m

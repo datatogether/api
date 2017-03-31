@@ -20,7 +20,7 @@ func CertbotHandler(w http.ResponseWriter, r *http.Request) {
 
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
-	w.Write([]byte(`{ "status" :  "not found" }\n`))
+	w.Write([]byte(`{ "status" :  "not found" }`))
 }
 
 // EmptyOkHandler is an empty 200 response, often used

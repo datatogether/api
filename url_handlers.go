@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/qri-io/archive"
 	"net/http"
-	"strings"
 )
 
 func UrlHandler(w http.ResponseWriter, r *http.Request) {
@@ -11,16 +10,7 @@ func UrlHandler(w http.ResponseWriter, r *http.Request) {
 	case "OPTIONS":
 		EmptyOkHandler(w, r)
 	case "GET":
-		logger.Println(r.Context().Value("user"))
-		url := r.FormValue("url")
-		u := &archive.Url{Url: url, Id: strings.TrimPrefix(r.URL.Path, "/urls/")}
-		if err := u.Read(appDB); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			logger.Println(err.Error())
-			return
-		}
-
-		writeResponse(w, url)
+		GetUrlHandler(w, r)
 	default:
 		NotFoundHandler(w, r)
 	}
@@ -29,37 +19,38 @@ func UrlHandler(w http.ResponseWriter, r *http.Request) {
 func UrlsHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		// if we have a "url" param, read that single url
-		url := r.FormValue("url")
-		if url != "" {
-			u := &archive.Url{Url: url}
-			if err := u.Read(appDB); err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				logger.Println(err.Error())
-				return
-			}
-
-			writeResponse(w, u)
-		} else {
-			p := PageFromRequest(r)
-			var (
-				urls []*archive.Url
-				err  error
-			)
-			if fetched, _ := reqParamBool("fetched", r); fetched {
-				urls, err = archive.FetchedUrls(appDB, p.Size, p.Offset())
-			} else {
-				urls, err = archive.ListUrls(appDB, p.Size, p.Offset())
-			}
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				logger.Println(err.Error())
-				return
-			}
-
-			writeResponse(w, urls)
-		}
+		ListUrlsHandler(w, r)
 	default:
 		NotFoundHandler(w, r)
 	}
+}
+
+func GetUrlHandler(w http.ResponseWriter, r *http.Request) {
+	res := &archive.Url{}
+	args := &UrlsGetArgs{
+		Id:   r.URL.Path[len("/v0/urls/"):],
+		Url:  r.FormValue("url"),
+		Hash: r.FormValue("hash"),
+	}
+	err := new(Urls).Get(args, res)
+	if err != nil {
+		writeErrResponse(w, http.StatusInternalServerError, err)
+		return
+	}
+	writeResponse(w, res)
+}
+
+func ListUrlsHandler(w http.ResponseWriter, r *http.Request) {
+	p := PageFromRequest(r)
+	res := make([]*archive.Url, p.Size)
+	args := &UrlsListArgs{
+		Page:    p,
+		OrderBy: "created",
+	}
+	err := new(Urls).List(args, &res)
+	if err != nil {
+		writeErrResponse(w, http.StatusInternalServerError, err)
+		return
+	}
+	writePageResponse(w, res, r, p)
 }
