@@ -37,23 +37,24 @@ func main() {
 
 	// m.Handle("/v0/users", middleware(UserHandler))
 	// m.Handle("/v0/users/", middleware(UsersHandler))
-
 	m.Handle("/v0/primers", middleware(PrimersHandler))
 	m.Handle("/v0/primers/", middleware(PrimerHandler))
 	m.Handle("/v0/sources", middleware(SourcesHandler))
 	m.Handle("/v0/sources/", middleware(SourceHandler))
-
 	m.Handle("/v0/urls", middleware(UrlsHandler))
 	m.Handle("/v0/urls/", middleware(UrlHandler))
 	// m.Handle("/v0/links", middleware(UrlHandler))
 	// m.Handle("/v0/links/", middleware(UrlsHandler))
-
+	// m.Handle("/v0/snapshots", middleware())
+	// m.Handle("/v0/snapshots/", middleware())
 	// m.Handle("/v0/content", middleware())
 	// m.Handle("/v0/content/", middleware())
 	// m.Handle("/v0/metadata", middleware())
 	// m.Handle("/v0/metadata/", middleware())
 	// m.Handle("/v0/consensus", middleware())
 	// m.Handle("/v0/consensus/", middleware())
+	// m.Handle("/v0/collections", middleware())
+	// m.Handle("/v0/collections/", middleware())
 
 	// connect mux to server
 	s.Handler = m

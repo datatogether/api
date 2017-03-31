@@ -1,0 +1,578 @@
+---
+  swagger: "2.0"
+  info: 
+    version: "0.0.1"
+    title: "Archivers API"
+    description: "Api for Archivers records"
+    termsOfService: "https://archivers.space/terms/api"
+    contact: 
+      name: "Swagger API Team"
+    license: 
+      name: "MIT"
+  host: "api.archivers.space"
+  basePath: "/v0"
+  schemes: 
+    - "https"
+  consumes: 
+    - "application/json"
+  produces: 
+    - "application/json"
+  paths: 
+    /primers:
+      get:
+        description: "List Primers"
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "Enveloped array of Primers"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: array
+                  $ref: "#/description/Primer"
+                pagination:
+                  type: object
+    /primers/{id}:
+      get:
+        description: "Get a Primer"
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "List"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: object
+                  $ref: "#/description/Primer"
+    /sources:
+      get:
+        description: "List Sources"
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "Enveloped Sources"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: object
+                pagination:
+                  type: object
+    /sources/{id}:
+      get:
+        description: "Get a Source"
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "Enveloped Source"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: object
+                  $ref: "#/definitions/Source"
+    /urls:
+      get:
+        description: "List Urls"
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "Enveloped List of Urls"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: array
+                  $ref: "#/definitions/Url"
+                pagination:
+                  type: object
+    /urls/{id}:
+      get:
+        description: "Get a Url"
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "Enveloped Url"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: object
+                  $ref: "#/definitions/Url"
+    # /links:
+    #   get:
+    #     description: "get links"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: object
+    #             pagination:
+    #               type: object
+    # /links/:
+    #   get:
+    #     description: "get links/"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: object
+    #             pagination:
+    #               type: object
+    # /content:
+    #   get:
+    #     description: "get content"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: object
+    #             pagination:
+    #               type: object
+    # /content/:
+    #   get:
+    #     description: "get content/Z"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: object
+    #             pagination:
+    #               type: object
+    # /content/{subjectHash}:
+    #   get:
+    #     description: "get metadata"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: array
+    #             pagination:
+    #               type: object
+    # /metadata/{subjectHash}/{hash}:
+    #   get:
+    #     description: "Get metadata for a given subject hash"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: object
+    #               $ref: "#/description/Metadata"
+    # /consensus:
+    #   get:
+    #     description: "get consensus"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: array
+    #               $ref: "#/definitions/Consensus"
+    #             pagination:
+    #               type: object
+    # /consensus/{subjectHash}:
+    #   get:
+    #     description: "Get Consensus for a subject hash"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: object
+    #               $ref: "#/definitions/Consensus"
+    /collections:
+      get:
+        description: List Collections
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "Enveloped array of collections"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: array
+                  $ref: "#/definitions/Collection"
+                pagination:
+                  type: object
+    /collections/{id}:
+      get:
+        description: "Get a Collection"
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: "Enveloped Collection Object"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  type: object
+                  $ref: "#/definitions/Collection"
+  definitions:
+    User:
+      type: "object"
+      required:
+        - "id"
+      properties:
+        id:
+          type: "string"
+          format: "uuidv4"
+        created:
+          type: string
+          format: date-time
+          description: timestamp of first addition to the database rounded to seconds in UTC.
+        updated:
+          type: string
+          format: date-time
+          description: timestamp of most recent change rounded to seconds in UTC
+        username:
+          type: string
+          description: handle for the user. min 1 character, max 80. composed of [_,-,a-z,A-Z,1-9]
+        type:
+          type: string
+          description: specifies weather this is a user or an organization
+        name:
+          type: string
+          description: user name field. could be first[space]last, but not strictly enforced
+        description:
+          type: string
+          description: user-filled description of self
+        homeUrl:
+          type: string
+          description: url this user wants the world to click
+        currentKey:
+          type: string
+          description: sh256 multihash of public key that this user is currently using for signatures
+    Primer:
+      type: "object"
+      required:
+        - "id"
+      properties:
+        id:
+          type: "string"
+          format: "uuidv4"
+        created:
+          type: string
+          format: date-time
+          description: timestamp of first addition to the database rounded to seconds in UTC.
+        updated:
+          type: string
+          format: date-time
+          description: timestamp of most recent change rounded to seconds in UTC
+        shortTitle:
+          type: string
+          description: >
+           shortest possible expression of this primer's name, usually an acronym
+           called shortTitle b/c acronyms collide often & users should feel free to
+           expand on acronyms 
+        title:
+          type: string
+          description: human-readable title of this primer. 
+        description:
+          type: string
+          description: long-form description of this primer. 
+        parent:
+          type: object
+          description: parent primer (if any)
+        subPrimers:
+          type: array
+          description: child-primers list
+        meta:
+          type: string
+          description: metadata to associate with this primer
+        stats:
+          type: string
+          description: statistics about this primer
+        sources:
+          type: string
+          description: collection of child sources
+    Source:
+      type: object
+      description: >
+        Source is a concreate handle for archiving. Crawlers use
+        source's url as a base of a link tree. Sources are connected
+        to a parent Primer to provide context & organization.
+      required:
+        - "id"
+      properties:
+        id:
+          type: "string"
+          format: "uuidv4"
+        created:
+          type: string
+          format: date-time
+          description: timestamp of first addition to the database rounded to seconds in UTC.
+        updated:
+          type: string
+          format: date-time
+          description: timestamp of most recent change rounded to seconds in UTC
+        title:
+          type: string
+          description: human-readable title for this source
+        description:
+          type: string
+          description: description of the source, ideally one paragraph
+        url:
+          type: string
+          description: absolute url to serve as the root of the
+        primerId:
+          type: string
+          description: primer this source is connected to
+        crawl:
+          type: string
+          description: weather or not this url should be crawled be a web crawler
+        staleDuration:
+          type: string
+          description: amount of time before a link within this tree is considered in need of re-checking for changes. currently not in use, but planned.
+        lastAlertSent:
+          type: string
+          description: yeah this'll probably get depricated. Part of a half-baked alerts feature idea.
+        meta:
+          type: object
+          description: Metadata associated with this source that should be added to all child urls, currently not in use, but planned
+        stats:
+          type: object
+          description: Stats about this source
+    Url:
+      type: "object"
+      required:
+        - "id"
+      properties:
+        id:
+          type: "string"
+          format: "uuidv4"
+        created:
+          type: string
+          format: date-time
+          description: timestamp of first addition to the database rounded to seconds in UTC.
+        updated:
+          type: string
+          format: date-time
+          description: timestamp of most recent change rounded to seconds in UTC
+        url:
+          type: string
+          description: URI string without any normalization. Url strings must always be absolute. unique to each entry
+        lastGet:
+          type: string
+          format: date-time
+          description: timestamp for most recent GET request
+        lastHead:
+          type: string
+          format: date-time
+          description: timestamp for most recent HEAD request
+        status:
+          type: integer
+          description: latest returned HTTP response status code
+        contentType:
+          type: string
+          description: latest returnd 'Content-Type' HTTP header
+        contentSniff:
+          type: string
+          description: Result of mime sniffing to GET response body, as detailed at https://mimesniff.spec.whatwg.org
+        contentLength:
+          type: integer
+          description: 
+        title:
+          type: string
+          description: HTML Title tag attribute
+        downloadTook: 
+          type: integer
+          description: Time remote server took to transfer content in miliseconds.
+        headersTook:
+          type: integer
+          description: Time taken to  in miliseconds. currently not implemented
+        headers:
+          type: string
+          description: key-value array of returned headers from most recent HEAD or GET request stored in the form [key,value,key,value...]
+        meta: 
+          type: array
+          description: any associative metadata for this url
+        hash:
+          type: string
+          description: Hash is a multihash sha-256 of the response body of a GET request
+        contentUrl:
+          type: string
+          description: Url to saved content
+    Link:
+      type: object
+      required:
+        - created
+        - updated
+        - src
+        - dst
+      properties:
+        created:
+          format: string
+          description: created timestamp rounded to seconds in UTC
+        updated:
+          format: string
+          description: updated timestamp rounded to seconds in UTC
+        src:
+          format: string
+          description: origin url of the linking document
+        dst:
+          format: string
+          description: absolute url of the <a> href property
+    Snapshot:
+      type: "object"
+      required:
+        - "id"
+      properties:
+        url:
+          type: string
+          description: The url that was requested
+        created:
+          type: string
+          format: date-time
+          description: Time this request was issued
+        status:
+          type: integer
+          description: Returned Status
+        duration:
+          type: integer
+          description: Time to complete response in milliseconds
+        headers:
+          type: string
+          description: Record of all returned headers in [key,value,key,value...]
+        hash:
+          type: string
+          description: Multihash of response body (if any)
+    Metadata:
+      type: "object"
+      required:
+        - "id"
+      properties:
+        id:
+          type: "string"
+          format: "uuidv4"
+        hash:
+          type: string
+          description: sha256 multihash of all other fields in metadata as expressed by Metadata.HashableBytes()
+        timestamp:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        keyId:
+          type: string
+          description: Sha256 multihash of the public key that signed this metadata
+        subject:
+          type: string
+          description: Sha256 multihash of the content this metadata is describing
+        prev:
+          type: string
+          description: Hash value of the metadata that came before this, if any
+        meta:
+          type: object
+          description: Acutal stored metadata about the subject, can be any valid json Object
+    # Consensus:
+    #   type: "object"
+    #   required:
+    #     - "id"
+    Collection:
+      type: "object"
+      required:
+        - "id"
+      properties:
+        id:
+          type: string
+          description: version 4 uuid
+        created:
+          type: string
+          format: date-time
+          description: Created timestamp rounded to seconds in UTC
+        updated:
+          type: string
+          format: date-time
+          description: Updated timestamp rounded to seconds in UTC
+        creator:
+          type: string
+          description: sha356 multihash of the public key that created this collection
+        title:
+          type: string
+          description: human-readable title of the collection
+        schema:
+          type: array
+          description: csv column headers, first value must always be "hash"
+        contents:
+          type: array
+          description: actual collection contents
