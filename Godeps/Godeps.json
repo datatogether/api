@@ -183,7 +183,7 @@
 		},
 		{
 			"ImportPath": "github.com/qri-io/archive",
-			"Rev": "1c9a2a3d8de078e834acaaef1d7d53eebc4c0ef7"
+			"Rev": "5add8b4d2b8acb85dd46587dd2acb68bf2922ec3"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/acme",
