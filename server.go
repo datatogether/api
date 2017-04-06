@@ -43,6 +43,8 @@ func main() {
 	m.Handle("/v0/sources/", middleware(SourceHandler))
 	m.Handle("/v0/urls", middleware(UrlsHandler))
 	m.Handle("/v0/urls/", middleware(UrlHandler))
+	m.Handle("/v0/uncrawlables", middleware(UncrawlablesHandler))
+	m.Handle("/v0/uncrawlables/", middleware(UncrawlableHandler))
 
 	// m.Handle("/v0/links", middleware(UrlHandler))
 	// m.Handle("/v0/links/", middleware(UrlsHandler))
