@@ -53,3 +53,13 @@ func (u *Uncrawlables) Save(model *archive.Uncrawlable, res *archive.Uncrawlable
 	*res = *model
 	return nil
 }
+
+func (u *Uncrawlables) Delete(model *archive.Uncrawlable, res *archive.Uncrawlable) (err error) {
+	err = model.Delete(appDB)
+	if err != nil {
+		return err
+	}
+
+	*res = *model
+	return nil
+}
