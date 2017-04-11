@@ -43,3 +43,13 @@ func (u *Uncrawlables) List(args *UncrawlablesListArgs, res *[]*archive.Uncrawla
 	*res = urls
 	return nil
 }
+
+func (u *Uncrawlables) Save(model *archive.Uncrawlable, res *archive.Uncrawlable) (err error) {
+	err = model.Save(appDB)
+	if err != nil {
+		return err
+	}
+
+	*res = *model
+	return nil
+}
