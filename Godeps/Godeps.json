@@ -22,6 +22,10 @@
 			"Rev": "349dd0209470eabd9514242c688c403c0926d266"
 		},
 		{
+			"ImportPath": "github.com/archivers-space/archive",
+			"Rev": "51b99b3cce881aca6f42c00d63d45e1635ddc17b"
+		},
+		{
 			"ImportPath": "github.com/aws/aws-sdk-go/aws",
 			"Comment": "v1.6.23-1-g1e2e6335",
 			"Rev": "1e2e6335535acb42e022f951ea4f7ab6fcf6c070"
@@ -180,10 +184,6 @@
 			"ImportPath": "github.com/pborman/uuid",
 			"Comment": "v1.0-21-g1b00554",
 			"Rev": "1b00554d822231195d1babd97ff4a781231955c9"
-		},
-		{
-			"ImportPath": "github.com/qri-io/archive",
-			"Rev": "3063bae61d21638f3ee4b274c8c96ca1454c83a2"
 		},
 		{
 			"ImportPath": "github.com/qri-io/ffi",
