@@ -548,6 +548,68 @@
     #   type: "object"
     #   required:
     #     - "id"
+    Uncrawlable:
+      type: "object"
+      required:
+        - "url"
+      properties:
+        id:
+          type: string 
+          description: version 4 uuid
+        url:
+          type: string 
+          description: url from urls table, must be unique
+        created:
+          type: string 
+          description: Created timestamp rounded to seconds in UTC
+        updated:
+          type: string 
+          description: Updated timestamp rounded to seconds in UTC
+        creator:
+          type: string 
+          description: sha256 multihash of the public key that created this uncrawlable
+        name:
+          type: string 
+          description: name of person making submission
+        email:
+          type: string 
+          description: email address of person making submission
+        eventName:
+          type: string 
+          description: name of data rescue event where uncrawlable was added
+        agency:
+          type: string 
+          description: agency name
+        agencyId:
+          type: string 
+          description: EDGI agency Id
+        subagencyId:
+          type: string 
+          description: EDGI subagency Id
+        orgId:
+          type: string 
+          description: EDGI organization Id
+        suborgId:
+          type: string 
+          description: EDGI Suborganization Id
+        subprimerId:
+          type: string 
+          description: EDGI subprimer Id
+        ftp:
+          type: boolean 
+          description: flag for ftp content
+        database:
+          type: boolean 
+          description: flag for 'database'
+        interactive:
+          type: boolean 
+          description: flag for visualization / interactive content obfuscating data
+        manyFiles:
+          type: boolean 
+          description: flag for a page that links to many files
+        comments:
+          type: string 
+          description: uncrawlable comments
     Collection:
       type: "object"
       required:

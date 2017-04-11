@@ -18,15 +18,20 @@ type SourcesGetArgs struct {
 }
 
 func (u *Sources) Get(args *SourcesGetArgs, res *archive.Source) (err error) {
-	url := &archive.Source{
+	s := &archive.Source{
 		Id: args.Id,
 	}
-	err = url.Read(appDB)
+	err = s.Read(appDB)
 	if err != nil {
 		return err
 	}
 
-	*res = *url
+	err = s.Primer.Read(appDB)
+	if err != nil {
+		return err
+	}
+
+	*res = *s
 	return nil
 }
 
