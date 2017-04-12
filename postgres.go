@@ -32,6 +32,7 @@ type sqlQueryExecable interface {
 
 func connectToAppDb() {
 	var err error
+	fmt.Println("connecting to db")
 	for i := 0; i < 1000; i++ {
 		appDB, err = SetupConnection(cfg.PostgresDbUrl)
 		if err != nil {
