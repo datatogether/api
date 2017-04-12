@@ -151,6 +151,11 @@
 			"Rev": "1e2e6335535acb42e022f951ea4f7ab6fcf6c070"
 		},
 		{
+			"ImportPath": "github.com/gchaincl/dotsql",
+			"Comment": "v0.1.0-10-g450d80a",
+			"Rev": "450d80a4d8f8cdd41842a1a3fe9ace90089c5e47"
+		},
+		{
 			"ImportPath": "github.com/go-ini/ini",
 			"Comment": "v1.24.0-2-gee900ca",
 			"Rev": "ee900ca565931451fe4e4409bcbd4316331cec1c"

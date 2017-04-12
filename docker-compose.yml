@@ -1,0 +1,26 @@
+version: '2'
+services:
+  api:
+    build: .
+    volumes:
+      - .:/go/src/github.com/archivers-space/archivers-api
+      - ./sql:/sql
+    ports:
+     - "3200:8080"
+    networks:
+      - back-tier
+    depends_on:
+      - db
+    environment:
+      - GOLANG_ENV=develop
+      - POSTGRES_DB_URL=postgres://postgres@db/postgres?sslmode=disable
+  db:
+    image: "postgres:9.6-alpine"
+    networks:
+      - back-tier
+
+volumes:
+  db-data:
+
+networks:
+  back-tier:
