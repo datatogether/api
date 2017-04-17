@@ -1,0 +1,24 @@
+version: '2'
+jobs:
+  build:
+    working_directory: ~/go
+    docker:
+      - image: golang:latest
+        environment:
+          GOLANG_ENV: test
+          BASE_URL: localhost:3000
+          PORT: 3000
+          DEBUG: false
+          POSTGRES_DB_URL: postgres://ubuntu:@localhost:5432/circle_test?sslmode=disable
+      - image: postgres:9.6.2
+        environment:
+          POSTGRES_USER: ubuntu
+          BOSTREAS_DB: circle_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+      - go get -v github.com/jstemmer/go-junit-report
+      - run: 
+          name: go test
+          command: go test -v -race ./... | tee $CIRCLE_TEST_REPORTS/archivers-space/original.txt ; test ${PIPESTATUS[0]} -eq 0:
+      - run: cat $CIRCLE_TEST_REPORTS/archivers-space/original.txt | go-junit-report > $CIRCLE_TEST_REPORTS/archivers-space/junit.xml
