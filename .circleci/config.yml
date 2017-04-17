@@ -19,6 +19,7 @@ jobs:
       - checkout
       - run: mkdir -p $CIRCLE_TEST_REPORTS/archivers-space
       - run: go get -v github.com/jstemmer/go-junit-report
+      - run: go-wrapper download && go-wrapper install
       - run: 
           name: go test
           command: go test -v -race ./... | tee $CIRCLE_TEST_REPORTS/archivers-space/original.txt ; test ${PIPESTATUS[0]} -eq 0
