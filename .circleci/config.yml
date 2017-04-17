@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /go/src/github.com/archivers-space/archivers-api
     docker:
-      - image: golang:latest
+      - image: circleci/cci-demo-go-primary:0.0.2
         environment:
           GOLANG_ENV: test
           BASE_URL: localhost:3000
