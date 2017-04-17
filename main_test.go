@@ -28,7 +28,7 @@ func TestMain(m *testing.M) {
 
 func setupTestDatabase() func() {
 	var err error
-	appDB, err = SetupConnection(os.Getenv("POSTGRES_URL"))
+	appDB, err = SetupConnection(os.Getenv("POSTGRES_DB_URL"))
 	if err != nil {
 		appDB.Close()
 		panic(err.Error())
