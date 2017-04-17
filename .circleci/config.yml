@@ -13,7 +13,7 @@ jobs:
       - image: postgres:9.6.2
         environment:
           POSTGRES_USER: ubuntu
-          BOSTREAS_DB: circle_test
+          POSTGRES_DB: circle_test
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
