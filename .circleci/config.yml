@@ -34,3 +34,5 @@ jobs:
           name: go test
           command: go test -v -race ./... | tee $CIRCLE_TEST_REPORTS/archivers-space/original.txt ; test ${PIPESTATUS[0]} -eq 0
       - run: cat $CIRCLE_TEST_REPORTS/archivers-space/original.txt | go-junit-report > $CIRCLE_TEST_REPORTS/archivers-space/junit.xml
+      - store_test_results:
+          path: $CIRCLE_TEST_REPORTS/archivers-space/junit.xml
