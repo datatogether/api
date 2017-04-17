@@ -18,17 +18,7 @@ var (
 	appDB *sql.DB
 )
 
-func main() {
-	var err error
-	cfg, err = initConfig(os.Getenv("GOLANG_ENV"))
-	if err != nil {
-		// panic if the server is missing a vital configuration detail
-		panic(fmt.Errorf("server configuration error: %s", err.Error()))
-	}
-
-	connectToAppDb()
-
-	s := &http.Server{}
+func NewServerRoutes() *http.ServeMux {
 	m := http.NewServeMux()
 
 	m.HandleFunc("/", NotFoundHandler)
@@ -59,8 +49,22 @@ func main() {
 	// m.Handle("/v0/collections", middleware())
 	// m.Handle("/v0/collections/", middleware())
 
+	return m
+}
+
+func main() {
+	var err error
+	cfg, err = initConfig(os.Getenv("GOLANG_ENV"))
+	if err != nil {
+		// panic if the server is missing a vital configuration detail
+		panic(fmt.Errorf("server configuration error: %s", err.Error()))
+	}
+
+	connectToAppDb()
+
+	s := &http.Server{}
 	// connect mux to server
-	s.Handler = m
+	s.Handler = NewServerRoutes()
 
 	// print notable config settings
 	printConfigInfo()
