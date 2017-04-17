@@ -36,6 +36,7 @@ jobs:
       - run: cat /tmp/test-reports/archivers-space/original.txt | go-junit-report > /tmp/test-reports/archivers-space/junit.xml
       - store_test_results:
           path: /tmp/test-reports/archivers-space/junit.xml
+      - setup_remote_docker
       - run:
           name: Install Docker client
           command: |
