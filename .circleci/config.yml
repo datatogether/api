@@ -57,3 +57,4 @@ jobs:
             docker build -t archivers/archivers-api:latest -t archivers/archivers-api:$TAG .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push archivers/archivers-api:$TAG
+            docker push archivers/archivers-api:latest
