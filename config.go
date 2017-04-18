@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -27,6 +28,9 @@ const (
 //
 // configuration is read at startup and cannot be alterd without restarting the server.
 type config struct {
+	// path to go source code
+	Gopath string `json:"GOPATH"`
+
 	// port to listen on, will be read from PORT env variable if present.
 	Port string `json:"PORT"`
 
@@ -72,6 +76,7 @@ func initConfig(mode string) (cfg *config, err error) {
 	// override config settings with env settings, passing in the current configuration
 	// as the default. This has the effect of leaving the config.json value unchanged
 	// if the env variable is empty
+	cfg.Gopath = readEnvString("GOPATH", cfg.Gopath)
 	cfg.Port = readEnvString("PORT", cfg.Port)
 	cfg.UrlRoot = readEnvString("URL_ROOT", cfg.UrlRoot)
 	cfg.PublicKey = readEnvString("PUBLIC_KEY", cfg.PublicKey)
@@ -92,6 +97,10 @@ func initConfig(mode string) (cfg *config, err error) {
 	})
 
 	return
+}
+
+func packagePath(path string) string {
+	return filepath.Join(os.Getenv("GOPATH"), "src/github.com/archivers-space/archivers-api", path)
 }
 
 // readEnvString reads key from the environment, returns def if empty
@@ -134,9 +143,9 @@ func requireConfigStrings(values map[string]string) error {
 func loadConfigFile(mode string, cfg *config) (err error) {
 	var data []byte
 
-	fileName := fmt.Sprintf("config.%s.json", mode)
+	fileName := packagePath(fmt.Sprintf("config.%s.json", mode))
 	if !fileExists(fileName) {
-		fileName = "config.json"
+		fileName = packagePath("config.json")
 		if !fileExists(fileName) {
 			return nil
 		}

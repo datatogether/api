@@ -73,7 +73,7 @@ func initializeDatabase(db *sql.DB) error {
 
 	fmt.Println("initializing database with base test data")
 
-	schema, err := dotsql.LoadFromFile("$GOPATH/src/github.com/archivers-space/sql/schema.sql")
+	schema, err := dotsql.LoadFromFile(packagePath("/sql/schema.sql"))
 	if err != nil {
 		return err
 	}
@@ -117,7 +117,7 @@ func initializeDatabase(db *sql.DB) error {
 // drops test data tables & re-inserts base data from sql/test_data.sql, based on
 // passed in table names
 func insertTestData(db *sql.DB, tables ...string) error {
-	schema, err := dotsql.LoadFromFile("$GOPATH/github.com/archivers-space/sql/test_data.sql")
+	schema, err := dotsql.LoadFromFile(packagePath("sql/test_data.sql"))
 	if err != nil {
 		return err
 	}

@@ -13,7 +13,7 @@ func TestMain(m *testing.M) {
 	var err error
 	flag.Parse()
 
-	cfg, err = initConfig(os.Getenv("GOLANG_ENV"))
+	cfg, err = initConfig("test")
 	if err != nil {
 		// panic if the server is missing a vital configuration detail
 		panic(fmt.Errorf("server configuration error: %s", err.Error()))
@@ -28,7 +28,7 @@ func TestMain(m *testing.M) {
 
 func setupTestDatabase() func() {
 	var err error
-	appDB, err = SetupConnection(os.Getenv("POSTGRES_DB_URL"))
+	appDB, err = SetupConnection(cfg.PostgresDbUrl)
 	if err != nil {
 		appDB.Close()
 		panic(err.Error())
