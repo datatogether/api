@@ -1,12 +1,10 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	conf "github.com/archivers-space/config"
 	"os"
 	"path/filepath"
-	"strings"
 )
 
 // server modes
@@ -18,13 +16,12 @@ const (
 
 // config holds all configuration for the server. It pulls from three places (in order):
 // 		1. environment variables
-// 		2. config.[server_mode].json <- eg: config.test.json
-// 		3. config.json
+// 		2. .[MODE].env OR .env
 //
-// env variables win, but can only set config who's json is ALL_CAPS
-// it's totally fine to not have, say, config.develop.json defined, and just
-// rely on a base config.json. But if you're in production mode & config.production.json
-// exists, that will be read *instead* of config.json.
+// globally-set env variables win.
+// it's totally fine to not have, say, .env.develop defined, and just
+// rely on a base ".env" file. But if you're in production mode & ".env.production"
+// exists, that will be read *instead* of .env
 //
 // configuration is read at startup and cannot be alterd without restarting the server.
 type config struct {
@@ -69,22 +66,12 @@ type config struct {
 func initConfig(mode string) (cfg *config, err error) {
 	cfg = &config{}
 
-	if err := loadConfigFile(mode, cfg); err != nil {
-		return cfg, err
+	if path := configFilePath(mode, cfg); path != "" {
+		logger.Printf("loading config file: %s", filepath.Base(path))
+		conf.Load(cfg, path)
+	} else {
+		conf.Load(cfg)
 	}
-
-	// override config settings with env settings, passing in the current configuration
-	// as the default. This has the effect of leaving the config.json value unchanged
-	// if the env variable is empty
-	cfg.Gopath = readEnvString("GOPATH", cfg.Gopath)
-	cfg.Port = readEnvString("PORT", cfg.Port)
-	cfg.UrlRoot = readEnvString("URL_ROOT", cfg.UrlRoot)
-	cfg.PublicKey = readEnvString("PUBLIC_KEY", cfg.PublicKey)
-	cfg.TLS = readEnvBool("TLS", cfg.TLS)
-	cfg.AllowedOrigins = readEnvStringSlice("ALLOWED_ORIGINS", cfg.AllowedOrigins)
-	cfg.CertbotResponse = readEnvString("CERTBOT_RESPONSE", cfg.CertbotResponse)
-	cfg.AnalyticsToken = readEnvString("ANALYTICS_TOKEN", cfg.AnalyticsToken)
-	cfg.PostgresDbUrl = readEnvString("POSTGRES_DB_URL", cfg.PostgresDbUrl)
 
 	// make sure port is set
 	if cfg.Port == "" {
@@ -103,30 +90,6 @@ func packagePath(path string) string {
 	return filepath.Join(os.Getenv("GOPATH"), "src/github.com/archivers-space/archivers-api", path)
 }
 
-// readEnvString reads key from the environment, returns def if empty
-func readEnvString(key, def string) string {
-	if env := os.Getenv(key); env != "" {
-		return env
-	}
-	return def
-}
-
-// readEnvBool read key form the env, converting to a boolean value. returns def if empty
-func readEnvBool(key string, def bool) bool {
-	if env := os.Getenv(key); env != "" {
-		return env == "true" || env == "TRUE" || env == "t"
-	}
-	return def
-}
-
-// readEnvString reads a slice of strings from key environment var, returns def if empty
-func readEnvStringSlice(key string, def []string) []string {
-	if env := os.Getenv(key); env != "" {
-		return strings.Split(env, ",")
-	}
-	return def
-}
-
 // requireConfigStrings panics if any of the passed in values aren't set
 func requireConfigStrings(values map[string]string) error {
 	for key, value := range values {
@@ -138,33 +101,17 @@ func requireConfigStrings(values map[string]string) error {
 	return nil
 }
 
-// checks for config.[mode].json file to read configuration from if the file exists
-// defaults to config.json, silently fails if no configuration file is present.
-func loadConfigFile(mode string, cfg *config) (err error) {
-	var data []byte
-
-	fileName := packagePath(fmt.Sprintf("config.%s.json", mode))
+// checks for .[mode].env file to read configuration from if the file exists
+// defaults to .env, returns "" if no file is present
+func configFilePath(mode string, cfg *config) string {
+	fileName := packagePath(fmt.Sprintf(".%s.env", mode))
 	if !fileExists(fileName) {
-		fileName = packagePath("config.json")
+		fileName = packagePath(".env")
 		if !fileExists(fileName) {
-			return nil
+			return ""
 		}
 	}
-
-	logger.Printf("reading config file: %s", fileName)
-	data, err = ioutil.ReadFile(fileName)
-	if err != nil {
-		err = fmt.Errorf("error reading %s: %s", fileName, err)
-		return
-	}
-
-	// unmarshal ("decode") config data into a config struct
-	if err = json.Unmarshal(data, cfg); err != nil {
-		err = fmt.Errorf("error parsing %s: %s", fileName, err)
-		return
-	}
-
-	return
+	return fileName
 }
 
 // Does this file exist?

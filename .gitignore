@@ -2,3 +2,4 @@
 config.*.json
 archivers-api
 gin-bin
+*.env

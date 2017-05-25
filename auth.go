@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// Proxied User model. The real user model is in github.com/archivers-space/identity/user.go
 type User struct {
 	Id          string `json:"id" sql:"id"`
 	Created     int64  `json:"created" sql:"created"`
