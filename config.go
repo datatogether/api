@@ -57,6 +57,9 @@ type config struct {
 	// url for identity server
 	IdentityServerUrl string `json:"identityServerUrl"`
 
+	// location of coverage server
+	CoverageServerUrl string `json:"coverageServerUrl"`
+
 	// CertbotResponse is only for doing manual SSL certificate generation
 	// via LetsEncrypt.
 	CertbotResponse string `json:"CERTBOT_RESPONSE"`
@@ -67,10 +70,14 @@ func initConfig(mode string) (cfg *config, err error) {
 	cfg = &config{}
 
 	if path := configFilePath(mode, cfg); path != "" {
-		logger.Printf("loading config file: %s", filepath.Base(path))
-		conf.Load(cfg, path)
+		log.Infof("loading config file: %s", filepath.Base(path))
+		if err := conf.Load(cfg, path); err != nil {
+			log.Info("error loading config:", err)
+		}
 	} else {
-		conf.Load(cfg)
+		if err := conf.Load(cfg, path); err != nil {
+			log.Info("error loading config:", err)
+		}
 	}
 
 	// make sure port is set
@@ -82,6 +89,11 @@ func initConfig(mode string) (cfg *config, err error) {
 		"PORT":            cfg.Port,
 		"POSTGRES_DB_URL": cfg.PostgresDbUrl,
 	})
+
+	// output to stdout in dev mode
+	if mode == DEVELOP_MODE {
+		log.Out = os.Stdout
+	}
 
 	return
 }

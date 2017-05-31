@@ -3,7 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"log"
+	"github.com/sirupsen/logrus"
 	"net/http"
 	"os"
 )
@@ -12,55 +12,19 @@ var (
 	// cfg is the global configuration for the server. It's read in at startup from
 	// the config.json file and enviornment variables, see config.go for more info.
 	cfg *config
-	// log output
-	logger = log.New(os.Stderr, "", log.Ldate|log.Ltime|log.Lshortfile)
+	// log output handled by logrus package
+	log = logrus.New()
 	// application database connection
 	appDB *sql.DB
 )
 
-// NewServerRoutes returns a Muxer that has all API routes.
-// This makes for easy testing using httptest, see server_test.go
-func NewServerRoutes() *http.ServeMux {
-	m := http.NewServeMux()
-
-	m.HandleFunc("/", NotFoundHandler)
-	m.Handle("/status", middleware(HealthCheckHandler))
-	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
-
-	// m.Handle("/v0/users", middleware(UserHandler))
-	// m.Handle("/v0/users/", middleware(UsersHandler))
-
-	m.Handle("/v0/primers", middleware(PrimersHandler))
-	m.Handle("/v0/primers/", middleware(PrimerHandler))
-
-	m.Handle("/v0/sources", middleware(SourcesHandler))
-	m.Handle("/v0/sources/", middleware(SourceHandler))
-
-	m.Handle("/v0/urls", middleware(UrlsHandler))
-	m.Handle("/v0/urls/", middleware(UrlHandler))
-
-	m.Handle("/v0/uncrawlables", middleware(UncrawlablesHandler))
-	m.Handle("/v0/uncrawlables/", middleware(UncrawlableHandler))
-
-	// m.Handle("/v0/links", middleware(UrlHandler))
-	// m.Handle("/v0/links/", middleware(UrlsHandler))
-
-	// m.Handle("/v0/snapshots", middleware())
-	// m.Handle("/v0/snapshots/", middleware())
-
-	// m.Handle("/v0/content", middleware())
-	// m.Handle("/v0/content/", middleware())
-
-	// m.Handle("/v0/metadata", middleware())
-	// m.Handle("/v0/metadata/", middleware())
-
-	// m.Handle("/v0/consensus", middleware())
-	// m.Handle("/v0/consensus/", middleware())
-
-	// m.Handle("/v0/collections", middleware())
-	// m.Handle("/v0/collections/", middleware())
-
-	return m
+func init() {
+	// configure log
+	log.Out = os.Stderr
+	log.Level = logrus.InfoLevel
+	log.Formatter = &logrus.TextFormatter{
+		ForceColors: true,
+	}
 }
 
 // main app entry point
@@ -74,7 +38,7 @@ func main() {
 
 	// TODO - run this in a goroutine & support reporting "oh snap no DB"
 	// while waiting for a connection
-	connectToAppDb()
+	go connectToAppDb()
 
 	// base server
 	s := &http.Server{}
@@ -89,5 +53,53 @@ func main() {
 
 	// start server wrapped in a log.Fatal b/c http.ListenAndServe will not
 	// return unless there's an error
-	logger.Fatal(StartServer(cfg, s))
+	log.Fatal(StartServer(cfg, s))
+}
+
+// NewServerRoutes returns a Muxer that has all API routes.
+// This makes for easy testing using httptest, see server_test.go
+func NewServerRoutes() *http.ServeMux {
+	m := http.NewServeMux()
+
+	m.HandleFunc("/", NotFoundHandler)
+	m.Handle("/status", middleware(HealthCheckHandler))
+	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
+
+	// m.Handle("/users", middleware(UserHandler))
+	// m.Handle("/users/", middleware(UsersHandler))
+
+	m.Handle("/primers", middleware(PrimersHandler))
+	m.Handle("/primers/", middleware(PrimerHandler))
+
+	m.Handle("/sources", middleware(SourcesHandler))
+	m.Handle("/sources/", middleware(SourceHandler))
+
+	m.Handle("/urls", middleware(UrlsHandler))
+	m.Handle("/urls/", middleware(UrlHandler))
+
+	m.Handle("/uncrawlables", middleware(UncrawlablesHandler))
+	m.Handle("/uncrawlables/", middleware(UncrawlableHandler))
+
+	// m.Handle("/repositories", middleware(RepositoriesHandler))
+	// m.Handle("/repositories/", middleware(RepositoryHandler))
+
+	// m.Handle("/links", middleware(UrlHandler))
+	// m.Handle("/links/", middleware(UrlsHandler))
+
+	// m.Handle("/snapshots", middleware())
+	// m.Handle("/snapshots/", middleware())
+
+	// m.Handle("/content", middleware())
+	// m.Handle("/content/", middleware())
+
+	// m.Handle("/metadata", middleware())
+	// m.Handle("/metadata/", middleware())
+
+	// m.Handle("/consensus", middleware())
+	// m.Handle("/consensus/", middleware())
+
+	// m.Handle("/collections", middleware())
+	// m.Handle("/collections/", middleware())
+
+	return m
 }

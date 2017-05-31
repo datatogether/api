@@ -30,13 +30,13 @@ func requestAddUser(r *http.Request) (*http.Request, error) {
 	if token != "" {
 		res, err := http.Get(fmt.Sprintf("%s/users/?access_token=%s&envelope=false", cfg.IdentityServerUrl, token))
 		if err != nil {
-			logger.Println(err.Error())
+			log.Infoln(err.Error())
 			return r, err
 		}
 		if res.StatusCode == http.StatusOK {
 			authUser := &User{}
 			if err := json.NewDecoder(res.Body).Decode(authUser); err != nil {
-				logger.Println(err.Error())
+				log.Infoln(err.Error())
 				return r, err
 			}
 			u = authUser

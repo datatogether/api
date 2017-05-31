@@ -10,7 +10,7 @@
     license: 
       name: "MIT"
   host: "api.archivers.space"
-  basePath: "/v0"
+  basePath: ""
   schemes: 
     - "https"
   consumes: 
