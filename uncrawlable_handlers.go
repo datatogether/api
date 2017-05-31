@@ -35,7 +35,7 @@ func UncrawlablesHandler(w http.ResponseWriter, r *http.Request) {
 func GetUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
 	res := &archive.Uncrawlable{}
 	args := &UncrawlablesGetArgs{
-		Id:  r.URL.Path[len("/v0/uncrawlables/"):],
+		Id:  r.URL.Path[len("/uncrawlables/"):],
 		Url: r.FormValue("url"),
 	}
 	err := new(Uncrawlables).Get(args, res)

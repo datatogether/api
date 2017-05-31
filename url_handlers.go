@@ -28,7 +28,7 @@ func UrlsHandler(w http.ResponseWriter, r *http.Request) {
 func GetUrlHandler(w http.ResponseWriter, r *http.Request) {
 	res := &archive.Url{}
 	args := &UrlsGetArgs{
-		Id:   r.URL.Path[len("/v0/urls/"):],
+		Id:   r.URL.Path[len("/urls/"):],
 		Url:  r.FormValue("url"),
 		Hash: r.FormValue("hash"),
 	}

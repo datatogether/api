@@ -28,7 +28,7 @@ func PrimersHandler(w http.ResponseWriter, r *http.Request) {
 func GetPrimerHandler(w http.ResponseWriter, r *http.Request) {
 	res := &archive.Primer{}
 	args := &PrimersGetArgs{
-		Id: r.URL.Path[len("/v0/primers/"):],
+		Id: r.URL.Path[len("/primers/"):],
 	}
 	err := new(Primers).Get(args, res)
 	if err != nil {
