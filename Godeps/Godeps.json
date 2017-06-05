@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/archivers-space/archivers-api",
+	"ImportPath": "github.com/archivers-space/api",
 	"GoVersion": "go1.8",
 	"GodepVersion": "v79",
 	"Deps": [
@@ -30,8 +30,24 @@
 			"Rev": "eba5c3af9362873cc43c38480ab443c9518c8c06"
 		},
 		{
+			"ImportPath": "github.com/archivers-space/errors",
+			"Rev": "8bdc2a3f98128fadfafdc392d56f5a2bd5c9c754"
+		},
+		{
 			"ImportPath": "github.com/archivers-space/ffi",
 			"Rev": "99f376acf0864754b9810704ae2b41670e17bbba"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/identity/access_token",
+			"Rev": "024d149ec67e478da6df567a079ae7956b1c0750"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/identity/user",
+			"Rev": "024d149ec67e478da6df567a079ae7956b1c0750"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/sqlutil",
+			"Rev": "9ab5d36e67b7c03b85f8ca1d4552645210ea656d"
 		},
 		{
 			"ImportPath": "github.com/aws/aws-sdk-go/aws",
@@ -217,6 +233,10 @@
 			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
 		},
 		{
+			"ImportPath": "golang.org/x/crypto/bcrypt",
+			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
+		},
+		{
 			"ImportPath": "golang.org/x/crypto/blake2b",
 			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
 		},
@@ -225,7 +245,27 @@
 			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
 		},
 		{
+			"ImportPath": "golang.org/x/crypto/blowfish",
+			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/curve25519",
+			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ed25519",
+			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ed25519/internal/edwards25519",
+			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
+		},
+		{
 			"ImportPath": "golang.org/x/crypto/sha3",
+			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh",
 			"Rev": "453249f01cfeb54c3d549ddb75ff152ca243f9d8"
 		},
 		{
