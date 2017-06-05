@@ -31,7 +31,7 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
-	conn, err := net.Dial("tcp", cfg.IdentityServerUrl)
+	conn, err := net.Dial("tcp", cfg.IdentityServiceUrl)
 	if err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
@@ -51,7 +51,7 @@ func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetUserHandler(w http.ResponseWriter, r *http.Request) {
-	conn, err := net.Dial("tcp", cfg.IdentityServerUrl)
+	conn, err := net.Dial("tcp", cfg.IdentityServiceUrl)
 	if err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return

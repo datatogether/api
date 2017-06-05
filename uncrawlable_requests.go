@@ -2,12 +2,7 @@ package main
 
 import (
 	"github.com/archivers-space/archive"
-	"net/rpc"
 )
-
-func init() {
-	rpc.Register(new(Uncrawlables))
-}
 
 type Uncrawlables int
 

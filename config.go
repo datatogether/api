@@ -58,10 +58,10 @@ type config struct {
 	AnalyticsToken string
 
 	// url for identity server
-	IdentityServerUrl string
+	IdentityServiceUrl string
 
-	// location of coverage server
-	CoverageServerUrl string
+	// url for coverage service
+	CoverageServiceUrl string
 
 	// CertbotResponse is only for doing manual SSL certificate generation
 	// via LetsEncrypt.

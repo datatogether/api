@@ -28,7 +28,7 @@ func requestAddUser(r *http.Request) (*http.Request, error) {
 
 	token := r.FormValue("api_token")
 	if token != "" {
-		res, err := http.Get(fmt.Sprintf("%s/users/?access_token=%s&envelope=false", cfg.IdentityServerUrl, token))
+		res, err := http.Get(fmt.Sprintf("%s/users/?access_token=%s&envelope=false", cfg.IdentityServiceUrl, token))
 		if err != nil {
 			log.Infoln(err.Error())
 			return r, err
