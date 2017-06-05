@@ -23,11 +23,43 @@
 		},
 		{
 			"ImportPath": "github.com/archivers-space/archive",
-			"Rev": "2cb65f3253a5559644725a268c1efbf40396b20b"
+			"Rev": "2d8c8d7efcf2a9fa11c51a5d3cfc7aa657ee247c"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/config",
 			"Rev": "eba5c3af9362873cc43c38480ab443c9518c8c06"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/coverage",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/repositories",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/repositories/archivers2",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/repositories/archivers_space",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/repositories/eot",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/repositories/ia",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/repositories/svalbard",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/coverage/tree",
+			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/errors",

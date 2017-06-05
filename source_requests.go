@@ -2,12 +2,7 @@ package main
 
 import (
 	"github.com/archivers-space/archive"
-	"net/rpc"
 )
-
-func init() {
-	rpc.Register(new(Sources))
-}
 
 type Sources int
 
@@ -17,7 +12,7 @@ type SourcesGetParams struct {
 	Hash   string
 }
 
-func (u *Sources) Get(args *SourcesGetParams, res *archive.Source) (err error) {
+func (u Sources) Get(args *SourcesGetParams, res *archive.Source) (err error) {
 	s := &archive.Source{
 		Id: args.Id,
 	}
@@ -41,7 +36,7 @@ type SourcesListParams struct {
 	Offset  int
 }
 
-func (u *Sources) List(p *SourcesListParams, res *[]*archive.Source) (err error) {
+func (u Sources) List(p *SourcesListParams, res *[]*archive.Source) (err error) {
 	urls, err := archive.ListSources(appDB, p.Limit, p.Offset)
 	if err != nil {
 		return err

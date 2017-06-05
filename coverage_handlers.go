@@ -13,7 +13,7 @@ func CoverageHandler(w http.ResponseWriter, r *http.Request) {
 	case "OPTIONS":
 		EmptyOkHandler(w, r)
 	case "GET":
-		GetCoverageHandler(w, r)
+		CoverageSummaryHandler(w, r)
 	default:
 		NotFoundHandler(w, r)
 	}
@@ -50,7 +50,7 @@ func CoverageHandler(w http.ResponseWriter, r *http.Request) {
 // 	apiutil.WriteResponse(w, reply)
 // }
 
-func GetCoverageHandler(w http.ResponseWriter, r *http.Request) {
+func CoverageSummaryHandler(w http.ResponseWriter, r *http.Request) {
 	conn, err := net.Dial("tcp", cfg.CoverageServiceUrl)
 	if err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)

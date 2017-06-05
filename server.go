@@ -82,6 +82,8 @@ func NewServerRoutes() *http.ServeMux {
 	m.Handle("/uncrawlables", middleware(UncrawlablesHandler))
 	m.Handle("/uncrawlables/", middleware(UncrawlableHandler))
 
+	m.Handle("/coverage", middleware(CoverageHandler))
+
 	// m.Handle("/repositories", middleware(RepositoriesHandler))
 	// m.Handle("/repositories/", middleware(RepositoryHandler))
 
