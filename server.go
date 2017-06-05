@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"github.com/archivers-space/sqlutil"
+	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"net/http"
 	"os"
@@ -15,7 +17,7 @@ var (
 	// log output handled by logrus package
 	log = logrus.New()
 	// application database connection
-	appDB *sql.DB
+	appDB = &sql.DB{}
 )
 
 func init() {
@@ -38,7 +40,7 @@ func main() {
 
 	// TODO - run this in a goroutine & support reporting "oh snap no DB"
 	// while waiting for a connection
-	go connectToAppDb()
+	go sqlutil.ConnectToDb("postgres", cfg.PostgresDbUrl, appDB)
 
 	// base server
 	s := &http.Server{}
@@ -65,8 +67,8 @@ func NewServerRoutes() *http.ServeMux {
 	m.Handle("/status", middleware(HealthCheckHandler))
 	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
 
-	// m.Handle("/users", middleware(UserHandler))
-	// m.Handle("/users/", middleware(UsersHandler))
+	m.Handle("/users", middleware(UsersHandler))
+	m.Handle("/users/", middleware(UserHandler))
 
 	m.Handle("/primers", middleware(PrimersHandler))
 	m.Handle("/primers/", middleware(PrimerHandler))

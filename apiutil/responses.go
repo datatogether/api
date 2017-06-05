@@ -1,11 +1,11 @@
-package main
+package apiutil
 
 import (
 	"encoding/json"
 	"net/http"
 )
 
-func writeResponse(w http.ResponseWriter, data interface{}) error {
+func WriteResponse(w http.ResponseWriter, data interface{}) error {
 	env := map[string]interface{}{
 		"meta": map[string]interface{}{
 			"code": http.StatusOK,
@@ -15,7 +15,7 @@ func writeResponse(w http.ResponseWriter, data interface{}) error {
 	return jsonResponse(w, env)
 }
 
-func writePageResponse(w http.ResponseWriter, data interface{}, r *http.Request, p Page) error {
+func WritePageResponse(w http.ResponseWriter, data interface{}, r *http.Request, p Page) error {
 	env := map[string]interface{}{
 		"meta": map[string]interface{}{
 			"code": http.StatusOK,
@@ -33,7 +33,7 @@ func nextPageUrl(r *http.Request, p Page) string {
 	return r.URL.String()
 }
 
-func writeMessageResponse(w http.ResponseWriter, message string, data interface{}) error {
+func WriteMessageResponse(w http.ResponseWriter, message string, data interface{}) error {
 	env := map[string]interface{}{
 		"meta": map[string]interface{}{
 			"code":    http.StatusOK,
@@ -45,7 +45,7 @@ func writeMessageResponse(w http.ResponseWriter, message string, data interface{
 	return jsonResponse(w, env)
 }
 
-func writeErrResponse(w http.ResponseWriter, code int, err error) error {
+func WriteErrResponse(w http.ResponseWriter, code int, err error) error {
 	env := map[string]interface{}{
 		"meta": map[string]interface{}{
 			"code":  code,
@@ -56,7 +56,6 @@ func writeErrResponse(w http.ResponseWriter, code int, err error) error {
 	res, err := json.MarshalIndent(env, "", "  ")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-		log.Infoln(err.Error())
 		return err
 	}
 
@@ -69,7 +68,6 @@ func jsonResponse(w http.ResponseWriter, env interface{}) error {
 	res, err := json.MarshalIndent(env, "", "  ")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-		log.Infoln(err.Error())
 		return err
 	}
 

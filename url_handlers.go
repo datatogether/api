@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/archivers-space/api/apiutil"
 	"github.com/archivers-space/archive"
 	"net/http"
 )
@@ -27,30 +28,31 @@ func UrlsHandler(w http.ResponseWriter, r *http.Request) {
 
 func GetUrlHandler(w http.ResponseWriter, r *http.Request) {
 	res := &archive.Url{}
-	args := &UrlsGetArgs{
+	args := &UrlsGetParams{
 		Id:   r.URL.Path[len("/urls/"):],
 		Url:  r.FormValue("url"),
 		Hash: r.FormValue("hash"),
 	}
 	err := new(Urls).Get(args, res)
 	if err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writeResponse(w, res)
+	apiutil.WriteResponse(w, res)
 }
 
 func ListUrlsHandler(w http.ResponseWriter, r *http.Request) {
-	p := PageFromRequest(r)
+	p := apiutil.PageFromRequest(r)
 	res := make([]*archive.Url, p.Size)
-	args := &UrlsListArgs{
-		Page:    p,
+	args := &UrlsListParams{
+		Limit:   p.Limit(),
+		Offset:  p.Offset(),
 		OrderBy: "created",
 	}
 	err := new(Urls).List(args, &res)
 	if err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writePageResponse(w, res, r, p)
+	apiutil.WritePageResponse(w, res, r, p)
 }

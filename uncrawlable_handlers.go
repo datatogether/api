@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/archivers-space/api/apiutil"
 	"github.com/archivers-space/archive"
 	"net/http"
 )
@@ -34,57 +35,58 @@ func UncrawlablesHandler(w http.ResponseWriter, r *http.Request) {
 
 func GetUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
 	res := &archive.Uncrawlable{}
-	args := &UncrawlablesGetArgs{
+	args := &UncrawlablesGetParams{
 		Id:  r.URL.Path[len("/uncrawlables/"):],
 		Url: r.FormValue("url"),
 	}
 	err := new(Uncrawlables).Get(args, res)
 	if err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writeResponse(w, res)
+	apiutil.WriteResponse(w, res)
 }
 
 func ListUncrawlablesHandler(w http.ResponseWriter, r *http.Request) {
-	p := PageFromRequest(r)
+	p := apiutil.PageFromRequest(r)
 	res := make([]*archive.Uncrawlable, p.Size)
-	args := &UncrawlablesListArgs{
-		Page:    p,
+	args := &UncrawlablesListParams{
+		Limit:   p.Limit(),
+		Offset:  p.Offset(),
 		OrderBy: "created",
 	}
 	err := new(Uncrawlables).List(args, &res)
 	if err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writePageResponse(w, res, r, p)
+	apiutil.WritePageResponse(w, res, r, p)
 }
 
 func SaveUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
 	un := &archive.Uncrawlable{}
 	if err := json.NewDecoder(r.Body).Decode(un); err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
 	res := &archive.Uncrawlable{}
 	if err := new(Uncrawlables).Save(un, res); err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writeResponse(w, res)
+	apiutil.WriteResponse(w, res)
 }
 
 func DeleteUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
 	un := &archive.Uncrawlable{}
 	if err := json.NewDecoder(r.Body).Decode(un); err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
 	res := &archive.Uncrawlable{}
 	if err := new(Uncrawlables).Save(un, res); err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writeResponse(w, res)
+	apiutil.WriteResponse(w, res)
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/archivers-space/api/apiutil"
 	"net/http"
 	"time"
 )
@@ -34,7 +35,7 @@ func middleware(handler http.HandlerFunc) http.HandlerFunc {
 
 		req, err := requestAddUser(r)
 		if err != nil {
-			writeErrResponse(w, http.StatusInternalServerError, err)
+			apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 			return
 		}
 

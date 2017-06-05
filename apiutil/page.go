@@ -1,4 +1,4 @@
-package main
+package apiutil
 
 import "net/http"
 
@@ -14,6 +14,10 @@ func NewPage(number, size int) Page {
 	return Page{number, size}
 }
 
+func (p Page) Limit() int {
+	return p.Size
+}
+
 func (p Page) Offset() int {
 	return (p.Number - 1) * p.Size
 }
@@ -21,14 +25,14 @@ func (p Page) Offset() int {
 // pull pagination params from an http request
 func PageFromRequest(r *http.Request) Page {
 	var number, size int
-	if i, err := reqParamInt("page", r); err == nil {
+	if i, err := ReqParamInt("page", r); err == nil {
 		number = i
 	}
 	if number == 0 {
 		number = 1
 	}
 
-	if i, err := reqParamInt("pageSize", r); err == nil {
+	if i, err := ReqParamInt("pageSize", r); err == nil {
 		size = i
 	}
 	if size == 0 {

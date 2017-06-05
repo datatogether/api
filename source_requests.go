@@ -11,13 +11,13 @@ func init() {
 
 type Sources int
 
-type SourcesGetArgs struct {
+type SourcesGetParams struct {
 	Id     string
 	Source string
 	Hash   string
 }
 
-func (u *Sources) Get(args *SourcesGetArgs, res *archive.Source) (err error) {
+func (u *Sources) Get(args *SourcesGetParams, res *archive.Source) (err error) {
 	s := &archive.Source{
 		Id: args.Id,
 	}
@@ -35,13 +35,14 @@ func (u *Sources) Get(args *SourcesGetArgs, res *archive.Source) (err error) {
 	return nil
 }
 
-type SourcesListArgs struct {
+type SourcesListParams struct {
 	OrderBy string
-	Page
+	Limit   int
+	Offset  int
 }
 
-func (u *Sources) List(args *SourcesListArgs, res *[]*archive.Source) (err error) {
-	urls, err := archive.ListSources(appDB, args.Page.Size, args.Page.Offset())
+func (u *Sources) List(p *SourcesListParams, res *[]*archive.Source) (err error) {
+	urls, err := archive.ListSources(appDB, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}

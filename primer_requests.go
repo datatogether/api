@@ -30,11 +30,12 @@ func (u *Primers) Get(args *PrimersGetArgs, res *archive.Primer) (err error) {
 
 type PrimersListArgs struct {
 	OrderBy string
-	Page
+	Limit   int
+	Offset  int
 }
 
 func (u *Primers) List(args *PrimersListArgs, res *[]*archive.Primer) (err error) {
-	ps, err := archive.ListPrimers(appDB, args.Page.Size, args.Page.Offset())
+	ps, err := archive.ListPrimers(appDB, args.Limit, args.Offset)
 	if err != nil {
 		return err
 	}

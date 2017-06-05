@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/archivers-space/api/apiutil"
 	"github.com/archivers-space/archive"
 	"net/http"
 )
@@ -32,23 +33,24 @@ func GetPrimerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	err := new(Primers).Get(args, res)
 	if err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writeResponse(w, res)
+	apiutil.WriteResponse(w, res)
 }
 
 func ListPrimersHandler(w http.ResponseWriter, r *http.Request) {
-	p := PageFromRequest(r)
+	p := apiutil.PageFromRequest(r)
 	res := make([]*archive.Primer, p.Size)
 	args := &PrimersListArgs{
-		Page:    p,
+		Limit:   p.Limit(),
+		Offset:  p.Offset(),
 		OrderBy: "created",
 	}
 	err := new(Primers).List(args, &res)
 	if err != nil {
-		writeErrResponse(w, http.StatusInternalServerError, err)
+		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	writePageResponse(w, res, r, p)
+	apiutil.WritePageResponse(w, res, r, p)
 }

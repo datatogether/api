@@ -3,7 +3,6 @@ package main
 import (
 	"io"
 	"net/http"
-	"strconv"
 )
 
 // HealthCheckHandler is a basic "hey I'm fine" for load balancers & co
@@ -27,13 +26,4 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 // for OPTIONS requests that responds with headers set in addCorsHeaders
 func EmptyOkHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-}
-
-func reqParamInt(key string, r *http.Request) (int, error) {
-	i, err := strconv.ParseInt(r.FormValue(key), 10, 0)
-	return int(i), err
-}
-
-func reqParamBool(key string, r *http.Request) (bool, error) {
-	return strconv.ParseBool(r.FormValue(key))
 }

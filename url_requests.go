@@ -11,17 +11,17 @@ func init() {
 
 type Urls int
 
-type UrlsGetArgs struct {
+type UrlsGetParams struct {
 	Id   string
 	Url  string
 	Hash string
 }
 
-func (u *Urls) Get(args *UrlsGetArgs, res *archive.Url) (err error) {
+func (u *Urls) Get(p *UrlsGetParams, res *archive.Url) (err error) {
 	url := &archive.Url{
-		Id:   args.Id,
-		Url:  args.Url,
-		Hash: args.Hash,
+		Id:   p.Id,
+		Url:  p.Url,
+		Hash: p.Hash,
 	}
 	err = url.Read(appDB)
 	if err != nil {
@@ -32,13 +32,14 @@ func (u *Urls) Get(args *UrlsGetArgs, res *archive.Url) (err error) {
 	return nil
 }
 
-type UrlsListArgs struct {
+type UrlsListParams struct {
 	OrderBy string
-	Page
+	Limit   int
+	Offset  int
 }
 
-func (u *Urls) List(args *UrlsListArgs, res *[]*archive.Url) (err error) {
-	urls, err := archive.ListUrls(appDB, args.Page.Size, args.Page.Offset())
+func (u *Urls) List(p *UrlsListParams, res *[]*archive.Url) (err error) {
+	urls, err := archive.ListUrls(appDB, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}

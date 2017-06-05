@@ -26,43 +26,46 @@ const (
 // configuration is read at startup and cannot be alterd without restarting the server.
 type config struct {
 	// path to go source code
-	Gopath string `json:"GOPATH"`
+	Gopath string
 
 	// port to listen on, will be read from PORT env variable if present.
-	Port string `json:"PORT"`
+	Port string
 
 	// root url for service
-	UrlRoot string `json:"URL_ROOT"`
+	UrlRoot string
+
+	// DNS service discovery. Should be either "env" or "dns", default is env
+	GetHostsFrom string
 
 	// url of postgres app db
-	PostgresDbUrl string `json:"POSTGRES_DB_URL"`
+	PostgresDbUrl string
 
 	// Public Key to use for signing metablocks. required.
-	PublicKey string `json:"PUBLIC_KEY"`
+	PublicKey string
 
 	// TLS (HTTPS) enable support via LetsEncrypt, default false
 	// should be true in production
-	TLS bool `json:"TLS"`
+	TLS bool
 
 	// support CORS signing from a list of origins
-	AllowedOrigins []string `json:"ALLOWED_ORIGINS"`
+	AllowedOrigins []string
 
 	// if true, requests that have X-Forwarded-Proto: http will be redirected
 	// to their https variant
 	ProxyForceHttps bool
 
 	// token for analytics tracking
-	AnalyticsToken string `json:"AnalyticsToken"`
+	AnalyticsToken string
 
 	// url for identity server
-	IdentityServerUrl string `json:"identityServerUrl"`
+	IdentityServerUrl string
 
 	// location of coverage server
-	CoverageServerUrl string `json:"coverageServerUrl"`
+	CoverageServerUrl string
 
 	// CertbotResponse is only for doing manual SSL certificate generation
 	// via LetsEncrypt.
-	CertbotResponse string `json:"CERTBOT_RESPONSE"`
+	CertbotResponse string
 }
 
 // initConfig pulls configuration from config.json
@@ -99,7 +102,7 @@ func initConfig(mode string) (cfg *config, err error) {
 }
 
 func packagePath(path string) string {
-	return filepath.Join(os.Getenv("GOPATH"), "src/github.com/archivers-space/archivers-api", path)
+	return filepath.Join(os.Getenv("GOPATH"), "src/github.com/archivers-space/api", path)
 }
 
 // requireConfigStrings panics if any of the passed in values aren't set

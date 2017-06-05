@@ -11,15 +11,15 @@ func init() {
 
 type Uncrawlables int
 
-type UncrawlablesGetArgs struct {
+type UncrawlablesGetParams struct {
 	Id  string
 	Url string
 }
 
-func (u *Uncrawlables) Get(args *UncrawlablesGetArgs, res *archive.Uncrawlable) (err error) {
+func (u *Uncrawlables) Get(p *UncrawlablesGetParams, res *archive.Uncrawlable) (err error) {
 	url := &archive.Uncrawlable{
-		Id:  args.Id,
-		Url: args.Url,
+		Id:  p.Id,
+		Url: p.Url,
 	}
 	err = url.Read(appDB)
 	if err != nil {
@@ -30,13 +30,14 @@ func (u *Uncrawlables) Get(args *UncrawlablesGetArgs, res *archive.Uncrawlable) 
 	return nil
 }
 
-type UncrawlablesListArgs struct {
+type UncrawlablesListParams struct {
 	OrderBy string
-	Page
+	Limit   int
+	Offset  int
 }
 
-func (u *Uncrawlables) List(args *UncrawlablesListArgs, res *[]*archive.Uncrawlable) (err error) {
-	urls, err := archive.ListUncrawlables(appDB, args.Page.Size, args.Page.Offset())
+func (u *Uncrawlables) List(p *UncrawlablesListParams, res *[]*archive.Uncrawlable) (err error) {
+	urls, err := archive.ListUncrawlables(appDB, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}
