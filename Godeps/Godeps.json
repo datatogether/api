@@ -31,35 +31,35 @@
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/coverage",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/archivers2",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/archivers_space",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/eot",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/ia",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/svalbard",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/tree",
-			"Rev": "7cb368fec1a868d7f79a129e84f933e21afc286e"
+			"Rev": "286c4e6a4be676b51bbc5c1451d18900ffea7e89"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/errors",
@@ -71,15 +71,15 @@
 		},
 		{
 			"ImportPath": "github.com/archivers-space/identity/access_token",
-			"Rev": "024d149ec67e478da6df567a079ae7956b1c0750"
+			"Rev": "305b40a2ebe38eed93ff10883bc3ebfcf10ef72a"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/identity/user",
-			"Rev": "024d149ec67e478da6df567a079ae7956b1c0750"
+			"Rev": "305b40a2ebe38eed93ff10883bc3ebfcf10ef72a"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/sqlutil",
-			"Rev": "9ab5d36e67b7c03b85f8ca1d4552645210ea656d"
+			"Rev": "d77bd75a69b01ddf20310b36d465ad35e19e7c03"
 		},
 		{
 			"ImportPath": "github.com/aws/aws-sdk-go/aws",
