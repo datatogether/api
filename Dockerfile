@@ -7,11 +7,11 @@ EXPOSE 3000
 # RUN go-wrapper install github.com/codegangsta/gin
 
 # Copy the local package files to the container’s workspace.
-ADD . /go/src/github.com/archivers-space/archivers-api
-# WORKDIR /go/src/github.com/archivers-space/archivers-api
+ADD . /go/src/github.com/archivers-space/api
+# WORKDIR /go/src/github.com/archivers-space/api
 # CMD ["gin", "-i"]
 
 # Install api binary globally within container 
-RUN go install github.com/archivers-space/archivers-api
+RUN go install github.com/archivers-space/api
 # Set binary as entrypoint
-ENTRYPOINT /go/bin/archivers-api
+ENTRYPOINT /go/bin/api

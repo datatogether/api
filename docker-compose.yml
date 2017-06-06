@@ -3,7 +3,7 @@ services:
   api:
     build: .
     volumes:
-      - .:/go/src/github.com/archivers-space/archivers-api
+      - .:/go/src/github.com/archivers-space/api
       - ./sql:/sql
     ports:
      - 3200:3200
