@@ -79,19 +79,15 @@ func NewServerRoutes() *http.ServeMux {
 	m.Handle("/urls", middleware(UrlsHandler))
 	m.Handle("/urls/", middleware(UrlHandler))
 
-	m.Handle("/uncrawlables", middleware(UncrawlablesHandler))
-	m.Handle("/uncrawlables/", middleware(UncrawlableHandler))
+	// m.Handle("/links", middleware(LinksHandler))
+	// m.Handle("/links/", middleware(LinkHandler))
+
+	// m.Handle("/snapshots", middleware(SnapshotsHandler))
 
 	m.Handle("/coverage", middleware(CoverageHandler))
 
-	// m.Handle("/repositories", middleware(RepositoriesHandler))
-	// m.Handle("/repositories/", middleware(RepositoryHandler))
-
-	// m.Handle("/links", middleware(UrlHandler))
-	// m.Handle("/links/", middleware(UrlsHandler))
-
-	// m.Handle("/snapshots", middleware())
-	// m.Handle("/snapshots/", middleware())
+	m.Handle("/repositories", middleware(RepositoriesHandler))
+	m.Handle("/repositories/", middleware(RepositoryHandler))
 
 	// m.Handle("/content", middleware())
 	// m.Handle("/content/", middleware())
@@ -99,11 +95,11 @@ func NewServerRoutes() *http.ServeMux {
 	// m.Handle("/metadata", middleware())
 	// m.Handle("/metadata/", middleware())
 
-	// m.Handle("/consensus", middleware())
-	// m.Handle("/consensus/", middleware())
-
 	// m.Handle("/collections", middleware())
 	// m.Handle("/collections/", middleware())
+
+	m.Handle("/uncrawlables", middleware(UncrawlablesHandler))
+	m.Handle("/uncrawlables/", middleware(UncrawlableHandler))
 
 	return m
 }
