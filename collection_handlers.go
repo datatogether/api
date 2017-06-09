@@ -29,9 +29,9 @@ func CollectionsHandler(w http.ResponseWriter, r *http.Request) {
 func GetCollectionHandler(w http.ResponseWriter, r *http.Request) {
 	res := &archive.Collection{}
 	args := &CollectionsGetParams{
-		Id:         r.URL.Path[len("/collections/"):],
-		Collection: r.FormValue("collection"),
-		Hash:       r.FormValue("hash"),
+		Id: r.URL.Path[len("/collections/"):],
+		// Collection: r.FormValue("collection"),
+		// Hash:       r.FormValue("hash"),
 	}
 	err := new(Collections).Get(args, res)
 	if err != nil {

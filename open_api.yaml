@@ -316,43 +316,43 @@
     #             data:
     #               type: object
     #               $ref: "#/definitions/Consensus"
-    # /collections:
-    #   get:
-    #     description: List Collections
-    #     produces:
-    #     - "application/json"
-    #     responses:
-    #       "200":
-    #         description: "Enveloped array of collections"
-    #         schema:
-    #           type: object
-    #           properties:
-    #             meta:
-    #               type: object
-    #             data:
-    #               $ref: "#/definitions/Collection"
-    #             pagination:
-    #               type: object
-    # /collections/{id}:
-    #   get:
-    #     description: "Get a Collection"
-    #     produces:
-    #     - "application/json"
-    #     parameters:
-    #     - name: id
-    #       in: path
-    #       required: true
-    #       type: string
-    #     responses:
-    #       "200":
-    #         description: "Enveloped Collection Object"
-    #         schema:
-    #           type: object
-    #           properties:
-    #             meta:
-    #               type: object
-    #             data:
-    #               $ref: "#/definitions/Collection"
+    /collections:
+      get:
+        description: List Collections
+        produces:
+        - "application/json"
+        responses:
+          "200":
+            description: "Enveloped array of collections"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  $ref: "#/definitions/Collection"
+                pagination:
+                  type: object
+    /collections/{id}:
+      get:
+        description: "Get a Collection"
+        produces:
+        - "application/json"
+        parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        responses:
+          "200":
+            description: "Enveloped Collection Object"
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                data:
+                  $ref: "#/definitions/Collection"
   definitions:
     UUID:
       type: string

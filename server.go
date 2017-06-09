@@ -65,7 +65,6 @@ func NewServerRoutes() *http.ServeMux {
 
 	m.HandleFunc("/", NotFoundHandler)
 	m.Handle("/status", middleware(HealthCheckHandler))
-	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
 
 	m.Handle("/users", middleware(UsersHandler))
 	m.Handle("/users/", middleware(UserHandler))
@@ -95,11 +94,13 @@ func NewServerRoutes() *http.ServeMux {
 	// m.Handle("/metadata", middleware())
 	// m.Handle("/metadata/", middleware())
 
-	// m.Handle("/collections", middleware())
-	// m.Handle("/collections/", middleware())
+	m.Handle("/collections", middleware(CollectionsHandler))
+	m.Handle("/collections/", middleware(CollectionHandler))
 
 	m.Handle("/uncrawlables", middleware(UncrawlablesHandler))
 	m.Handle("/uncrawlables/", middleware(UncrawlableHandler))
+
+	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
 
 	return m
 }
