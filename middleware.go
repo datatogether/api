@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/archivers-space/api/apiutil"
 	"net/http"
 	"time"
