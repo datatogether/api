@@ -38,9 +38,7 @@ func main() {
 		panic(fmt.Errorf("server configuration error: %s", err.Error()))
 	}
 
-	// TODO - run this in a goroutine & support reporting "oh snap no DB"
-	// while waiting for a connection
-	go sqlutil.ConnectToDb("postgres", cfg.PostgresDbUrl, appDB)
+	go initPostgres()
 
 	// base server
 	s := &http.Server{}
@@ -103,4 +101,29 @@ func NewServerRoutes() *http.ServeMux {
 	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
 
 	return m
+}
+
+func initPostgres() {
+	log.Infoln("connecting to postgres db")
+	if err := sqlutil.ConnectToDb("postgres", cfg.PostgresDbUrl, appDB); err != nil {
+		panic(err)
+	}
+	log.Infoln("connecteded to postgres db")
+	created, err := sqlutil.EnsureTables(appDB, packagePath("sql/schema.sql"),
+		"primers",
+		"sources",
+		"urls",
+		"links",
+		"metadata",
+		"snapshots",
+		"collections",
+		"collection_contents",
+		"uncrawlables",
+		"archive_requests")
+	if err != nil {
+		log.Infoln(err)
+	}
+	if len(created) > 0 {
+		log.Infoln("created tables:", created)
+	}
 }

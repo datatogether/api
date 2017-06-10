@@ -11,20 +11,32 @@ services:
       - back-tier
     depends_on:
       - postgres
+      - identity
+      - coverage
     environment:
       - PORT=3200
+      - IDENTITY_SERVICE_URL=identity:9090
+      - COVERAGE_SERVICE_URL=coverage:9191
       - GOLANG_ENV=develop
       - POSTGRES_DB_URL=postgres://postgres@postgres/postgres?sslmode=disable
   identity:
-    image: "archivers/identity:0.1.3"
+    # comment out "image" and uncomment build,volumes to build from
+    # local copy of identity server instead of docker image
+    # must have identity repo locally
+    image: "archivers/identity:latest"
+    # build: ../identity
+    # volumes:
+    # - ../identity:/go/src/github.com/archivers-space/identity
     networks:
       - back-tier
     depends_on:
       - postgres
     ports:
       - 3100:3100
+      - 9090:9090
     environment:
       - PORT=3100
+      - RPC_PORT=9090
       - GOLANG_ENV=develop
       - POSTGRES_DB_URL=postgres://postgres@postgres/postgres?sslmode=disable
       - |
@@ -42,6 +54,27 @@ services:
         0/eSfoWZ6N8tIQIhAI2y6gPN6SxRjqdr42EkTah3D93xBK5X4k9XtAninGrRAiB7
         k4uJgqHl8hgs3bndGibFuepdLWJed7YXa+eF57FdmA==
         -----END RSA PRIVATE KEY-----
+  coverage:
+    # comment out "image" and uncomment build,volumes to build from
+    # local copy of identity server instead of docker image
+    # must have identity repo locally
+    image: "archivers/coverage:latest"
+    # build: ../coverage
+    # volumes:
+    #   - ../coverage:/go/src/github.com/archivers-space/coverage
+    #   # - ../coverage/sql:/sql
+    networks:
+      - back-tier
+    depends_on:
+      - postgres
+    ports:
+      - 3300:3300
+      - 9191:9191
+    environment:
+      - PORT=3300
+      - RPC_PORT=9191
+      - GOLANG_ENV=develop
+      - POSTGRES_DB_URL=postgres://postgres@postgres/postgres?sslmode=disable
   postgres:
     image: "postgres:9.6-alpine"
     networks:

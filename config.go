@@ -138,4 +138,6 @@ func fileExists(path string) bool {
 // outputs any notable settings to stdout
 func printConfigInfo() {
 	// TODO
+	log.Infof("identity service url: %s", cfg.IdentityServiceUrl)
+	log.Infof("coverage service url: %s", cfg.CoverageServiceUrl)
 }
