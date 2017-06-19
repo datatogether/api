@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"github.com/archivers-space/archive"
+	"github.com/archivers-space/sql_datastore"
 	"github.com/archivers-space/sqlutil"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
@@ -18,6 +20,8 @@ var (
 	log = logrus.New()
 	// application database connection
 	appDB = &sql.DB{}
+	// elevate default store
+	store = sql_datastore.DefaultStore
 )
 
 func init() {
@@ -126,4 +130,14 @@ func initPostgres() {
 	if len(created) > 0 {
 		log.Infoln("created tables:", created)
 	}
+
+	sql_datastore.SetDB(appDB)
+	sql_datastore.Register(
+		&archive.Collection{},
+		&archive.Link{},
+		&archive.Primer{},
+		&archive.Source{},
+		&archive.Uncrawlable{},
+		&archive.Url{},
+	)
 }

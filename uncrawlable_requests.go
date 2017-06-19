@@ -16,7 +16,7 @@ func (u *Uncrawlables) Get(p *UncrawlablesGetParams, res *archive.Uncrawlable) (
 		Id:  p.Id,
 		Url: p.Url,
 	}
-	err = url.Read(appDB)
+	err = url.Read(store)
 	if err != nil {
 		return err
 	}
@@ -32,7 +32,7 @@ type UncrawlablesListParams struct {
 }
 
 func (u *Uncrawlables) List(p *UncrawlablesListParams, res *[]*archive.Uncrawlable) (err error) {
-	urls, err := archive.ListUncrawlables(appDB, p.Limit, p.Offset)
+	urls, err := archive.ListUncrawlables(store, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}
@@ -41,7 +41,7 @@ func (u *Uncrawlables) List(p *UncrawlablesListParams, res *[]*archive.Uncrawlab
 }
 
 func (u *Uncrawlables) Save(model *archive.Uncrawlable, res *archive.Uncrawlable) (err error) {
-	err = model.Save(appDB)
+	err = model.Save(store)
 	if err != nil {
 		return err
 	}
@@ -51,7 +51,7 @@ func (u *Uncrawlables) Save(model *archive.Uncrawlable, res *archive.Uncrawlable
 }
 
 func (u *Uncrawlables) Delete(model *archive.Uncrawlable, res *archive.Uncrawlable) (err error) {
-	err = model.Delete(appDB)
+	err = model.Delete(store)
 	if err != nil {
 		return err
 	}

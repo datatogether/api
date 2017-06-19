@@ -14,7 +14,7 @@ func (u *Primers) Get(args *PrimersGetArgs, res *archive.Primer) (err error) {
 	p := &archive.Primer{
 		Id: args.Id,
 	}
-	err = p.Read(appDB)
+	err = p.Read(store)
 	if err != nil {
 		return err
 	}
@@ -30,7 +30,7 @@ type PrimersListArgs struct {
 }
 
 func (u *Primers) List(args *PrimersListArgs, res *[]*archive.Primer) (err error) {
-	ps, err := archive.ListPrimers(appDB, args.Limit, args.Offset)
+	ps, err := archive.ListPrimers(store, args.Limit, args.Offset)
 	if err != nil {
 		return err
 	}

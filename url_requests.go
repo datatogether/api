@@ -18,7 +18,7 @@ func (u *Urls) Get(p *UrlsGetParams, res *archive.Url) (err error) {
 		Url:  p.Url,
 		Hash: p.Hash,
 	}
-	err = url.Read(appDB)
+	err = url.Read(store)
 	if err != nil {
 		return err
 	}
@@ -34,7 +34,7 @@ type UrlsListParams struct {
 }
 
 func (u *Urls) List(p *UrlsListParams, res *[]*archive.Url) (err error) {
-	urls, err := archive.ListUrls(appDB, p.Limit, p.Offset)
+	urls, err := archive.ListUrls(store, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}
