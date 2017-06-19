@@ -58,11 +58,11 @@ services:
     # comment out "image" and uncomment build,volumes to build from
     # local copy of identity server instead of docker image
     # must have identity repo locally
-    image: "archivers/coverage:latest"
-    # build: ../coverage
-    # volumes:
-    #   - ../coverage:/go/src/github.com/archivers-space/coverage
-    #   # - ../coverage/sql:/sql
+    # image: "archivers/coverage:latest"
+    build: ../coverage
+    volumes:
+      - ../coverage:/go/src/github.com/archivers-space/coverage
+      # - ../coverage/sql:/sql
     networks:
       - back-tier
     depends_on:

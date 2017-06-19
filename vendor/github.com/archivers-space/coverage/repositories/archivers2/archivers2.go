@@ -2,6 +2,7 @@ package archivers2
 
 import (
 	"bufio"
+	"fmt"
 	"github.com/archivers-space/archive"
 	"github.com/archivers-space/coverage/tree"
 	"net/url"
@@ -33,7 +34,7 @@ func (a *repository) AddCoverage(t *tree.Node) {
 		if n.Archived == false && n.Coverage != nil {
 			for _, c := range n.Coverage {
 				if c.RepositoryId == a.Id {
-					n.Archived = c.Archived
+					n.Archived = n.Archived || c.Archived
 					if c.Archived {
 						n.ArchiveCount++
 					}
@@ -44,7 +45,7 @@ func (a *repository) AddCoverage(t *tree.Node) {
 	})
 }
 
-func (a *repository) AddUrls(t *tree.Node, src *archive.Source) error {
+func (a *repository) AddUrls(t *tree.Node, sources ...*archive.Source) error {
 	f, err := os.Open("repositories/archivers2/archivers_2_downloaded_epa_content_urls.txt")
 	if err != nil {
 		return err
@@ -62,11 +63,19 @@ func (a *repository) AddUrls(t *tree.Node, src *archive.Source) error {
 		}
 
 		// skip this url if it doesn't match the passed in Source filter
-		if src != nil && !src.MatchesUrl(u.String()) {
-			continue
+		if len(sources) > 0 {
+			match := false
+			for _, src := range sources {
+				if src != nil && src.MatchesUrl(u.String()) {
+					match = true
+				}
+			}
+			if !match {
+				continue
+			}
 		}
 
-		node = node.Child(u.Scheme).Child(u.Host)
+		node = node.Child(fmt.Sprintf("%s://%s", u.Scheme, u.Host))
 		components := strings.Split(u.Path, "/")
 
 		for _, c := range components {
@@ -84,6 +93,7 @@ func (a *repository) AddUrls(t *tree.Node, src *archive.Source) error {
 			}
 		}
 
+		node.Archived = true
 		node.Coverage = append(node.Coverage, &tree.Coverage{
 			// Url:       u.String(),
 			RepositoryId: a.Id,

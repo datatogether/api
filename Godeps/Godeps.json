@@ -23,7 +23,7 @@
 		},
 		{
 			"ImportPath": "github.com/archivers-space/archive",
-			"Rev": "2d8c8d7efcf2a9fa11c51a5d3cfc7aa657ee247c"
+			"Rev": "9147609b491a7f168961591e03a98eb29865b3c6"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/config",
@@ -31,35 +31,35 @@
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/coverage",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/archivers2",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/archivers_space",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/eot",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/ia",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/repositories/svalbard",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/coverage/tree",
-			"Rev": "e917d5c6cd83fc32ee9cd1c111d70f317c02cb6a"
+			"Rev": "23f69a395385519b3a480387f12ca9d119d12fe9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/errors",
@@ -71,11 +71,15 @@
 		},
 		{
 			"ImportPath": "github.com/archivers-space/identity/access_token",
-			"Rev": "1361a51533f5fda9415944b092398703dd0a0c79"
+			"Rev": "273bbd233ee5eabf3041482dc50b7dc3540bb7b9"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/identity/user",
-			"Rev": "1361a51533f5fda9415944b092398703dd0a0c79"
+			"Rev": "273bbd233ee5eabf3041482dc50b7dc3540bb7b9"
+		},
+		{
+			"ImportPath": "github.com/archivers-space/sql_datastore",
+			"Rev": "545fa8f1ace96a8bb55b48e0f7a48db873388aec"
 		},
 		{
 			"ImportPath": "github.com/archivers-space/sqlutil",
@@ -217,9 +221,21 @@
 			"Rev": "ee900ca565931451fe4e4409bcbd4316331cec1c"
 		},
 		{
+			"ImportPath": "github.com/ipfs/go-datastore",
+			"Rev": "e7613971227c1afc1799b1ec9d3947c592f547eb"
+		},
+		{
+			"ImportPath": "github.com/ipfs/go-datastore/query",
+			"Rev": "e7613971227c1afc1799b1ec9d3947c592f547eb"
+		},
+		{
 			"ImportPath": "github.com/jbenet/go-base58",
 			"Comment": "1.0.0",
 			"Rev": "6237cf65f3a6f7111cd8a42be3590df99a66bc7d"
+		},
+		{
+			"ImportPath": "github.com/jbenet/goprocess",
+			"Rev": "b497e2f366b8624394fb2e89c10ab607bebdde0b"
 		},
 		{
 			"ImportPath": "github.com/jmespath/go-jmespath",
@@ -250,6 +266,11 @@
 			"ImportPath": "github.com/pborman/uuid",
 			"Comment": "v1.0-21-g1b00554",
 			"Rev": "1b00554d822231195d1babd97ff4a781231955c9"
+		},
+		{
+			"ImportPath": "github.com/satori/go.uuid",
+			"Comment": "v1.1.0-8-g5bf94b6",
+			"Rev": "5bf94b69c6b68ee1b541973bb8e1144db23a194b"
 		},
 		{
 			"ImportPath": "github.com/sirupsen/logrus",

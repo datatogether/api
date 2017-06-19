@@ -20,7 +20,6 @@ func InitTree(t *tree.Node) error {
 	}
 
 	for _, s := range repositories.Repositories {
-
 		if err := s.AddUrls(t, nil); err != nil {
 			// log.Info(s.Info()["Name"])
 			// log.Info(err.Error())
@@ -85,22 +84,57 @@ func WriteTreeCache(filename string, n *tree.Node) error {
 
 // CovreageGen holds configuration for coverage analysis
 type CoverageGenerator struct {
+	// Root    url.Url
+	// Depth   int
+	Sources []*archive.Source
+	Repos   []repositories.CoverageRepository
 }
 
 // NewCoverageGenerator creates a CoverageGenerator with the default
 // properties
-func NewCoverageGenerator() *CoverageGenerator {
-	return &CoverageGenerator{}
-}
-
-func (c CoverageGenerator) Tree(src *archive.Source) (*tree.Node, error) {
-	t := &tree.Node{
-		Name: src.Title,
-		Id:   src.Id,
+func NewCoverageGenerator(repoIds []string, patterns []string) *CoverageGenerator {
+	var sources []*archive.Source
+	if patterns != nil {
+		sources := make([]*archive.Source, len(patterns))
+		for i, pattern := range patterns {
+			sources[i] = &archive.Source{
+				Url: pattern,
+			}
+		}
 	}
 
-	for _, s := range repositories.Repositories {
-		if err := s.AddUrls(t, src); err != nil {
+	repos := repositories.Repositories
+	if repoIds != nil {
+		r := []repositories.CoverageRepository{}
+		for _, id := range repoIds {
+			for _, repo := range repos {
+				if repo.GetId() == id {
+					r = append(r, repo)
+				}
+			}
+		}
+		repos = r
+	}
+	return &CoverageGenerator{
+		Sources: sources,
+		Repos:   repos,
+	}
+}
+
+func (c CoverageGenerator) Tree() (*tree.Node, error) {
+	t := &tree.Node{
+		Name: "coverage",
+		Id:   "root",
+	}
+
+	// if len(c.Sources) == 1 {
+	// 	// TODO - should this be like this?
+	// 	t.Name = c.Sources[0].Title
+	// 	t.Id = c.Sources[0].Id
+	// }
+
+	for _, s := range c.Repos {
+		if err := s.AddUrls(t, c.Sources...); err != nil {
 			// log.Info(s.Info()["Name"])
 			// log.Info(err.Error())
 		}
@@ -109,19 +143,26 @@ func (c CoverageGenerator) Tree(src *archive.Source) (*tree.Node, error) {
 	}
 
 	t.Walk(func(n *tree.Node) {
-		n.NumDescendants = -1
-		n.NumDescendantsArchived = 0
+		// n.NumDescendants = -1
+		// n.NumDescendantsArchived = 0
+		// n.NumLeaves = 0
 		n.NumChildren = len(n.Children)
 		n.Walk(func(d *tree.Node) {
 			n.SortChildren()
-			n.NumDescendants++
-			if d.Archived {
-				n.NumDescendantsArchived++
-			}
-			if d.Children == nil {
+			// n.NumDescendants++
+			// if d.Archived {
+			// 	n.NumDescendantsArchived++
+			// }
+			if len(d.Children) == 0 {
 				n.NumLeaves++
-				if d.Archived {
-					n.NumLeavesArchived++
+				// if d.Archived {
+				// 	n.NumLeavesArchived++
+				// }
+				for _, c := range d.Coverage {
+					if c.Archived {
+						n.NumLeavesArchived++
+						break
+					}
 				}
 			}
 		})
@@ -135,8 +176,8 @@ type Summary struct {
 	Descendants int
 }
 
-func (c CoverageGenerator) Summary(src *archive.Source) (*Summary, error) {
-	t, err := c.Tree(src)
+func (c CoverageGenerator) Summary() (*Summary, error) {
+	t, err := c.Tree()
 	if err != nil {
 		return nil, err
 	}

@@ -49,7 +49,6 @@ func ListRepositoriesHandler(w http.ResponseWriter, r *http.Request) {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	log.Info(reply)
 	apiutil.WriteResponse(w, reply)
 }
 

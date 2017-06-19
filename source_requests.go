@@ -16,12 +16,12 @@ func (u Sources) Get(args *SourcesGetParams, res *archive.Source) (err error) {
 	s := &archive.Source{
 		Id: args.Id,
 	}
-	err = s.Read(appDB)
+	err = s.Read(store)
 	if err != nil {
 		return err
 	}
 
-	err = s.Primer.Read(appDB)
+	err = s.Primer.Read(store)
 	if err != nil {
 		return err
 	}
@@ -37,7 +37,7 @@ type SourcesListParams struct {
 }
 
 func (u Sources) List(p *SourcesListParams, res *[]*archive.Source) (err error) {
-	urls, err := archive.ListSources(appDB, p.Limit, p.Offset)
+	urls, err := archive.ListSources(store, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}

@@ -14,7 +14,7 @@ func (u *Collections) Get(args *CollectionsGetParams, res *archive.Collection) (
 	p := &archive.Collection{
 		Id: args.Id,
 	}
-	err = p.Read(appDB)
+	err = p.Read(store)
 	if err != nil {
 		return err
 	}
@@ -30,7 +30,7 @@ type CollectionsListParams struct {
 }
 
 func (u *Collections) List(args *CollectionsListParams, res *[]*archive.Collection) (err error) {
-	ps, err := archive.ListCollections(appDB, args.Limit, args.Offset)
+	ps, err := archive.ListCollections(store, args.Limit, args.Offset)
 	if err != nil {
 		return err
 	}
