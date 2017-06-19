@@ -49,6 +49,7 @@ func CoverageTreeHandler(w http.ResponseWriter, r *http.Request) {
 	cli := rpc.NewClient(conn)
 
 	p := coverage.CoverageTreeParams{
+		Root:     r.FormValue("root"),
 		Patterns: patterns,
 		// Depth:    depth,
 		// RepoIds:  strings.Split(r.FormValue("repositories"), ","),
