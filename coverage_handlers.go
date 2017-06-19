@@ -48,15 +48,24 @@ func CoverageTreeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	cli := rpc.NewClient(conn)
 
-	depth, err := apiutil.ReqParamInt("depth", r)
-	if err != nil {
-		depth = 0
-	}
-
 	p := coverage.CoverageTreeParams{
 		Patterns: patterns,
-		Depth:    depth,
+		// Depth:    depth,
+		// RepoIds:  strings.Split(r.FormValue("repositories"), ","),
 	}
+
+	if depth, err := apiutil.ReqParamInt("depth", r); err == nil {
+		p.Depth = depth
+	}
+
+	// if r.FormValue("patterns") != "" {
+	// 	args.Patterns = strings.Split(r.FormValue("patterns"), ",")
+	// }
+
+	if r.FormValue("repos") != "" {
+		p.RepoIds = strings.Split(r.FormValue("repos"), ",")
+	}
+
 	reply := &tree.Node{}
 	if err := cli.Call("CoverageRequests.Tree", p, reply); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
