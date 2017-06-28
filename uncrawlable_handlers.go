@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/archivers-space/api/apiutil"
-	"github.com/archivers-space/archive"
+	"github.com/datatogether/api/apiutil"
+	"github.com/datatogether/archive"
 	"net/http"
 )
 

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/archivers-space/api/apiutil"
-	"github.com/archivers-space/archive"
-	"github.com/archivers-space/coverage/coverage"
-	"github.com/archivers-space/coverage/tree"
+	"github.com/datatogether/api/apiutil"
+	"github.com/datatogether/archive"
+	"github.com/datatogether/coverage/coverage"
+	"github.com/datatogether/coverage/tree"
 	"net"
 	"net/http"
 	"net/rpc"

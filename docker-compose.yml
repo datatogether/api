@@ -3,7 +3,7 @@ services:
   api:
     build: .
     volumes:
-      - .:/go/src/github.com/archivers-space/api
+      - .:/go/src/github.com/datatogether/api
       - ./sql:/sql
     ports:
      - 3200:3200
@@ -26,7 +26,7 @@ services:
     image: "archivers/identity:latest"
     # build: ../identity
     # volumes:
-    # - ../identity:/go/src/github.com/archivers-space/identity
+    # - ../identity:/go/src/github.com/datatogether/identity
     networks:
       - back-tier
     depends_on:
@@ -61,7 +61,7 @@ services:
     # image: "archivers/coverage:latest"
     build: ../coverage
     volumes:
-      - ../coverage:/go/src/github.com/archivers-space/coverage
+      - ../coverage:/go/src/github.com/datatogether/coverage
       # - ../coverage/sql:/sql
     networks:
       - back-tier

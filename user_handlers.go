@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/archivers-space/api/apiutil"
-	"github.com/archivers-space/identity/user"
+	"github.com/datatogether/api/apiutil"
+	"github.com/datatogether/identity/user"
 	"net"
 	"net/http"
 	"net/rpc"

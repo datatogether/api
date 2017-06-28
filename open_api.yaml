@@ -374,6 +374,11 @@
           type: string
           description: comma-separated list of repository ids to limit coverage results for
           default: all
+        - name: root
+          in: query
+          type: string
+          description: url of node to use as the root of the coverage tree, useful for tree traversal in combination with the depth param
+          default: ""
         responses:
           "200":
             description: covergage tree
