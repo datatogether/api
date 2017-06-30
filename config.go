@@ -59,9 +59,10 @@ type config struct {
 
 	// url for identity server
 	IdentityServiceUrl string
-
 	// url for coverage service
 	CoverageServiceUrl string
+	// url for tasks service
+	TasksServiceUrl string
 
 	// CertbotResponse is only for doing manual SSL certificate generation
 	// via LetsEncrypt.

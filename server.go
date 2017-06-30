@@ -96,6 +96,9 @@ func NewServerRoutes() *http.ServeMux {
 	// m.Handle("/metadata", middleware())
 	// m.Handle("/metadata/", middleware())
 
+	m.Handle("/tasks", middleware(TasksHandler))
+	m.Handle("/tasks/", middleware(TasksHandler))
+
 	m.Handle("/collections", middleware(CollectionsHandler))
 	m.Handle("/collections/", middleware(CollectionHandler))
 

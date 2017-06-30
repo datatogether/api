@@ -176,6 +176,23 @@
                   type: object
                 data:
                   $ref: "#/definitions/Url"
+    # /tasks:
+    #   get:
+    #     description: "get tasks list"
+    #     produces:
+    #       - "application/json"
+    #     responses:
+    #       "200":
+    #         description: "List"
+    #         schema:
+    #           type: object
+    #           properties:
+    #             meta:
+    #               type: object
+    #             data:
+    #               type: array
+    #             pagination:
+    #               type: object
     # /links:
     #   get:
     #     description: "get links"
