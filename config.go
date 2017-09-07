@@ -27,26 +27,18 @@ const (
 type config struct {
 	// path to go source code
 	Gopath string
-
 	// port to listen on, will be read from PORT env variable if present.
 	Port string
-
 	// root url for service
 	UrlRoot string
-
 	// DNS service discovery. Should be either "env" or "dns", default is env
 	GetHostsFrom string
-
 	// url of postgres app db
 	PostgresDbUrl string
-
 	// Public Key to use for signing metablocks. required.
 	PublicKey string
-
 	// TLS (HTTPS) enable support via LetsEncrypt, default false
-	// should be true in production
 	TLS bool
-
 	// support CORS signing from a list of origins
 	AllowedOrigins []string
 
