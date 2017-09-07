@@ -52,7 +52,7 @@ func (l *Link) Read(store datastore.Datastore) (err error) {
 		return ErrNotFound
 	}
 
-	// TODO - can't use "store.Get" here b/c we aren't actually storing
+	// TODO - can't use "store.Get" here b/c we aren't actually storing links by a cannonical ID
 	if sqlStore, ok := store.(*sql_datastore.Datastore); ok {
 		row := sqlStore.DB.QueryRow(qLinkRead, l.Src.Url, l.Dst.Url)
 		return l.UnmarshalSQL(row)
@@ -109,9 +109,9 @@ func (l *Link) calcHash() {
 	l.Hash = hex.EncodeToString(mhBuf)
 }
 
-func (l *Link) NewSQLModel(id string) sql_datastore.Model {
+func (l *Link) NewSQLModel(key datastore.Key) sql_datastore.Model {
 	return &Link{
-		Hash: id,
+		Hash: key.Name(),
 		Src:  l.Src,
 		Dst:  l.Dst,
 	}

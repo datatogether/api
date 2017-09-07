@@ -102,6 +102,9 @@ func NewServerRoutes() *http.ServeMux {
 	m.Handle("/uncrawlables", middleware(UncrawlablesHandler))
 	m.Handle("/uncrawlables/", middleware(UncrawlableHandler))
 
+	m.Handle("/customcrawls", middleware(CustomCrawlsHandler))
+	m.Handle("/customcrawls/", middleware(CustomCrawlHandler))
+
 	m.HandleFunc("/.well-known/acme-challenge/", CertbotHandler)
 
 	return m
@@ -138,6 +141,7 @@ func initPostgres() {
 		&archive.Primer{},
 		&archive.Source{},
 		&archive.Uncrawlable{},
+		&archive.CustomCrawl{},
 		&archive.Url{},
 	)
 }

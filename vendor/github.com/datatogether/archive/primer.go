@@ -175,15 +175,14 @@ func (p *Primer) Save(store datastore.Datastore) (err error) {
 	}
 
 	return store.Put(p.Key(), p)
-	return nil
 }
 
 func (p *Primer) Delete(store datastore.Datastore) error {
 	return store.Delete(p.Key())
 }
 
-func (p *Primer) NewSQLModel(id string) sql_datastore.Model {
-	return &Primer{Id: id}
+func (p *Primer) NewSQLModel(key datastore.Key) sql_datastore.Model {
+	return &Primer{Id: key.Name()}
 }
 
 func (p *Primer) SQLQuery(cmd sql_datastore.Cmd) string {
