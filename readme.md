@@ -1,15 +1,14 @@
-# datatogether json api
+# Sentry
+### It watches stuff
 
-### Running locally
+Sentry is a parallelized web crawler written in [Go](https://golang.org) that writes urls, links, & response headers to a Postgres database, then stores the response itself on amazon S3. It keeps a list of “sources”, which use simple string comparison to keep it from wandering outside of designated domains or url paths.
 
-Ok, this is a work-in-progress, but if you have docker & docker-compose installed you should be able to clone this repo & run:
-`docker-compose build && docker-compose up` from the project directory, and prove it works by visiting `http://localhost:3200/v0/urls` from a browser, where you should get a JSON response of urls.
+The big difference from other crawlers is a tunable “stale duration”, which will tell the crawler to capture an updated snapshot of the page if the time since the last GET request is older than the stale duration. This gives it a continual “watching” property.
 
-Right now modifying & updating code is a huge pain, but this is at least a start.
+Sentry holds a separate stream of scraping for any url that looks like a dataset. So when it encounters urls that look like `https://foo.com/file.csv`, it assumes that file ending may be a static asset, and places that url on a separate thread for archiving.
 
-### Generating Documentation
+# Related Projects
 
-1. Install [spectacle](https://github.com/sourcey/spectacle)
-2. Dev with `spectacle -d open_api.yaml`, editing `open_api.yaml` to make dem changes
-3. Generate Static docs with `spectacle open_api.yaml`
-4. Commit. Rinse. Repeat.
+In parallel to building this tool, we have engaged in efforts to map the landscape of similar projects:
+
+:eyes: See: [**Comparison of web archiving software**](https://github.com/datatogether/research/tree/master/web_archiving)
