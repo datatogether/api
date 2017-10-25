@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"github.com/datatogether/coverage/repositories"
 	"net"
 	"net/http"
@@ -43,7 +43,7 @@ func ListRepositoriesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	cli := rpc.NewClient(conn)
 	p := repositories.RepositoryListParams{}
-	reply := []*archive.DataRepo{}
+	reply := []*core.DataRepo{}
 	if err := cli.Call("RepositoryRequests.List", p, &reply); err != nil {
 		log.Info(err)
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
@@ -62,7 +62,7 @@ func GetRepositoryHandler(w http.ResponseWriter, r *http.Request) {
 	p := repositories.RepositoryGetParams{
 		Id: r.FormValue("id"),
 	}
-	reply := &archive.DataRepo{}
+	reply := &core.DataRepo{}
 	if err := cli.Call("RepositoryRequests.Get", p, &reply); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return

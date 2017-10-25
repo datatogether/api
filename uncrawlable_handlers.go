@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"net/http"
 )
 
@@ -34,7 +34,7 @@ func UncrawlablesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
-	res := &archive.Uncrawlable{}
+	res := &core.Uncrawlable{}
 	args := &UncrawlablesGetParams{
 		Id:  r.URL.Path[len("/uncrawlables/"):],
 		Url: r.FormValue("url"),
@@ -49,7 +49,7 @@ func GetUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
 
 func ListUncrawlablesHandler(w http.ResponseWriter, r *http.Request) {
 	p := apiutil.PageFromRequest(r)
-	res := make([]*archive.Uncrawlable, p.Size)
+	res := make([]*core.Uncrawlable, p.Size)
 	args := &UncrawlablesListParams{
 		Limit:   p.Limit(),
 		Offset:  p.Offset(),
@@ -64,12 +64,12 @@ func ListUncrawlablesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
-	un := &archive.Uncrawlable{}
+	un := &core.Uncrawlable{}
 	if err := json.NewDecoder(r.Body).Decode(un); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	res := &archive.Uncrawlable{}
+	res := &core.Uncrawlable{}
 	if err := new(Uncrawlables).Save(un, res); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
@@ -78,12 +78,12 @@ func SaveUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteUncrawlableHandler(w http.ResponseWriter, r *http.Request) {
-	un := &archive.Uncrawlable{}
+	un := &core.Uncrawlable{}
 	if err := json.NewDecoder(r.Body).Decode(un); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	res := &archive.Uncrawlable{}
+	res := &core.Uncrawlable{}
 	if err := new(Uncrawlables).Save(un, res); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return

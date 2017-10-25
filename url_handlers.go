@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"net/http"
 )
 
@@ -27,7 +27,7 @@ func UrlsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetUrlHandler(w http.ResponseWriter, r *http.Request) {
-	res := &archive.Url{}
+	res := &core.Url{}
 	args := &UrlsGetParams{
 		Id:   r.URL.Path[len("/urls/"):],
 		Url:  r.FormValue("url"),
@@ -43,7 +43,7 @@ func GetUrlHandler(w http.ResponseWriter, r *http.Request) {
 
 func ListUrlsHandler(w http.ResponseWriter, r *http.Request) {
 	p := apiutil.PageFromRequest(r)
-	res := make([]*archive.Url, p.Size)
+	res := make([]*core.Url, p.Size)
 	args := &UrlsListParams{
 		Limit:   p.Limit(),
 		Offset:  p.Offset(),

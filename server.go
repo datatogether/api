@@ -3,7 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"github.com/datatogether/sql_datastore"
 	"github.com/datatogether/sqlutil"
 	_ "github.com/lib/pq"
@@ -136,12 +136,12 @@ func initPostgres() {
 
 	sql_datastore.SetDB(appDB)
 	sql_datastore.Register(
-		&archive.Collection{},
-		&archive.Link{},
-		&archive.Primer{},
-		&archive.Source{},
-		&archive.Uncrawlable{},
-		&archive.CustomCrawl{},
-		&archive.Url{},
+		&core.Collection{},
+		&core.Link{},
+		&core.Primer{},
+		&core.Source{},
+		&core.Uncrawlable{},
+		&core.CustomCrawl{},
+		&core.Url{},
 	)
 }

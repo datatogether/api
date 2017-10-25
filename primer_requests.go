@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 )
 
 type Primers int
@@ -10,8 +10,8 @@ type PrimersGetArgs struct {
 	Id string
 }
 
-func (u *Primers) Get(args *PrimersGetArgs, res *archive.Primer) (err error) {
-	p := &archive.Primer{
+func (u *Primers) Get(args *PrimersGetArgs, res *core.Primer) (err error) {
+	p := &core.Primer{
 		Id: args.Id,
 	}
 	err = p.Read(store)
@@ -29,8 +29,8 @@ type PrimersListArgs struct {
 	Offset  int
 }
 
-func (u *Primers) List(args *PrimersListArgs, res *[]*archive.Primer) (err error) {
-	ps, err := archive.ListPrimers(store, args.Limit, args.Offset)
+func (u *Primers) List(args *PrimersListArgs, res *[]*core.Primer) (err error) {
+	ps, err := core.ListPrimers(store, args.Limit, args.Offset)
 	if err != nil {
 		return err
 	}

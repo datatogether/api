@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"net/http"
 )
 
@@ -27,7 +27,7 @@ func PrimersHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPrimerHandler(w http.ResponseWriter, r *http.Request) {
-	res := &archive.Primer{}
+	res := &core.Primer{}
 	args := &PrimersGetArgs{
 		Id: r.URL.Path[len("/primers/"):],
 	}
@@ -41,7 +41,7 @@ func GetPrimerHandler(w http.ResponseWriter, r *http.Request) {
 
 func ListPrimersHandler(w http.ResponseWriter, r *http.Request) {
 	p := apiutil.PageFromRequest(r)
-	res := make([]*archive.Primer, p.Size)
+	res := make([]*core.Primer, p.Size)
 	args := &PrimersListArgs{
 		Limit:   p.Limit(),
 		Offset:  p.Offset(),

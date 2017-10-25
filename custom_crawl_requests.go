@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 )
 
 type CustomCrawls int
@@ -10,8 +10,8 @@ type CustomCrawlsGetParams struct {
 	Id string
 }
 
-func (u *CustomCrawls) Get(p *CustomCrawlsGetParams, res *archive.CustomCrawl) (err error) {
-	url := &archive.CustomCrawl{
+func (u *CustomCrawls) Get(p *CustomCrawlsGetParams, res *core.CustomCrawl) (err error) {
+	url := &core.CustomCrawl{
 		Id: p.Id,
 	}
 	err = url.Read(store)
@@ -29,8 +29,8 @@ type CustomCrawlsListParams struct {
 	Offset  int
 }
 
-func (u *CustomCrawls) List(p *CustomCrawlsListParams, res *[]*archive.CustomCrawl) (err error) {
-	urls, err := archive.ListCustomCrawls(store, p.Limit, p.Offset)
+func (u *CustomCrawls) List(p *CustomCrawlsListParams, res *[]*core.CustomCrawl) (err error) {
+	urls, err := core.ListCustomCrawls(store, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}
@@ -38,7 +38,7 @@ func (u *CustomCrawls) List(p *CustomCrawlsListParams, res *[]*archive.CustomCra
 	return nil
 }
 
-func (u *CustomCrawls) Save(model *archive.CustomCrawl, res *archive.CustomCrawl) (err error) {
+func (u *CustomCrawls) Save(model *core.CustomCrawl, res *core.CustomCrawl) (err error) {
 	err = model.Save(store)
 	if err != nil {
 		return err
@@ -48,7 +48,7 @@ func (u *CustomCrawls) Save(model *archive.CustomCrawl, res *archive.CustomCrawl
 	return nil
 }
 
-func (u *CustomCrawls) Delete(model *archive.CustomCrawl, res *archive.CustomCrawl) (err error) {
+func (u *CustomCrawls) Delete(model *core.CustomCrawl, res *core.CustomCrawl) (err error) {
 	err = model.Delete(store)
 	if err != nil {
 		return err

@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"github.com/datatogether/coverage/coverage"
 	"github.com/datatogether/coverage/tree"
 	"net"
@@ -23,10 +23,10 @@ func CoverageHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CoverageTreeHandler(w http.ResponseWriter, r *http.Request) {
-	var primer *archive.Primer
+	var primer *core.Primer
 	patterns := strings.Split(r.FormValue("patterns"), ",")
 	if r.FormValue("primer") != "" {
-		primer = &archive.Primer{Id: r.FormValue("primer")}
+		primer = &core.Primer{Id: r.FormValue("primer")}
 		if err := primer.Read(store); err != nil {
 			apiutil.WriteErrResponse(w, http.StatusBadRequest, err)
 			return
