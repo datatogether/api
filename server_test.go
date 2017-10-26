@@ -10,7 +10,7 @@ func TestServer(t *testing.T) {
 	s := httptest.NewServer(NewServerRoutes())
 	defer s.Close()
 
-	res, err := http.Get(s.URL + "/status")
+	res, err := http.Get(s.URL + "/healthcheck")
 	if err != nil {
 		t.Error(err.Error())
 		return

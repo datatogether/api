@@ -3,13 +3,14 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/datatogether/core"
 	"github.com/datatogether/sql_datastore"
 	"github.com/datatogether/sqlutil"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
-	"net/http"
-	"os"
 )
 
 var (
@@ -53,7 +54,7 @@ func main() {
 	printConfigInfo()
 
 	// fire it up!
-	fmt.Println("starting server on port", cfg.Port)
+	log.Infoln("starting server on port", cfg.Port)
 
 	// start server wrapped in a log.Fatal b/c http.ListenAndServe will not
 	// return unless there's an error
@@ -65,8 +66,13 @@ func main() {
 func NewServerRoutes() *http.ServeMux {
 	m := http.NewServeMux()
 
-	m.HandleFunc("/", NotFoundHandler)
-	m.Handle("/status", middleware(HealthCheckHandler))
+	m.Handle("/", middleware(NotFoundHandler))
+	m.Handle("/healthcheck", middleware(HealthCheckHandler))
+
+	// serve static content for api documentation
+	m.Handle("/docs/", http.StripPrefix("/docs/", http.FileServer(http.Dir(packagePath("docs")))))
+	// m.Handle("/javascripts", http.FileServer(http.Dir("public/javascripts")))
+	// m.Handle("/stylesheets", http.FileServer(http.Dir("public/stylesheets")))
 
 	m.Handle("/users", middleware(UsersHandler))
 	m.Handle("/users/", middleware(UserHandler))
