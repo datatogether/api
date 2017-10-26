@@ -4,6 +4,7 @@
 [![Slack](https://img.shields.io/badge/slack-Archivers-b44e88.svg?style=flat-square)](https://archivers-slack.herokuapp.com/)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE)
 [![Codecov](https://img.shields.io/codecov/c/github/datatogether/api.svg?style=flat-square)](https://codecov.io/gh/datatogether/api)
+[![CircleCI](https://img.shields.io/circleci/project/github/datatogether/api.svg?style=flat-square)](https://circleci.com/gh/datatogether/api)
 
 
 Data Together API is a JSON api for all of Data Together's centralized services. Full documentation of the API is on the server itself by running the server & visiting the `/docs/` endpoint. More instructions in the Usage section below.
@@ -53,8 +54,4 @@ All API documentation is generated from the `open_api.yaml` file, to update docs
 
 ## Development
 
-[Step-by-step instructions about how to set up a local dev environment and any dependencies]
-
-## Deployment
-
-[Optional section with deployment instructions]
+Coming Soon!
