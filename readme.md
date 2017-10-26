@@ -12,7 +12,16 @@
 
 ## License & Copyright
 
-[Modelled on [project guidelines template](./PROJECT.md#license--copyright-readme-block) ]
+Copyright (C) <year> Data Together
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, version 3.0.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+See the [`LICENSE`](./LICENSE) file for details.
 
 ## Getting Involved
 
@@ -21,9 +30,33 @@ We would love involvement from more people! If you notice any errors or would li
 We use GitHub issues for [tracking bugs and feature requests](./issues) and Pull Requests (PRs) for [submitting changes](./pulls)
 
 
-## [Optional section(s) on Installation (actually using the service!), Architecture, Dependencies, and Other Considerations]
+## Usage
 
-[fill  out this section if the repo contains deployable/installable code]
+## Usage
+
+If you have docker & [docker-compose](https://docs.docker.com/compose/install/), clone this repo & run the following:
+```shell
+  # first, cd into the project directory, then run
+  docker-compose up
+
+  # this should respond with json, having an empty "data" array
+  http://localhost:8080/tasks
+
+  # this should respond with json, with meta.message : "task successfully enqueud"
+  http://localhost:8080/ipfs/add?url=https://i.redd.it/5kwih5n5i58z.jpg
+
+  # requesting this again should now show a task in the data array, including a "succeeded" timestamp:
+  http://localhost:8080/tasks
+
+  # congrats, you've put this url of a jpeg on ipfs: https://i.redd.it/5kwih5n5i58z.jpg
+  # view it here:
+  https://ipfs.io/ipfs/QmeDchVWNVxFcEvnbtBbio88UwrHSCqEAXpcj2gX3aufvv
+
+  # connect to your ipfs server here:
+  # click the "files" tab, and you'll see this hash: QmeDchVWNVxFcEvnbtBbio88UwrHSCqEAXpcj2gX3aufvv
+  # this means you have a local ipfs node serving the image we just processed
+  https://localhost:5001/webui
+```
 
 ## Development
 

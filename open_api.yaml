@@ -2,14 +2,14 @@
   swagger: "2.0"
   info: 
     version: "0.0.1"
-    title: "Archivers API"
-    description: "Api for Archivers records"
-    termsOfService: "https://archivers.space/terms/api"
+    title: "Data Together API"
+    description: "Api for Data Together records"
+    termsOfService: "https://archivers.co/terms/api"
     contact: 
       name: "b5"
     license: 
       name: "AGPL"
-  host: "api.archivers.space"
+  host: "api.archivers.co"
   basePath: "/"
   schemes: 
   - "https"
@@ -760,7 +760,7 @@
         contentUrl:
           type: string
           description: Url to saved content
-          example: https://content.archivers.space/1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de
+          example: https://content.archivers.co/1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de
     User:
       type: "object"
       required:
@@ -786,7 +786,7 @@
           example: "user"
         name:
           type: string
-          description: user name field. could be first[space]last, but not strictly enforced
+          description: user name field. could be first[co]last, but not strictly enforced
           example: "Diana Prince"
         description:
           type: string
