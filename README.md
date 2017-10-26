@@ -4,13 +4,13 @@
 
 [![GitHub](https://img.shields.io/badge/project-Data_Together-487b57.svg?style=flat-square)](http://github.com/datatogether)
 [![Slack](https://img.shields.io/badge/slack-Archivers-b44e88.svg?style=flat-square)](https://archivers-slack.herokuapp.com/)
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE) 
+[![License](https://img.shields.io/github/license/datatogether/api.svg)](./LICENSE) 
 
 This component of Data Together serves the JSON API. In isolation it doesn't do much, but when connected to the project as a whole it provides a variety of endpoints over https, which can be used to extract information from the Data Together database. 
 
 ## License & Copyright
 
-Copyright (C) <year> Data Together
+Copyright (C) 2017 Data Together
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License as published by the Free Software
 Foundation, version 3.0.
@@ -26,7 +26,6 @@ See the [`LICENSE`](./LICENSE) file for details.
 We would love involvement from more people! If you notice any errors or would like to submit changes, please see our [Contributing Guidelines](./.github/CONTRIBUTING.md). 
 
 We use GitHub issues for [tracking bugs and feature requests](https://github.com/datatogether/api/issues) and Pull Requests (PRs) for [submitting changes](https://github.com/datatogether/api/pulls)
-
 
 ## Installation and Local Deployment
 
