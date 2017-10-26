@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/datatogether/api",
-	"GoVersion": "go1.8",
+	"GoVersion": "go1.9",
 	"GodepVersion": "v79",
 	"Deps": [
 		{
@@ -147,44 +147,44 @@
 			"Rev": "1e2e6335535acb42e022f951ea4f7ab6fcf6c070"
 		},
 		{
-			"ImportPath": "github.com/datatogether/archive",
-			"Rev": "e37b9b11e17706e3ac2b9fdd34deca713e9a64d4"
-		},
-		{
 			"ImportPath": "github.com/datatogether/config",
 			"Rev": "29c751f56a84b6f95cb5187f6e7363f7cbcd2796"
 		},
 		{
+			"ImportPath": "github.com/datatogether/core",
+			"Rev": "12765f1ecc79bbc36700b57ebc9047044cab6e15"
+		},
+		{
 			"ImportPath": "github.com/datatogether/coverage/coverage",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/coverage/repositories",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/coverage/repositories/archivers2",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/coverage/repositories/archivers_space",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/coverage/repositories/eot",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/coverage/repositories/ia",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/coverage/repositories/svalbard",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/coverage/tree",
-			"Rev": "f143135c89df469c1ebab0e6cf1d31e98882fb7a"
+			"Rev": "9281ba98a0936800691def0fd2a0189cbb67f92c"
 		},
 		{
 			"ImportPath": "github.com/datatogether/errors",
@@ -196,19 +196,23 @@
 		},
 		{
 			"ImportPath": "github.com/datatogether/identity/access_token",
-			"Rev": "f0de01b531a84b91192b73ba5e652b1ce69c3e04"
+			"Rev": "158ca8bfcaa9207e176fb040390ca2a0d1c4495f"
 		},
 		{
 			"ImportPath": "github.com/datatogether/identity/user",
-			"Rev": "f0de01b531a84b91192b73ba5e652b1ce69c3e04"
+			"Rev": "158ca8bfcaa9207e176fb040390ca2a0d1c4495f"
 		},
 		{
 			"ImportPath": "github.com/datatogether/sql_datastore",
-			"Rev": "b0c91273ed161344348fb9c89e90a7b4edcb3a68"
+			"Rev": "c9059bb90d160e3ccd6b04e08d3b60c1971d89e6"
 		},
 		{
 			"ImportPath": "github.com/datatogether/sqlutil",
 			"Rev": "c471ed88dde35a8af1fb164020b88b65badee7f7"
+		},
+		{
+			"ImportPath": "github.com/datatogether/warc",
+			"Rev": "8fbf96f6a6d174f815ac77c47daf1c0fb1e4cfdb"
 		},
 		{
 			"ImportPath": "github.com/gchaincl/dotsql",
@@ -222,11 +226,11 @@
 		},
 		{
 			"ImportPath": "github.com/ipfs/go-datastore",
-			"Rev": "e742294375282d992c112f37943c7f5ca87fb268"
+			"Rev": "e8521f97048a5b92f2dfd74b413928cb7d7cce1c"
 		},
 		{
 			"ImportPath": "github.com/ipfs/go-datastore/query",
-			"Rev": "e742294375282d992c112f37943c7f5ca87fb268"
+			"Rev": "e8521f97048a5b92f2dfd74b413928cb7d7cce1c"
 		},
 		{
 			"ImportPath": "github.com/jbenet/go-base58",
@@ -274,57 +278,61 @@
 		},
 		{
 			"ImportPath": "github.com/sirupsen/logrus",
-			"Comment": "v0.11.5-46-g5e5dc89",
-			"Rev": "5e5dc898656f695e2a086b8e12559febbfc01562"
+			"Comment": "v1.0.3-11-g89742ae",
+			"Rev": "89742aefa4b206dcf400792f3bd35b542998eb3b"
 		},
 		{
 			"ImportPath": "github.com/spaolacci/murmur3",
-			"Comment": "v1.0-6-g4ec5a0f",
-			"Rev": "4ec5a0f56d4fc178129a8433576bf6f2fe672a9e"
+			"Comment": "v1.0-10-g9f5d223",
+			"Rev": "9f5d223c60793748f04a9d5b4b4eacddfc1f755d"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/acme",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/acme/autocert",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/bcrypt",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/blake2b",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/blake2s",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/blowfish",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/curve25519",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/ed25519",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/ed25519/internal/edwards25519",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/sha3",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/ssh",
-			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh/terminal",
+			"Rev": "2509b142fb2b797aa7587dad548f113b2c0f20ce"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html",
@@ -340,7 +348,11 @@
 		},
 		{
 			"ImportPath": "golang.org/x/sys/unix",
-			"Rev": "b90f89a1e7a9c1f6b918820b3daa7f08488c8594"
+			"Rev": "429f518978ab01db8bb6f44b66785088e7fba58b"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/windows",
+			"Rev": "429f518978ab01db8bb6f44b66785088e7fba58b"
 		},
 		{
 			"ImportPath": "golang.org/x/text/secure/bidirule",
@@ -364,7 +376,7 @@
 		},
 		{
 			"ImportPath": "leb.io/hashland/keccakpg",
-			"Rev": "e13accbe55f7fa03c73c74ace4cca4c425e47260"
+			"Rev": "07375b562deaa8d6891f9618a04e94a0b98e2ee7"
 		}
 	]
 }

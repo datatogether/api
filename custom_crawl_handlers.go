@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"net/http"
 )
 
@@ -34,7 +34,7 @@ func CustomCrawlsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetCustomCrawlHandler(w http.ResponseWriter, r *http.Request) {
-	res := &archive.CustomCrawl{}
+	res := &core.CustomCrawl{}
 	args := &CustomCrawlsGetParams{
 		Id: r.URL.Path[len("/customcrawls/"):],
 	}
@@ -48,7 +48,7 @@ func GetCustomCrawlHandler(w http.ResponseWriter, r *http.Request) {
 
 func ListCustomCrawlsHandler(w http.ResponseWriter, r *http.Request) {
 	p := apiutil.PageFromRequest(r)
-	res := make([]*archive.CustomCrawl, p.Size)
+	res := make([]*core.CustomCrawl, p.Size)
 	args := &CustomCrawlsListParams{
 		Limit:   p.Limit(),
 		Offset:  p.Offset(),
@@ -63,12 +63,12 @@ func ListCustomCrawlsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveCustomCrawlHandler(w http.ResponseWriter, r *http.Request) {
-	un := &archive.CustomCrawl{}
+	un := &core.CustomCrawl{}
 	if err := json.NewDecoder(r.Body).Decode(un); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	res := &archive.CustomCrawl{}
+	res := &core.CustomCrawl{}
 	if err := new(CustomCrawls).Save(un, res); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
@@ -77,12 +77,12 @@ func SaveCustomCrawlHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteCustomCrawlHandler(w http.ResponseWriter, r *http.Request) {
-	un := &archive.CustomCrawl{}
+	un := &core.CustomCrawl{}
 	if err := json.NewDecoder(r.Body).Decode(un); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return
 	}
-	res := &archive.CustomCrawl{}
+	res := &core.CustomCrawl{}
 	if err := new(CustomCrawls).Save(un, res); err != nil {
 		apiutil.WriteErrResponse(w, http.StatusInternalServerError, err)
 		return

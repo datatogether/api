@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"net/http"
 )
 
@@ -27,7 +27,7 @@ func SourcesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetSourceHandler(w http.ResponseWriter, r *http.Request) {
-	res := &archive.Source{}
+	res := &core.Source{}
 	args := &SourcesGetParams{
 		Id: r.URL.Path[len("/sources/"):],
 	}
@@ -41,7 +41,7 @@ func GetSourceHandler(w http.ResponseWriter, r *http.Request) {
 
 func ListSourcesHandler(w http.ResponseWriter, r *http.Request) {
 	p := apiutil.PageFromRequest(r)
-	res := make([]*archive.Source, p.Size)
+	res := make([]*core.Source, p.Size)
 	args := &SourcesListParams{
 		Limit:   p.Limit(),
 		Offset:  p.Offset(),

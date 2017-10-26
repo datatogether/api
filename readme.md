@@ -1,15 +1,60 @@
-# datatogether json api
+# Data Together JSON API
 
-### Running locally
+[![GitHub](https://img.shields.io/badge/project-Data_Together-487b57.svg?style=flat-square)](http://github.com/datatogether)
+[![Slack](https://img.shields.io/badge/slack-Archivers-b44e88.svg?style=flat-square)](https://archivers-slack.herokuapp.com/)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE)
+[![Codecov](https://img.shields.io/codecov/c/github/datatogether/api.svg?style=flat-square)](https://codecov.io/gh/datatogether/api)
 
-Ok, this is a work-in-progress, but if you have docker & docker-compose installed you should be able to clone this repo & run:
-`docker-compose build && docker-compose up` from the project directory, and prove it works by visiting `http://localhost:3200/v0/urls` from a browser, where you should get a JSON response of urls.
 
-Right now modifying & updating code is a huge pain, but this is at least a start.
+Data Together API is a JSON api for all of Data Together's centralized services. Full documentation of the API is on the server itself by running the server & visiting the `/docs/` endpoint. More instructions in the Usage section below.
 
-### Generating Documentation
+## License & Copyright
+
+Copyright (C) 2017 Data Together
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, version 3.0.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+See the [`LICENSE`](./LICENSE) file for details.
+
+## Getting Involved
+
+We would love involvement from more people! If you notice any errors or would like to submit changes, please see our [Contributing Guidelines](./CONTRIBUTING.md). 
+
+We use GitHub issues for [tracking bugs and feature requests](./issues) and Pull Requests (PRs) for [submitting changes](./pulls)
+
+## Usage
+
+If you have docker & [docker-compose](https://docs.docker.com/compose/install/), clone this repo & run the following:
+```shell
+  # first, cd into the project directory, then run
+  docker-compose up
+
+  # this should take you to the api documentation:
+  http://localhost:8080/docs/
+```
+
+## API Documentation
+
+The Data Together API is documented using the [Open API Specification](https://github.com/OAI/OpenAPI-Specification), 
+
+#### Generating Documentation
+
+All API documentation is generated from the `open_api.yaml` file, to update docs:
 
 1. Install [spectacle](https://github.com/sourcey/spectacle)
-2. Dev with `spectacle -d open_api.yaml`, editing `open_api.yaml` to make dem changes
+2. Dev with `spectacle -d open_api.yaml`, editing `open_api.yaml` to make changes
 3. Generate Static docs with `spectacle open_api.yaml`
 4. Commit. Rinse. Repeat.
+
+## Development
+
+[Step-by-step instructions about how to set up a local dev environment and any dependencies]
+
+## Deployment
+
+[Optional section with deployment instructions]

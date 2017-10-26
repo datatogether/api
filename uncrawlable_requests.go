@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 )
 
 type Uncrawlables int
@@ -11,8 +11,8 @@ type UncrawlablesGetParams struct {
 	Url string
 }
 
-func (u *Uncrawlables) Get(p *UncrawlablesGetParams, res *archive.Uncrawlable) (err error) {
-	url := &archive.Uncrawlable{
+func (u *Uncrawlables) Get(p *UncrawlablesGetParams, res *core.Uncrawlable) (err error) {
+	url := &core.Uncrawlable{
 		Id:  p.Id,
 		Url: p.Url,
 	}
@@ -31,8 +31,8 @@ type UncrawlablesListParams struct {
 	Offset  int
 }
 
-func (u *Uncrawlables) List(p *UncrawlablesListParams, res *[]*archive.Uncrawlable) (err error) {
-	urls, err := archive.ListUncrawlables(store, p.Limit, p.Offset)
+func (u *Uncrawlables) List(p *UncrawlablesListParams, res *[]*core.Uncrawlable) (err error) {
+	urls, err := core.ListUncrawlables(store, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}
@@ -40,7 +40,7 @@ func (u *Uncrawlables) List(p *UncrawlablesListParams, res *[]*archive.Uncrawlab
 	return nil
 }
 
-func (u *Uncrawlables) Save(model *archive.Uncrawlable, res *archive.Uncrawlable) (err error) {
+func (u *Uncrawlables) Save(model *core.Uncrawlable, res *core.Uncrawlable) (err error) {
 	err = model.Save(store)
 	if err != nil {
 		return err
@@ -50,7 +50,7 @@ func (u *Uncrawlables) Save(model *archive.Uncrawlable, res *archive.Uncrawlable
 	return nil
 }
 
-func (u *Uncrawlables) Delete(model *archive.Uncrawlable, res *archive.Uncrawlable) (err error) {
+func (u *Uncrawlables) Delete(model *core.Uncrawlable, res *core.Uncrawlable) (err error) {
 	err = model.Delete(store)
 	if err != nil {
 		return err

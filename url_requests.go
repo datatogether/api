@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 )
 
 type Urls int
@@ -12,8 +12,8 @@ type UrlsGetParams struct {
 	Hash string
 }
 
-func (u *Urls) Get(p *UrlsGetParams, res *archive.Url) (err error) {
-	url := &archive.Url{
+func (u *Urls) Get(p *UrlsGetParams, res *core.Url) (err error) {
+	url := &core.Url{
 		Id:   p.Id,
 		Url:  p.Url,
 		Hash: p.Hash,
@@ -33,8 +33,8 @@ type UrlsListParams struct {
 	Offset  int
 }
 
-func (u *Urls) List(p *UrlsListParams, res *[]*archive.Url) (err error) {
-	urls, err := archive.ListUrls(store, p.Limit, p.Offset)
+func (u *Urls) List(p *UrlsListParams, res *[]*core.Url) (err error) {
+	urls, err := core.ListUrls(store, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}

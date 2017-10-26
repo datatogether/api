@@ -9,12 +9,12 @@ import (
 // health reporting
 func HealthCheckHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{ "status" : 200 }`))
+	w.Write([]byte(`{ "meta": { "code": 200, "status": "ok" }, "data": [] }`))
 }
 
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
-	w.Write([]byte(`{ "status" :  "not found" }`))
+	w.Write([]byte(`{ "meta": { "code": 404, "status": "not found" }, "data": null }`))
 }
 
 // EmptyOkHandler is an empty 200 response, often used

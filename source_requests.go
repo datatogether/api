@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 )
 
 type Sources int
@@ -12,8 +12,8 @@ type SourcesGetParams struct {
 	Hash   string
 }
 
-func (u Sources) Get(args *SourcesGetParams, res *archive.Source) (err error) {
-	s := &archive.Source{
+func (u Sources) Get(args *SourcesGetParams, res *core.Source) (err error) {
+	s := &core.Source{
 		Id: args.Id,
 	}
 	err = s.Read(store)
@@ -36,8 +36,8 @@ type SourcesListParams struct {
 	Offset  int
 }
 
-func (u Sources) List(p *SourcesListParams, res *[]*archive.Source) (err error) {
-	urls, err := archive.ListSources(store, p.Limit, p.Offset)
+func (u Sources) List(p *SourcesListParams, res *[]*core.Source) (err error) {
+	urls, err := core.ListSources(store, p.Limit, p.Offset)
 	if err != nil {
 		return err
 	}

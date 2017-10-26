@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 )
 
 type Collections int
@@ -10,8 +10,8 @@ type CollectionsGetParams struct {
 	Id string
 }
 
-func (u *Collections) Get(args *CollectionsGetParams, res *archive.Collection) (err error) {
-	p := &archive.Collection{
+func (u *Collections) Get(args *CollectionsGetParams, res *core.Collection) (err error) {
+	p := &core.Collection{
 		Id: args.Id,
 	}
 	err = p.Read(store)
@@ -29,8 +29,8 @@ type CollectionsListParams struct {
 	Offset  int
 }
 
-func (u *Collections) List(args *CollectionsListParams, res *[]*archive.Collection) (err error) {
-	ps, err := archive.ListCollections(store, args.Limit, args.Offset)
+func (u *Collections) List(args *CollectionsListParams, res *[]*core.Collection) (err error) {
+	ps, err := core.ListCollections(store, args.Limit, args.Offset)
 	if err != nil {
 		return err
 	}

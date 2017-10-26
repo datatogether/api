@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/datatogether/api/apiutil"
-	"github.com/datatogether/archive"
+	"github.com/datatogether/core"
 	"net/http"
 )
 
@@ -27,7 +27,7 @@ func CollectionsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetCollectionHandler(w http.ResponseWriter, r *http.Request) {
-	res := &archive.Collection{}
+	res := &core.Collection{}
 	args := &CollectionsGetParams{
 		Id: r.URL.Path[len("/collections/"):],
 		// Collection: r.FormValue("collection"),
@@ -43,7 +43,7 @@ func GetCollectionHandler(w http.ResponseWriter, r *http.Request) {
 
 func ListCollectionsHandler(w http.ResponseWriter, r *http.Request) {
 	p := apiutil.PageFromRequest(r)
-	res := make([]*archive.Collection, p.Size)
+	res := make([]*core.Collection, p.Size)
 	args := &CollectionsListParams{
 		Limit:   p.Limit(),
 		Offset:  p.Offset(),

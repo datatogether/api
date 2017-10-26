@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Archivers API | API Reference</title>
+    <title>Data Together API | API Reference</title>
     <link rel="stylesheet" href="stylesheets/foundation.min.css" />
     <link rel="stylesheet" href="stylesheets/spectacle.min.css" />
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -21,18 +21,18 @@
           <a href="#introduction">Introduction</a>
           <h5>Paths</h5>
           <!-- <section>
-                <a href="#path--collections">/collections</a>
+                <a href="#path--users">/users</a>
                 <ul> -->
           <!-- <li> -->
-          <a href="#operation--collections-get"> GET /collections </a>
+          <a href="#operation--users-get"> GET /users </a>
           <!-- </li> -->
           <!-- </ul>
               </section> -->
           <!-- <section>
-                <a href="#path--collections--id-">/collections/{id}</a>
+                <a href="#path--users--id-">/users/{id}</a>
                 <ul> -->
           <!-- <li> -->
-          <a href="#operation--collections--id--get"> GET /collections/{id} </a>
+          <a href="#operation--users--id--get"> GET /users/{id} </a>
           <!-- </li> -->
           <!-- </ul>
               </section> -->
@@ -84,15 +84,59 @@
           <!-- </li> -->
           <!-- </ul>
               </section> -->
+          <!-- <section>
+                <a href="#path--repositories">/repositories</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation--repositories-get"> GET /repositories </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
+          <!-- <section>
+                <a href="#path--repository--id-">/repository/{id}</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation--repository--id--get"> GET /repository/{id} </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
+          <!-- <section>
+                <a href="#path--coverage">/coverage</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation--coverage-get"> GET /coverage </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
+          <!-- <section>
+                <a href="#path--collections">/collections</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation--collections-get"> GET /collections </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
+          <!-- <section>
+                <a href="#path--collections--id-">/collections/{id}</a>
+                <ul> -->
+          <!-- <li> -->
+          <a href="#operation--collections--id--get"> GET /collections/{id} </a>
+          <!-- </li> -->
+          <!-- </ul>
+              </section> -->
           <h5>Schema Definitions</h5>
           <a href="#definition-Collection"> Collection </a>
+          <a href="#definition-CoverageTree"> CoverageTree </a>
+          <a href="#definition-DataRepository"> DataRepository </a>
           <a href="#definition-Link"> Link </a>
           <a href="#definition-Metadata"> Metadata </a>
           <a href="#definition-Primer"> Primer </a>
-          <a href="#definition-Snapshot"> Snapshot </a>
           <a href="#definition-Source"> Source </a>
           <a href="#definition-Url"> Url </a>
           <a href="#definition-User"> User </a>
+          <a href="#definition-UUID"> UUID </a>
+          <a href="#definition-Snapshot"> Snapshot </a>
+          <a href="#definition-Uncrawlable"> Uncrawlable </a>
         </nav>
       </div>
       <div id="docs" class="row collapse expanded drawer" data-drawer>
@@ -102,29 +146,27 @@
         <div class="example-box doc-content"></div>
         <article>
           <div id="introduction" data-traverse-target="introduction">
-            <h1 class="doc-title">Archivers API
+            <h1 class="doc-title">Data Together API
               <span>API Reference</span>
             </h1>
             <div class="doc-row">
               <div class="doc-copy">
-                <p>Api for Archivers records</p>
+                <p>Api for Data Together records</p>
               </div>
               <div class="doc-examples">
                 <section>
                   <h5>API Endpoint</h5>
-                  <div class="hljs"> <pre><code>https://api.archivers.space/v0</code></pre> </div>
+                  <!-- <div class="hljs"> --><pre><code>https://api.archivers.co/</code></pre>
+                  <!-- </div> -->
                   <h5>Terms of Service:
-                    <a href="https://archivers.space/terms/api">https://archivers.space/terms/api</a>
+                    <a href="https://archivers.co/terms/api">https://archivers.co/terms/api</a>
                   </h5>
-                  <!--
-                    <h5>Request Content-Types:
-                      <span>application/json</span>
-                    </h5>
-          
-                    <h5>Response Content-Types:
-                      <span>application/json</span>
-                    </h5>
-                  -->
+                  <h5>Request Content-Types:
+                    <span>application/json</span>
+                  </h5>
+                  <h5>Response Content-Types:
+                    <span>application/json</span>
+                  </h5>
                   <h5>Schemes:
                     <span>https</span>
                   </h5>
@@ -136,18 +178,18 @@
             </div>
           </div>
           <h1>Paths</h1>
-          <span id="path--collections"></span>
-          <div id="operation--collections-get" class="operation panel" data-traverse-target="operation--collections-get">
+          <span id="path--users"></span>
+          <div id="operation--users-get" class="operation panel" data-traverse-target="operation--users-get">
             <h2 class="operation-title">
               <span class="operation-name">
                 <span class="operation-name">GET</span>
-                <span class="operation-path">/collections</span>
+                <span class="operation-path">/users</span>
               </span>
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="swagger-operation-description">
-                  <p>List Collections</p>
+                  <p>Get Users</p>
                 </section>
               </div>
             </div>
@@ -165,43 +207,82 @@
                       <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
                     </div>
                     <div class="prop-value">
-                      <p>Enveloped array of collections</p>
+                      <p>Enveloped array of Users</p>
                     </div>
                   </div>
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
   <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+      <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;wonder_woman&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>,
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Diana Prince&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;The Spirit of Truth&quot;</span>,
+      <span class="hljs-attr">&quot;homeUrl&quot;</span>: <span class="hljs-string">&quot;https://en.wikipedia.org/wiki/Wonder_Woman&quot;</span>,
+      <span class="hljs-attr">&quot;currentKey&quot;</span>: <span class="hljs-string">&quot;358a2a6b8e857836a9410c3ae5285eb5fec6fda7dcb7c78f75b4bada99bceea3&quot;</span>
+    }
+  ],
   <span class="hljs-attr">&quot;pagination&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
           </div>
-          <span id="path--collections--id-"></span>
-          <div id="operation--collections--id--get" class="operation panel" data-traverse-target="operation--collections--id--get">
+          <span id="path--users--id-"></span>
+          <div id="operation--users--id--get" class="operation panel" data-traverse-target="operation--users--id--get">
             <h2 class="operation-title">
               <span class="operation-name">
                 <span class="operation-name">GET</span>
-                <span class="operation-path">/collections/{id}</span>
+                <span class="operation-path">/users/{id}</span>
               </span>
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="swagger-operation-description">
-                  <p>Get a Collection</p>
+                  <p>Get info on a single user</p>
                 </section>
               </div>
             </div>
             <div class="doc-row">
-              <div class="doc-copy"> </div>
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">id</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
               <div class="doc-examples"></div>
             </div>
             <div class="doc-row">
@@ -214,21 +295,35 @@
                       <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
                     </div>
                     <div class="prop-value">
-                      <p>Enveloped Collection Object</p>
+                      <p>Single User</p>
                     </div>
                   </div>
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
-  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+    <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;wonder_woman&quot;</span>,
+    <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>,
+    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Diana Prince&quot;</span>,
+    <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;The Spirit of Truth&quot;</span>,
+    <span class="hljs-attr">&quot;homeUrl&quot;</span>: <span class="hljs-string">&quot;https://en.wikipedia.org/wiki/Wonder_Woman&quot;</span>,
+    <span class="hljs-attr">&quot;currentKey&quot;</span>: <span class="hljs-string">&quot;358a2a6b8e857836a9410c3ae5285eb5fec6fda7dcb7c78f75b4bada99bceea3&quot;</span>
+  }
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
@@ -268,16 +363,52 @@
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
   <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+      <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;shortTitle&quot;</span>: <span class="hljs-string">&quot;EPA&quot;</span>,
+      <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;Environmental Protection Agency&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;The mission of the Environmental Protection Agency is to protect human health  and the environment through the development and enforcement of regulations.  The EPA is responsible for administering a number of laws that span various sectors,  such as agriculture, transportation, utilities, construction, and oil and gas.  In the budget for FY 2017, the agency lays out goals to better support communities  and address climate change following the President&#x2019;s Climate Action Plan.  Additionally, the agency aims to improve community water infrastructure, chemical  plant safety, and collaborative partnerships among federal, state, and tribal levels.\n&quot;</span>,
+      <span class="hljs-attr">&quot;parent&quot;</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">&quot;subPrimers&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+      <span class="hljs-attr">&quot;meta&quot;</span>: {
+        <span class="hljs-attr">&quot;county&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+        <span class="hljs-attr">&quot;primaryLanguage&quot;</span>: <span class="hljs-string">&quot;en&quot;</span>
+      },
+      <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+      <span class="hljs-attr">&quot;sources&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+          <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+          <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+          <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+          <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;entire epa site&quot;</span>,
+          <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+          <span class="hljs-attr">&quot;primerId&quot;</span>: <span class="hljs-string">&quot;5b1031f4-38a8-40b3-be91-c324bf686a87&quot;</span>,
+          <span class="hljs-attr">&quot;crawl&quot;</span>: <span class="hljs-literal">true</span>,
+          <span class="hljs-attr">&quot;staleDuration&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+          <span class="hljs-attr">&quot;lastAlertSent&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+          <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+        }
+      ]
+    }
+  ],
   <span class="hljs-attr">&quot;pagination&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
@@ -298,7 +429,30 @@
               </div>
             </div>
             <div class="doc-row">
-              <div class="doc-copy"> </div>
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">id</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
               <div class="doc-examples"></div>
             </div>
             <div class="doc-row">
@@ -317,15 +471,49 @@
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
-  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+    <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;shortTitle&quot;</span>: <span class="hljs-string">&quot;EPA&quot;</span>,
+    <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;Environmental Protection Agency&quot;</span>,
+    <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;The mission of the Environmental Protection Agency is to protect human health  and the environment through the development and enforcement of regulations.  The EPA is responsible for administering a number of laws that span various sectors,  such as agriculture, transportation, utilities, construction, and oil and gas.  In the budget for FY 2017, the agency lays out goals to better support communities  and address climate change following the President&#x2019;s Climate Action Plan.  Additionally, the agency aims to improve community water infrastructure, chemical  plant safety, and collaborative partnerships among federal, state, and tribal levels.\n&quot;</span>,
+    <span class="hljs-attr">&quot;parent&quot;</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">&quot;subPrimers&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+    <span class="hljs-attr">&quot;meta&quot;</span>: {
+      <span class="hljs-attr">&quot;county&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+      <span class="hljs-attr">&quot;primaryLanguage&quot;</span>: <span class="hljs-string">&quot;en&quot;</span>
+    },
+    <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+    <span class="hljs-attr">&quot;sources&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+        <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+        <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+        <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+        <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;entire epa site&quot;</span>,
+        <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+        <span class="hljs-attr">&quot;primerId&quot;</span>: <span class="hljs-string">&quot;5b1031f4-38a8-40b3-be91-c324bf686a87&quot;</span>,
+        <span class="hljs-attr">&quot;crawl&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">&quot;staleDuration&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+        <span class="hljs-attr">&quot;lastAlertSent&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+        <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+      }
+    ]
+  }
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
@@ -365,16 +553,35 @@
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
   <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+      <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;entire epa site&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+      <span class="hljs-attr">&quot;primerId&quot;</span>: <span class="hljs-string">&quot;5b1031f4-38a8-40b3-be91-c324bf686a87&quot;</span>,
+      <span class="hljs-attr">&quot;crawl&quot;</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">&quot;staleDuration&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;lastAlertSent&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+      <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+    }
+  ],
   <span class="hljs-attr">&quot;pagination&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
@@ -395,7 +602,30 @@
               </div>
             </div>
             <div class="doc-row">
-              <div class="doc-copy"> </div>
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">id</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
               <div class="doc-examples"></div>
             </div>
             <div class="doc-row">
@@ -414,15 +644,32 @@
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
-  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+    <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+    <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;entire epa site&quot;</span>,
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+    <span class="hljs-attr">&quot;primerId&quot;</span>: <span class="hljs-string">&quot;5b1031f4-38a8-40b3-be91-c324bf686a87&quot;</span>,
+    <span class="hljs-attr">&quot;crawl&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">&quot;staleDuration&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+    <span class="hljs-attr">&quot;lastAlertSent&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+    <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+  }
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
@@ -462,16 +709,67 @@
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
   <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+      <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;http://www.epa.gov&quot;</span>,
+      <span class="hljs-attr">&quot;lastGet&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;lastHead&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;status&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;contentType&quot;</span>: <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+      <span class="hljs-attr">&quot;contentSniff&quot;</span>: <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+      <span class="hljs-attr">&quot;contentLength&quot;</span>: <span class="hljs-number">-1</span>,
+      <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;United States Environmental Protection Agency, US EPA&quot;</span>,
+      <span class="hljs-attr">&quot;downloadTook&quot;</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">&quot;headersTook&quot;</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">&quot;headers&quot;</span>: [
+        <span class="hljs-string">&quot;X-Content-Type-Options&quot;</span>,
+        <span class="hljs-string">&quot;nosniff&quot;</span>,
+        <span class="hljs-string">&quot;Expires&quot;</span>,
+        <span class="hljs-string">&quot;Fri, 24 Feb 2017 21:53:45 GMT&quot;</span>,
+        <span class="hljs-string">&quot;Date&quot;</span>,
+        <span class="hljs-string">&quot;Fri, 24 Feb 2017 21:53:45 GMT&quot;</span>,
+        <span class="hljs-string">&quot;Etag&quot;</span>,
+        <span class="hljs-string">&quot;W/\&quot;7f53-549471782bb42\&quot;&quot;</span>,
+        <span class="hljs-string">&quot;X-Ua-Compatible&quot;</span>,
+        <span class="hljs-string">&quot;IE=Edge,chrome=1&quot;</span>,
+        <span class="hljs-string">&quot;X-Cached-By&quot;</span>,
+        <span class="hljs-string">&quot;Boost&quot;</span>,
+        <span class="hljs-string">&quot;Content-Type&quot;</span>,
+        <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+        <span class="hljs-string">&quot;Vary&quot;</span>,
+        <span class="hljs-string">&quot;Accept-Encoding&quot;</span>,
+        <span class="hljs-string">&quot;Accept-Ranges&quot;</span>,
+        <span class="hljs-string">&quot;bytes&quot;</span>,
+        <span class="hljs-string">&quot;Cache-Control&quot;</span>,
+        <span class="hljs-string">&quot;no-cache, no-store, must-revalidate, post-check=0, pre-check=0&quot;</span>,
+        <span class="hljs-string">&quot;Server&quot;</span>,
+        <span class="hljs-string">&quot;Apache&quot;</span>,
+        <span class="hljs-string">&quot;Connection&quot;</span>,
+        <span class="hljs-string">&quot;keep-alive&quot;</span>,
+        <span class="hljs-string">&quot;Strict-Transport-Security&quot;</span>,
+        <span class="hljs-string">&quot;max-age=31536000; preload;&quot;</span>
+      ],
+      <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+      <span class="hljs-attr">&quot;hash&quot;</span>: <span class="hljs-string">&quot;1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de&quot;</span>,
+      <span class="hljs-attr">&quot;contentUrl&quot;</span>: <span class="hljs-string">&quot;https://content.archivers.co/1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de&quot;</span>
+    }
+  ],
   <span class="hljs-attr">&quot;pagination&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
@@ -492,7 +790,30 @@
               </div>
             </div>
             <div class="doc-row">
-              <div class="doc-copy"> </div>
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">id</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
               <div class="doc-examples"></div>
             </div>
             <div class="doc-row">
@@ -511,51 +832,554 @@
                 </section>
               </div>
               <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
                 <section>
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <div class="hljs"><pre><code class="lang-json">{
-  <span class="hljs-attr">&quot;data&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
-  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+    <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;http://www.epa.gov&quot;</span>,
+    <span class="hljs-attr">&quot;lastGet&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;lastHead&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;status&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+    <span class="hljs-attr">&quot;contentType&quot;</span>: <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+    <span class="hljs-attr">&quot;contentSniff&quot;</span>: <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+    <span class="hljs-attr">&quot;contentLength&quot;</span>: <span class="hljs-number">-1</span>,
+    <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;United States Environmental Protection Agency, US EPA&quot;</span>,
+    <span class="hljs-attr">&quot;downloadTook&quot;</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">&quot;headersTook&quot;</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">&quot;headers&quot;</span>: [
+      <span class="hljs-string">&quot;X-Content-Type-Options&quot;</span>,
+      <span class="hljs-string">&quot;nosniff&quot;</span>,
+      <span class="hljs-string">&quot;Expires&quot;</span>,
+      <span class="hljs-string">&quot;Fri, 24 Feb 2017 21:53:45 GMT&quot;</span>,
+      <span class="hljs-string">&quot;Date&quot;</span>,
+      <span class="hljs-string">&quot;Fri, 24 Feb 2017 21:53:45 GMT&quot;</span>,
+      <span class="hljs-string">&quot;Etag&quot;</span>,
+      <span class="hljs-string">&quot;W/\&quot;7f53-549471782bb42\&quot;&quot;</span>,
+      <span class="hljs-string">&quot;X-Ua-Compatible&quot;</span>,
+      <span class="hljs-string">&quot;IE=Edge,chrome=1&quot;</span>,
+      <span class="hljs-string">&quot;X-Cached-By&quot;</span>,
+      <span class="hljs-string">&quot;Boost&quot;</span>,
+      <span class="hljs-string">&quot;Content-Type&quot;</span>,
+      <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+      <span class="hljs-string">&quot;Vary&quot;</span>,
+      <span class="hljs-string">&quot;Accept-Encoding&quot;</span>,
+      <span class="hljs-string">&quot;Accept-Ranges&quot;</span>,
+      <span class="hljs-string">&quot;bytes&quot;</span>,
+      <span class="hljs-string">&quot;Cache-Control&quot;</span>,
+      <span class="hljs-string">&quot;no-cache, no-store, must-revalidate, post-check=0, pre-check=0&quot;</span>,
+      <span class="hljs-string">&quot;Server&quot;</span>,
+      <span class="hljs-string">&quot;Apache&quot;</span>,
+      <span class="hljs-string">&quot;Connection&quot;</span>,
+      <span class="hljs-string">&quot;keep-alive&quot;</span>,
+      <span class="hljs-string">&quot;Strict-Transport-Security&quot;</span>,
+      <span class="hljs-string">&quot;max-age=31536000; preload;&quot;</span>
+    ],
+    <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+    <span class="hljs-attr">&quot;hash&quot;</span>: <span class="hljs-string">&quot;1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de&quot;</span>,
+    <span class="hljs-attr">&quot;contentUrl&quot;</span>: <span class="hljs-string">&quot;https://content.archivers.co/1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de&quot;</span>
+  }
 }
-</code></pre> </div>
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
           </div>
-          <!-- <h1>Schema definitions</h1> -->
-          <h1>Models</h1>
-          <div id="definition-Collection" class="panel panel-definition" data-traverse-target="definition-Collection">
-            <h2 class="panel-title">
-              <a name="/definitions/Collection"></a>Collection:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
+          <span id="path--repositories"></span>
+          <div id="operation--repositories-get" class="operation panel" data-traverse-target="operation--repositories-get">
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/repositories</span>
               </span>
             </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
-              
-                    
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description">
+                  <p>List Data Repositories</p>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref"></div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>list of repositories</p>
+                    </div>
                   </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+      <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;The Internet Archive&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;the archive of the worlds internet&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://archive.org&quot;</span>
+    }
+  ],
+  <span class="hljs-attr">&quot;pagination&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path--repository--id-"></span>
+          <div id="operation--repository--id--get" class="operation panel" data-traverse-target="operation--repository--id--get">
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/repository/{id}</span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description">
+                  <p>get details for a single data repository</p>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">id</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref"></div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>repository details</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+    <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;The Internet Archive&quot;</span>,
+    <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;the archive of the worlds internet&quot;</span>,
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://archive.org&quot;</span>
+  }
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path--coverage"></span>
+          <div id="operation--coverage-get" class="operation panel" data-traverse-target="operation--coverage-get">
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/coverage</span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description">
+                  <p>Coverage tree of url-based resources</p>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">primer</div>
+                    </div>
+                    <div class="prop-value">
+                      <p>id of the primer to get coverage for</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">depth</div>
+                    </div>
+                    <div class="prop-value">
+                      <p>maximum number of children to return</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">repos</div>
+                    </div>
+                    <div class="prop-value">
+                      <p>comma-separated list of repository ids to limit coverage results for</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-default-value" title="Default value">all</span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">root</div>
+                    </div>
+                    <div class="prop-value">
+                      <p>url of node to use as the root of the coverage tree, useful for tree traversal in combination with the depth param</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref"></div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>covergage tree</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;numLeaves&quot;</span>: <span class="hljs-number">5000</span>,
+    <span class="hljs-attr">&quot;numLeavesArchived&quot;</span>: <span class="hljs-number">3101</span>,
+    <span class="hljs-attr">&quot;children&quot;</span>: {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;ftp://ftp.epa.gov&quot;</span>,
+      <span class="hljs-attr">&quot;numLeaves&quot;</span>: <span class="hljs-number">3</span>,
+      <span class="hljs-attr">&quot;numLeavesArchived&quot;</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">&quot;numChildren&quot;</span>: <span class="hljs-number">2</span>,
+      <span class="hljs-attr">&quot;children&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;castnet&quot;</span>,
+          <span class="hljs-attr">&quot;numLeaves&quot;</span>: <span class="hljs-number">2</span>,
+          <span class="hljs-attr">&quot;numLeavesArchived&quot;</span>: <span class="hljs-number">1</span>,
+          <span class="hljs-attr">&quot;numChildren&quot;</span>: <span class="hljs-number">1</span>,
+          <span class="hljs-attr">&quot;children&quot;</span>: [
+            <span class="hljs-string">&quot;...&quot;</span>
+          ]
+        }
+      ]
+    },
+    <span class="hljs-attr">&quot;coverage&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;repositoryId&quot;</span>: <span class="hljs-string">&quot;4c0122g5-38a8-40b3-be91-c324bf686a87&quot;</span>,
+        <span class="hljs-attr">&quot;archived&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">&quot;priority&quot;</span>: <span class="hljs-number">10</span>
+      },
+      {
+        <span class="hljs-attr">&quot;repositoryId&quot;</span>: <span class="hljs-string">&quot;4c0122g5-38a8-40b3-be91-c324bf686a87&quot;</span>,
+        <span class="hljs-attr">&quot;archived&quot;</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">&quot;priority&quot;</span>: <span class="hljs-number">0</span>
+      }
+    ]
+  },
+  <span class="hljs-attr">&quot;pagination&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path--collections"></span>
+          <div id="operation--collections-get" class="operation panel" data-traverse-target="operation--collections-get">
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/collections</span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description">
+                  <p>List Collections</p>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref"></div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>Enveloped array of collections</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+    <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;creator&quot;</span>: <span class="hljs-string">&quot;358a2a6b8e857836a9410c3ae5285eb5fec6fda7dcb7c78f75b4bada99bceea3&quot;</span>,
+    <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;EPA Volatile Organic Compound Measurements&quot;</span>,
+    <span class="hljs-attr">&quot;schema&quot;</span>: [
+      <span class="hljs-string">&quot;string&quot;</span>
+    ],
+    <span class="hljs-attr">&quot;contents&quot;</span>: [
+      <span class="hljs-string">&quot;string&quot;</span>
+    ]
+  },
+  <span class="hljs-attr">&quot;pagination&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path--collections--id-"></span>
+          <div id="operation--collections--id--get" class="operation panel" data-traverse-target="operation--collections--id--get">
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/collections/{id}</span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description">
+                  <p>Get a Collection</p>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">id</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref"></div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>Enveloped Collection Object</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <h5>Response Content-Types:
+                  <span>application/json</span>
+                </h5>
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;data&quot;</span>: {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+    <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;creator&quot;</span>: <span class="hljs-string">&quot;358a2a6b8e857836a9410c3ae5285eb5fec6fda7dcb7c78f75b4bada99bceea3&quot;</span>,
+    <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;EPA Volatile Organic Compound Measurements&quot;</span>,
+    <span class="hljs-attr">&quot;schema&quot;</span>: [
+      <span class="hljs-string">&quot;string&quot;</span>
+    ],
+    <span class="hljs-attr">&quot;contents&quot;</span>: [
+      <span class="hljs-string">&quot;string&quot;</span>
+    ]
+  }
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <h1>Schema Definitions</h1>
+          <div id="definition-Collection" class="definition panel" data-traverse-target="definition-Collection">
+            <h2 class="panel-title">
+              <a name="/definitions/Collection"></a>Collection: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
               
-                  <div class="doc-examples"></div>
-                </div> -->
+              
+              </span> -->
+            </h2>
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="json-schema-properties">
                   <dl>
                     <dt data-property-name="id">
                       <span class="json-property-name">id:</span>
-                      <span class="json-property-type">string</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
                       <span class="json-property-range" title="Value limits"></span>
                       <span class="json-property-required"></span>
                     </dt>
-                    <dd>
-                      <p>version 4 uuid</p>
-                    </dd>
-                    <dt data-property-name="created">
+                    <dt data-property-name="created" class="has-description">
                       <span class="json-property-name">created:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -564,7 +1388,7 @@
                     <dd>
                       <p>Created timestamp rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="updated">
+                    <dt data-property-name="updated" class="has-description">
                       <span class="json-property-name">updated:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -573,15 +1397,15 @@
                     <dd>
                       <p>Updated timestamp rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="creator">
+                    <dt data-property-name="creator" class="has-description">
                       <span class="json-property-name">creator:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
-                      <p>sha356 multihash of the public key that created this collection</p>
+                      <p>sha256 multihash of the public key that created this collection</p>
                     </dd>
-                    <dt data-property-name="title">
+                    <dt data-property-name="title" class="has-description">
                       <span class="json-property-name">title:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -589,17 +1413,17 @@
                     <dd>
                       <p>human-readable title of the collection</p>
                     </dd>
-                    <dt data-property-name="schema">
+                    <dt data-property-name="schema" class="has-description">
                       <span class="json-property-name">schema:</span>
-                      <span class="json-property-type">array</span>
+                      <span class="json-property-type">string[]</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
                       <p>csv column headers, first value must always be &quot;hash&quot;</p>
                     </dd>
-                    <dt data-property-name="contents">
+                    <dt data-property-name="contents" class="has-description">
                       <span class="json-property-name">contents:</span>
-                      <span class="json-property-type">array</span>
+                      <span class="json-property-type">string[]</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
@@ -608,29 +1432,222 @@
                   </dl>
                 </section>
               </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;creator&quot;</span>: <span class="hljs-string">&quot;358a2a6b8e857836a9410c3ae5285eb5fec6fda7dcb7c78f75b4bada99bceea3&quot;</span>,
+  <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;EPA Volatile Organic Compound Measurements&quot;</span>,
+  <span class="hljs-attr">&quot;schema&quot;</span>: [
+    <span class="hljs-string">&quot;string&quot;</span>
+  ],
+  <span class="hljs-attr">&quot;contents&quot;</span>: [
+    <span class="hljs-string">&quot;string&quot;</span>
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
             </div>
           </div>
-          <div id="definition-Link" class="panel panel-definition" data-traverse-target="definition-Link">
+          <div id="definition-CoverageTree" class="definition panel" data-traverse-target="definition-CoverageTree">
             <h2 class="panel-title">
-              <a name="/definitions/Link"></a>Link:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
+              <a name="/definitions/CoverageTree"></a>CoverageTree: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
             </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Tree of url components showing coverage information</p>
+                </section>
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="numLeaves" class="has-description">
+                      <span class="json-property-name">numLeaves:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>number of nodes in the tree that have no children. full url endpoints are leaves.</p>
+                    </dd>
+                    <dt data-property-name="numLeavesArchived" class="has-description">
+                      <span class="json-property-name">numLeavesArchived:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>number of leaves that have been archived by at least one data repository</p>
+                    </dd>
+                    <dt data-property-name="children" class="has-description">
+                      <span class="json-property-name">children:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>array of nodes that are a child of this node</p>
+                    </dd>
+                    <dt data-property-name="coverage" class="has-description">
+                      <span class="json-property-name">coverage:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>array of services that have coverage information for this node</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;numLeaves&quot;</span>: <span class="hljs-number">5000</span>,
+  <span class="hljs-attr">&quot;numLeavesArchived&quot;</span>: <span class="hljs-number">3101</span>,
+  <span class="hljs-attr">&quot;children&quot;</span>: {
+    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;ftp://ftp.epa.gov&quot;</span>,
+    <span class="hljs-attr">&quot;numLeaves&quot;</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-attr">&quot;numLeavesArchived&quot;</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">&quot;numChildren&quot;</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">&quot;children&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;castnet&quot;</span>,
+        <span class="hljs-attr">&quot;numLeaves&quot;</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-attr">&quot;numLeavesArchived&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">&quot;numChildren&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">&quot;children&quot;</span>: [
+          <span class="hljs-string">&quot;...&quot;</span>
+        ]
+      }
+    ]
+  },
+  <span class="hljs-attr">&quot;coverage&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;repositoryId&quot;</span>: <span class="hljs-string">&quot;4c0122g5-38a8-40b3-be91-c324bf686a87&quot;</span>,
+      <span class="hljs-attr">&quot;archived&quot;</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">&quot;priority&quot;</span>: <span class="hljs-number">10</span>
+    },
+    {
+      <span class="hljs-attr">&quot;repositoryId&quot;</span>: <span class="hljs-string">&quot;4c0122g5-38a8-40b3-be91-c324bf686a87&quot;</span>,
+      <span class="hljs-attr">&quot;archived&quot;</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">&quot;priority&quot;</span>: <span class="hljs-number">0</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-DataRepository" class="definition panel" data-traverse-target="definition-DataRepository">
+            <h2 class="panel-title">
+              <a name="/definitions/DataRepository"></a>DataRepository: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
               
-                    
-                  </div>
               
-                  <div class="doc-examples"></div>
-                </div> -->
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>representation of a place that keeps an archive of data, eg the internet archive</p>
+                </section>
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="id">
+                      <span class="json-property-name">id:</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="created" class="has-description">
+                      <span class="json-property-name">created:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-format">(date-time)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>timestamp of first addition to the database rounded to seconds in UTC.</p>
+                    </dd>
+                    <dt data-property-name="updated" class="has-description">
+                      <span class="json-property-name">updated:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-format">(date-time)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>timestamp of most recent change rounded to seconds in UTC</p>
+                    </dd>
+                    <dt data-property-name="title" class="has-description">
+                      <span class="json-property-name">title:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>title of the data repository</p>
+                    </dd>
+                    <dt data-property-name="description" class="has-description">
+                      <span class="json-property-name">description:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>description of the repository</p>
+                    </dd>
+                    <dt data-property-name="url" class="has-description">
+                      <span class="json-property-name">url:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>url to home page of the repositoriy</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;The Internet Archive&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;the archive of the worlds internet&quot;</span>,
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://archive.org&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Link" class="definition panel" data-traverse-target="definition-Link">
+            <h2 class="panel-title">
+              <a name="/definitions/Link"></a>Link: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="json-schema-properties">
                   <dl>
-                    <dt data-property-name="created">
+                    <dt data-property-name="created" class="has-description">
                       <span class="json-property-name">created:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-format">(string)</span>
@@ -640,7 +1657,7 @@
                     <dd>
                       <p>created timestamp rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="updated">
+                    <dt data-property-name="updated" class="has-description">
                       <span class="json-property-name">updated:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-format">(string)</span>
@@ -650,7 +1667,7 @@
                     <dd>
                       <p>updated timestamp rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="src">
+                    <dt data-property-name="src" class="has-description">
                       <span class="json-property-name">src:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-format">(string)</span>
@@ -660,7 +1677,7 @@
                     <dd>
                       <p>origin url of the linking document</p>
                     </dd>
-                    <dt data-property-name="dst">
+                    <dt data-property-name="dst" class="has-description">
                       <span class="json-property-name">dst:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-format">(string)</span>
@@ -674,36 +1691,40 @@
                   </dl>
                 </section>
               </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
             </div>
           </div>
-          <div id="definition-Metadata" class="panel panel-definition" data-traverse-target="definition-Metadata">
+          <div id="definition-Metadata" class="definition panel" data-traverse-target="definition-Metadata">
             <h2 class="panel-title">
-              <a name="/definitions/Metadata"></a>Metadata:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
+              <a name="/definitions/Metadata"></a>Metadata: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
             </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
-              
-                    
-                  </div>
-              
-                  <div class="doc-examples"></div>
-                </div> -->
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="json-schema-properties">
                   <dl>
                     <dt data-property-name="id">
                       <span class="json-property-name">id:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-format">(uuidv4)</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
                       <span class="json-property-range" title="Value limits"></span>
                       <span class="json-property-required"></span>
                     </dt>
-                    <dt data-property-name="hash">
+                    <dt data-property-name="hash" class="has-description">
                       <span class="json-property-name">hash:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -711,7 +1732,7 @@
                     <dd>
                       <p>sha256 multihash of all other fields in metadata as expressed by Metadata.HashableBytes()</p>
                     </dd>
-                    <dt data-property-name="timestamp">
+                    <dt data-property-name="timestamp" class="has-description">
                       <span class="json-property-name">timestamp:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -720,7 +1741,7 @@
                     <dd>
                       <p>Creation timestamp</p>
                     </dd>
-                    <dt data-property-name="keyId">
+                    <dt data-property-name="keyId" class="has-description">
                       <span class="json-property-name">keyId:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -728,7 +1749,7 @@
                     <dd>
                       <p>Sha256 multihash of the public key that signed this metadata</p>
                     </dd>
-                    <dt data-property-name="subject">
+                    <dt data-property-name="subject" class="has-description">
                       <span class="json-property-name">subject:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -736,7 +1757,7 @@
                     <dd>
                       <p>Sha256 multihash of the content this metadata is describing</p>
                     </dd>
-                    <dt data-property-name="prev">
+                    <dt data-property-name="prev" class="has-description">
                       <span class="json-property-name">prev:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -744,7 +1765,7 @@
                     <dd>
                       <p>Hash value of the metadata that came before this, if any</p>
                     </dd>
-                    <dt data-property-name="meta">
+                    <dt data-property-name="meta" class="has-description">
                       <span class="json-property-name">meta:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -755,36 +1776,48 @@
                   </dl>
                 </section>
               </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;hash&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;keyId&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;subject&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;prev&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
             </div>
           </div>
-          <div id="definition-Primer" class="panel panel-definition" data-traverse-target="definition-Primer">
+          <div id="definition-Primer" class="definition panel" data-traverse-target="definition-Primer">
             <h2 class="panel-title">
-              <a name="/definitions/Primer"></a>Primer:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
+              <a name="/definitions/Primer"></a>Primer: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
             </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
-              
-                    
-                  </div>
-              
-                  <div class="doc-examples"></div>
-                </div> -->
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="json-schema-properties">
                   <dl>
                     <dt data-property-name="id">
                       <span class="json-property-name">id:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-format">(uuidv4)</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
                       <span class="json-property-range" title="Value limits"></span>
                       <span class="json-property-required"></span>
                     </dt>
-                    <dt data-property-name="created">
+                    <dt data-property-name="created" class="has-description">
                       <span class="json-property-name">created:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -793,7 +1826,7 @@
                     <dd>
                       <p>timestamp of first addition to the database rounded to seconds in UTC.</p>
                     </dd>
-                    <dt data-property-name="updated">
+                    <dt data-property-name="updated" class="has-description">
                       <span class="json-property-name">updated:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -802,7 +1835,7 @@
                     <dd>
                       <p>timestamp of most recent change rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="shortTitle">
+                    <dt data-property-name="shortTitle" class="has-description">
                       <span class="json-property-name">shortTitle:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -810,7 +1843,7 @@
                     <dd>
                       <p>shortest possible expression of this primer&#39;s name, usually an acronym called shortTitle b/c acronyms collide often &amp; users should feel free to expand on acronyms </p>
                     </dd>
-                    <dt data-property-name="title">
+                    <dt data-property-name="title" class="has-description">
                       <span class="json-property-name">title:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -818,7 +1851,7 @@
                     <dd>
                       <p>human-readable title of this primer.</p>
                     </dd>
-                    <dt data-property-name="description">
+                    <dt data-property-name="description" class="has-description">
                       <span class="json-property-name">description:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -826,7 +1859,7 @@
                     <dd>
                       <p>long-form description of this primer.</p>
                     </dd>
-                    <dt data-property-name="parent">
+                    <dt data-property-name="parent" class="has-description">
                       <span class="json-property-name">parent:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -834,7 +1867,7 @@
                     <dd>
                       <p>parent primer (if any)</p>
                     </dd>
-                    <dt data-property-name="subPrimers">
+                    <dt data-property-name="subPrimers" class="has-description">
                       <span class="json-property-name">subPrimers:</span>
                       <span class="json-property-type">array</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -842,25 +1875,29 @@
                     <dd>
                       <p>child-primers list</p>
                     </dd>
-                    <dt data-property-name="meta">
+                    <dt data-property-name="meta" class="has-description">
                       <span class="json-property-name">meta:</span>
-                      <span class="json-property-type">string</span>
+                      <span class="json-property-type">object</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
                       <p>metadata to associate with this primer</p>
                     </dd>
-                    <dt data-property-name="stats">
+                    <dt data-property-name="stats" class="has-description">
                       <span class="json-property-name">stats:</span>
-                      <span class="json-property-type">string</span>
+                      <span class="json-property-type">object</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
                       <p>statistics about this primer</p>
                     </dd>
-                    <dt data-property-name="sources">
+                    <dt data-property-name="sources" class="has-description">
                       <span class="json-property-name">sources:</span>
-                      <span class="json-property-type">string</span>
+                      <span class="json-property-type">
+                        <span class="json-schema-ref-array">
+                          <a class="json-schema-ref" href="#/definitions/Source">Source</a>
+                        </span>
+                      </span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
@@ -869,98 +1906,55 @@
                   </dl>
                 </section>
               </div>
-            </div>
-          </div>
-          <div id="definition-Snapshot" class="panel panel-definition" data-traverse-target="definition-Snapshot">
-            <h2 class="panel-title">
-              <a name="/definitions/Snapshot"></a>Snapshot:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
-            </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
-              
-                    
-                  </div>
-              
-                  <div class="doc-examples"></div>
-                </div> -->
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="json-schema-properties">
-                  <dl>
-                    <dt data-property-name="url">
-                      <span class="json-property-name">url:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                    <dd>
-                      <p>The url that was requested</p>
-                    </dd>
-                    <dt data-property-name="created">
-                      <span class="json-property-name">created:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-format">(date-time)</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                    <dd>
-                      <p>Time this request was issued</p>
-                    </dd>
-                    <dt data-property-name="status">
-                      <span class="json-property-name">status:</span>
-                      <span class="json-property-type">integer</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                    <dd>
-                      <p>Returned Status</p>
-                    </dd>
-                    <dt data-property-name="duration">
-                      <span class="json-property-name">duration:</span>
-                      <span class="json-property-type">integer</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                    <dd>
-                      <p>Time to complete response in milliseconds</p>
-                    </dd>
-                    <dt data-property-name="headers">
-                      <span class="json-property-name">headers:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                    <dd>
-                      <p>Record of all returned headers in [key,value,key,value...]</p>
-                    </dd>
-                    <dt data-property-name="hash">
-                      <span class="json-property-name">hash:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                    <dd>
-                      <p>Multihash of response body (if any)</p>
-                    </dd>
-                  </dl>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;shortTitle&quot;</span>: <span class="hljs-string">&quot;EPA&quot;</span>,
+  <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;Environmental Protection Agency&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;The mission of the Environmental Protection Agency is to protect human health  and the environment through the development and enforcement of regulations.  The EPA is responsible for administering a number of laws that span various sectors,  such as agriculture, transportation, utilities, construction, and oil and gas.  In the budget for FY 2017, the agency lays out goals to better support communities  and address climate change following the President&#x2019;s Climate Action Plan.  Additionally, the agency aims to improve community water infrastructure, chemical  plant safety, and collaborative partnerships among federal, state, and tribal levels.\n&quot;</span>,
+  <span class="hljs-attr">&quot;parent&quot;</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">&quot;subPrimers&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+  <span class="hljs-attr">&quot;meta&quot;</span>: {
+    <span class="hljs-attr">&quot;county&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+    <span class="hljs-attr">&quot;primaryLanguage&quot;</span>: <span class="hljs-string">&quot;en&quot;</span>
+  },
+  <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;sources&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+      <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;entire epa site&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+      <span class="hljs-attr">&quot;primerId&quot;</span>: <span class="hljs-string">&quot;5b1031f4-38a8-40b3-be91-c324bf686a87&quot;</span>,
+      <span class="hljs-attr">&quot;crawl&quot;</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">&quot;staleDuration&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+      <span class="hljs-attr">&quot;lastAlertSent&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+      <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
                 </section>
               </div>
             </div>
           </div>
-          <div id="definition-Source" class="panel panel-definition" data-traverse-target="definition-Source">
+          <div id="definition-Source" class="definition panel" data-traverse-target="definition-Source">
             <h2 class="panel-title">
-              <a name="/definitions/Source"></a>Source:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
+              <a name="/definitions/Source"></a>Source: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
             </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
-              
-                    
-                  </div>
-              
-                  <div class="doc-examples"></div>
-                </div> -->
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="json-schema-description">
@@ -970,12 +1964,15 @@
                   <dl>
                     <dt data-property-name="id">
                       <span class="json-property-name">id:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-format">(uuidv4)</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
                       <span class="json-property-range" title="Value limits"></span>
                       <span class="json-property-required"></span>
                     </dt>
-                    <dt data-property-name="created">
+                    <dt data-property-name="created" class="has-description">
                       <span class="json-property-name">created:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -984,7 +1981,7 @@
                     <dd>
                       <p>timestamp of first addition to the database rounded to seconds in UTC.</p>
                     </dd>
-                    <dt data-property-name="updated">
+                    <dt data-property-name="updated" class="has-description">
                       <span class="json-property-name">updated:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -993,7 +1990,7 @@
                     <dd>
                       <p>timestamp of most recent change rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="title">
+                    <dt data-property-name="title" class="has-description">
                       <span class="json-property-name">title:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1001,7 +1998,7 @@
                     <dd>
                       <p>human-readable title for this source</p>
                     </dd>
-                    <dt data-property-name="description">
+                    <dt data-property-name="description" class="has-description">
                       <span class="json-property-name">description:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1009,15 +2006,15 @@
                     <dd>
                       <p>description of the source, ideally one paragraph</p>
                     </dd>
-                    <dt data-property-name="url">
+                    <dt data-property-name="url" class="has-description">
                       <span class="json-property-name">url:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
-                      <p>absolute url to serve as the root of the</p>
+                      <p>url to serve as boundaries for archiving</p>
                     </dd>
-                    <dt data-property-name="primerId">
+                    <dt data-property-name="primerId" class="has-description">
                       <span class="json-property-name">primerId:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1025,23 +2022,23 @@
                     <dd>
                       <p>primer this source is connected to</p>
                     </dd>
-                    <dt data-property-name="crawl">
+                    <dt data-property-name="crawl" class="has-description">
                       <span class="json-property-name">crawl:</span>
-                      <span class="json-property-type">string</span>
+                      <span class="json-property-type">boolean</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
                       <p>weather or not this url should be crawled be a web crawler</p>
                     </dd>
-                    <dt data-property-name="staleDuration">
+                    <dt data-property-name="staleDuration" class="has-description">
                       <span class="json-property-name">staleDuration:</span>
-                      <span class="json-property-type">string</span>
+                      <span class="json-property-type">integer</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
                       <p>amount of time before a link within this tree is considered in need of re-checking for changes. currently not in use, but planned.</p>
                     </dd>
-                    <dt data-property-name="lastAlertSent">
+                    <dt data-property-name="lastAlertSent" class="has-description">
                       <span class="json-property-name">lastAlertSent:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1049,7 +2046,7 @@
                     <dd>
                       <p>yeah this&#39;ll probably get depricated. Part of a half-baked alerts feature idea.</p>
                     </dd>
-                    <dt data-property-name="meta">
+                    <dt data-property-name="meta" class="has-description">
                       <span class="json-property-name">meta:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1057,7 +2054,7 @@
                     <dd>
                       <p>Metadata associated with this source that should be added to all child urls, currently not in use, but planned</p>
                     </dd>
-                    <dt data-property-name="stats">
+                    <dt data-property-name="stats" class="has-description">
                       <span class="json-property-name">stats:</span>
                       <span class="json-property-type">object</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1068,36 +2065,53 @@
                   </dl>
                 </section>
               </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;entire epa site&quot;</span>,
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;epa.gov&quot;</span>,
+  <span class="hljs-attr">&quot;primerId&quot;</span>: <span class="hljs-string">&quot;5b1031f4-38a8-40b3-be91-c324bf686a87&quot;</span>,
+  <span class="hljs-attr">&quot;crawl&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">&quot;staleDuration&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+  <span class="hljs-attr">&quot;lastAlertSent&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,
+  <span class="hljs-attr">&quot;stats&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
             </div>
           </div>
-          <div id="definition-Url" class="panel panel-definition" data-traverse-target="definition-Url">
+          <div id="definition-Url" class="definition panel" data-traverse-target="definition-Url">
             <h2 class="panel-title">
-              <a name="/definitions/Url"></a>Url:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
+              <a name="/definitions/Url"></a>Url: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
             </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
-              
-                    
-                  </div>
-              
-                  <div class="doc-examples"></div>
-                </div> -->
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="json-schema-properties">
                   <dl>
                     <dt data-property-name="id">
                       <span class="json-property-name">id:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-format">(uuidv4)</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
                       <span class="json-property-range" title="Value limits"></span>
                       <span class="json-property-required"></span>
                     </dt>
-                    <dt data-property-name="created">
+                    <dt data-property-name="created" class="has-description">
                       <span class="json-property-name">created:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -1106,7 +2120,7 @@
                     <dd>
                       <p>timestamp of first addition to the database rounded to seconds in UTC.</p>
                     </dd>
-                    <dt data-property-name="updated">
+                    <dt data-property-name="updated" class="has-description">
                       <span class="json-property-name">updated:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -1115,7 +2129,7 @@
                     <dd>
                       <p>timestamp of most recent change rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="url">
+                    <dt data-property-name="url" class="has-description">
                       <span class="json-property-name">url:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1123,7 +2137,7 @@
                     <dd>
                       <p>URI string without any normalization. Url strings must always be absolute. unique to each entry</p>
                     </dd>
-                    <dt data-property-name="lastGet">
+                    <dt data-property-name="lastGet" class="has-description">
                       <span class="json-property-name">lastGet:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -1132,7 +2146,7 @@
                     <dd>
                       <p>timestamp for most recent GET request</p>
                     </dd>
-                    <dt data-property-name="lastHead">
+                    <dt data-property-name="lastHead" class="has-description">
                       <span class="json-property-name">lastHead:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -1141,7 +2155,7 @@
                     <dd>
                       <p>timestamp for most recent HEAD request</p>
                     </dd>
-                    <dt data-property-name="status">
+                    <dt data-property-name="status" class="has-description">
                       <span class="json-property-name">status:</span>
                       <span class="json-property-type">integer</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1149,7 +2163,7 @@
                     <dd>
                       <p>latest returned HTTP response status code</p>
                     </dd>
-                    <dt data-property-name="contentType">
+                    <dt data-property-name="contentType" class="has-description">
                       <span class="json-property-name">contentType:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1157,7 +2171,7 @@
                     <dd>
                       <p>latest returnd &#39;Content-Type&#39; HTTP header</p>
                     </dd>
-                    <dt data-property-name="contentSniff">
+                    <dt data-property-name="contentSniff" class="has-description">
                       <span class="json-property-name">contentSniff:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1167,12 +2181,15 @@
                         <a href="https://mimesniff.spec.whatwg.org">https://mimesniff.spec.whatwg.org</a>
                       </p>
                     </dd>
-                    <dt data-property-name="contentLength">
+                    <dt data-property-name="contentLength" class="has-description">
                       <span class="json-property-name">contentLength:</span>
                       <span class="json-property-type">integer</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
-                    <dt data-property-name="title">
+                    <dd>
+                      <p>server-specified ContentLength header</p>
+                    </dd>
+                    <dt data-property-name="title" class="has-description">
                       <span class="json-property-name">title:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1180,7 +2197,7 @@
                     <dd>
                       <p>HTML Title tag attribute</p>
                     </dd>
-                    <dt data-property-name="downloadTook">
+                    <dt data-property-name="downloadTook" class="has-description">
                       <span class="json-property-name">downloadTook:</span>
                       <span class="json-property-type">integer</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1188,7 +2205,7 @@
                     <dd>
                       <p>Time remote server took to transfer content in miliseconds.</p>
                     </dd>
-                    <dt data-property-name="headersTook">
+                    <dt data-property-name="headersTook" class="has-description">
                       <span class="json-property-name">headersTook:</span>
                       <span class="json-property-type">integer</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1196,7 +2213,7 @@
                     <dd>
                       <p>Time taken to in miliseconds. currently not implemented</p>
                     </dd>
-                    <dt data-property-name="headers">
+                    <dt data-property-name="headers" class="has-description">
                       <span class="json-property-name">headers:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1204,7 +2221,7 @@
                     <dd>
                       <p>key-value array of returned headers from most recent HEAD or GET request stored in the form [key,value,key,value...]</p>
                     </dd>
-                    <dt data-property-name="meta">
+                    <dt data-property-name="meta" class="has-description">
                       <span class="json-property-name">meta:</span>
                       <span class="json-property-type">array</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1212,7 +2229,7 @@
                     <dd>
                       <p>any associative metadata for this url</p>
                     </dd>
-                    <dt data-property-name="hash">
+                    <dt data-property-name="hash" class="has-description">
                       <span class="json-property-name">hash:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1220,7 +2237,7 @@
                     <dd>
                       <p>Hash is a multihash sha-256 of the response body of a GET request</p>
                     </dd>
-                    <dt data-property-name="contentUrl">
+                    <dt data-property-name="contentUrl" class="has-description">
                       <span class="json-property-name">contentUrl:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1231,36 +2248,85 @@
                   </dl>
                 </section>
               </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;http://www.epa.gov&quot;</span>,
+  <span class="hljs-attr">&quot;lastGet&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;lastHead&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;status&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+  <span class="hljs-attr">&quot;contentType&quot;</span>: <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+  <span class="hljs-attr">&quot;contentSniff&quot;</span>: <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+  <span class="hljs-attr">&quot;contentLength&quot;</span>: <span class="hljs-number">-1</span>,
+  <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;United States Environmental Protection Agency, US EPA&quot;</span>,
+  <span class="hljs-attr">&quot;downloadTook&quot;</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">&quot;headersTook&quot;</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">&quot;headers&quot;</span>: [
+    <span class="hljs-string">&quot;X-Content-Type-Options&quot;</span>,
+    <span class="hljs-string">&quot;nosniff&quot;</span>,
+    <span class="hljs-string">&quot;Expires&quot;</span>,
+    <span class="hljs-string">&quot;Fri, 24 Feb 2017 21:53:45 GMT&quot;</span>,
+    <span class="hljs-string">&quot;Date&quot;</span>,
+    <span class="hljs-string">&quot;Fri, 24 Feb 2017 21:53:45 GMT&quot;</span>,
+    <span class="hljs-string">&quot;Etag&quot;</span>,
+    <span class="hljs-string">&quot;W/\&quot;7f53-549471782bb42\&quot;&quot;</span>,
+    <span class="hljs-string">&quot;X-Ua-Compatible&quot;</span>,
+    <span class="hljs-string">&quot;IE=Edge,chrome=1&quot;</span>,
+    <span class="hljs-string">&quot;X-Cached-By&quot;</span>,
+    <span class="hljs-string">&quot;Boost&quot;</span>,
+    <span class="hljs-string">&quot;Content-Type&quot;</span>,
+    <span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>,
+    <span class="hljs-string">&quot;Vary&quot;</span>,
+    <span class="hljs-string">&quot;Accept-Encoding&quot;</span>,
+    <span class="hljs-string">&quot;Accept-Ranges&quot;</span>,
+    <span class="hljs-string">&quot;bytes&quot;</span>,
+    <span class="hljs-string">&quot;Cache-Control&quot;</span>,
+    <span class="hljs-string">&quot;no-cache, no-store, must-revalidate, post-check=0, pre-check=0&quot;</span>,
+    <span class="hljs-string">&quot;Server&quot;</span>,
+    <span class="hljs-string">&quot;Apache&quot;</span>,
+    <span class="hljs-string">&quot;Connection&quot;</span>,
+    <span class="hljs-string">&quot;keep-alive&quot;</span>,
+    <span class="hljs-string">&quot;Strict-Transport-Security&quot;</span>,
+    <span class="hljs-string">&quot;max-age=31536000; preload;&quot;</span>
+  ],
+  <span class="hljs-attr">&quot;meta&quot;</span>: <span class="hljs-string">&quot;array&quot;</span>,
+  <span class="hljs-attr">&quot;hash&quot;</span>: <span class="hljs-string">&quot;1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de&quot;</span>,
+  <span class="hljs-attr">&quot;contentUrl&quot;</span>: <span class="hljs-string">&quot;https://content.archivers.co/1220459219b10032cc86dcdbc0f83aea15a9d3e1119e7b5170beaee233008ea2c2de&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
             </div>
           </div>
-          <div id="definition-User" class="panel panel-definition" data-traverse-target="definition-User">
+          <div id="definition-User" class="definition panel" data-traverse-target="definition-User">
             <h2 class="panel-title">
-              <a name="/definitions/User"></a>User:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
+              <a name="/definitions/User"></a>User: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
             </h2>
-            <!-- <div class="doc-row">
-                  <div class="doc-copy">
-              
-                    
-                  </div>
-              
-                  <div class="doc-examples"></div>
-                </div> -->
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="json-schema-properties">
                   <dl>
                     <dt data-property-name="id">
                       <span class="json-property-name">id:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-format">(uuidv4)</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
                       <span class="json-property-range" title="Value limits"></span>
                       <span class="json-property-required"></span>
                     </dt>
-                    <dt data-property-name="created">
+                    <dt data-property-name="created" class="has-description">
                       <span class="json-property-name">created:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -1269,7 +2335,7 @@
                     <dd>
                       <p>timestamp of first addition to the database rounded to seconds in UTC.</p>
                     </dd>
-                    <dt data-property-name="updated">
+                    <dt data-property-name="updated" class="has-description">
                       <span class="json-property-name">updated:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-format">(date-time)</span>
@@ -1278,7 +2344,7 @@
                     <dd>
                       <p>timestamp of most recent change rounded to seconds in UTC</p>
                     </dd>
-                    <dt data-property-name="username">
+                    <dt data-property-name="username" class="has-description">
                       <span class="json-property-name">username:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1286,7 +2352,7 @@
                     <dd>
                       <p>handle for the user. min 1 character, max 80. composed of [_,-,a-z,A-Z,1-9]</p>
                     </dd>
-                    <dt data-property-name="type">
+                    <dt data-property-name="type" class="has-description">
                       <span class="json-property-name">type:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1294,15 +2360,15 @@
                     <dd>
                       <p>specifies weather this is a user or an organization</p>
                     </dd>
-                    <dt data-property-name="name">
+                    <dt data-property-name="name" class="has-description">
                       <span class="json-property-name">name:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
                     <dd>
-                      <p>user name field. could be first[space]last, but not strictly enforced</p>
+                      <p>user name field. could be first[co]last, but not strictly enforced</p>
                     </dd>
-                    <dt data-property-name="description">
+                    <dt data-property-name="description" class="has-description">
                       <span class="json-property-name">description:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1310,7 +2376,7 @@
                     <dd>
                       <p>user-filled description of self</p>
                     </dd>
-                    <dt data-property-name="homeUrl">
+                    <dt data-property-name="homeUrl" class="has-description">
                       <span class="json-property-name">homeUrl:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1318,7 +2384,7 @@
                     <dd>
                       <p>url this user wants the world to click</p>
                     </dd>
-                    <dt data-property-name="currentKey">
+                    <dt data-property-name="currentKey" class="has-description">
                       <span class="json-property-name">currentKey:</span>
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -1329,11 +2395,324 @@
                   </dl>
                 </section>
               </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;wonder_woman&quot;</span>,
+  <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>,
+  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Diana Prince&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;The Spirit of Truth&quot;</span>,
+  <span class="hljs-attr">&quot;homeUrl&quot;</span>: <span class="hljs-string">&quot;https://en.wikipedia.org/wiki/Wonder_Woman&quot;</span>,
+  <span class="hljs-attr">&quot;currentKey&quot;</span>: <span class="hljs-string">&quot;358a2a6b8e857836a9410c3ae5285eb5fec6fda7dcb7c78f75b4bada99bceea3&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-UUID" class="definition panel" data-traverse-target="definition-UUID">
+            <h2 class="panel-title">
+              <a name="/definitions/UUID"></a>UUID: string
+              <!-- <span class="json-property-type"><span class="json-property-type">string</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+            </div>
+          </div>
+          <div id="definition-Snapshot" class="definition panel" data-traverse-target="definition-Snapshot">
+            <h2 class="panel-title">
+              <a name="/definitions/Snapshot"></a>Snapshot: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="url" class="has-description">
+                      <span class="json-property-name">url:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>The url that was requested</p>
+                    </dd>
+                    <dt data-property-name="created" class="has-description">
+                      <span class="json-property-name">created:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-format">(date-time)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>Time this request was issued</p>
+                    </dd>
+                    <dt data-property-name="status" class="has-description">
+                      <span class="json-property-name">status:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>Returned Status</p>
+                    </dd>
+                    <dt data-property-name="duration" class="has-description">
+                      <span class="json-property-name">duration:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>Time to complete response in milliseconds</p>
+                    </dd>
+                    <dt data-property-name="headers" class="has-description">
+                      <span class="json-property-name">headers:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>Record of all returned headers in [key,value,key,value...]</p>
+                    </dd>
+                    <dt data-property-name="hash" class="has-description">
+                      <span class="json-property-name">hash:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>Multihash of response body (if any)</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;status&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+  <span class="hljs-attr">&quot;duration&quot;</span>: <span class="hljs-string">&quot;integer&quot;</span>,
+  <span class="hljs-attr">&quot;headers&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;hash&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Uncrawlable" class="definition panel" data-traverse-target="definition-Uncrawlable">
+            <h2 class="panel-title">
+              <a name="/definitions/Uncrawlable"></a>Uncrawlable: object
+              <!-- <span class="json-property-type"><span class="json-property-type">object</span>
+              <span class="json-property-range" title="Value limits"></span>
+              
+              
+              </span> -->
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="id">
+                      <span class="json-property-name">id:</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UUID">UUID</a>
+                        </span>
+                      </span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="url" class="has-description">
+                      <span class="json-property-name">url:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <span class="json-property-required"></span>
+                    </dt>
+                    <dd>
+                      <p>url from urls table, must be unique</p>
+                    </dd>
+                    <dt data-property-name="created" class="has-description">
+                      <span class="json-property-name">created:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>Created timestamp rounded to seconds in UTC</p>
+                    </dd>
+                    <dt data-property-name="updated" class="has-description">
+                      <span class="json-property-name">updated:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>Updated timestamp rounded to seconds in UTC</p>
+                    </dd>
+                    <dt data-property-name="creator" class="has-description">
+                      <span class="json-property-name">creator:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>sha256 multihash of the public key that created this uncrawlable</p>
+                    </dd>
+                    <dt data-property-name="name" class="has-description">
+                      <span class="json-property-name">name:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>name of person making submission</p>
+                    </dd>
+                    <dt data-property-name="email" class="has-description">
+                      <span class="json-property-name">email:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>email address of person making submission</p>
+                    </dd>
+                    <dt data-property-name="eventName" class="has-description">
+                      <span class="json-property-name">eventName:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>name of data rescue event where uncrawlable was added</p>
+                    </dd>
+                    <dt data-property-name="agency" class="has-description">
+                      <span class="json-property-name">agency:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>agency name</p>
+                    </dd>
+                    <dt data-property-name="agencyId" class="has-description">
+                      <span class="json-property-name">agencyId:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>EDGI agency Id</p>
+                    </dd>
+                    <dt data-property-name="subagencyId" class="has-description">
+                      <span class="json-property-name">subagencyId:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>EDGI subagency Id</p>
+                    </dd>
+                    <dt data-property-name="orgId" class="has-description">
+                      <span class="json-property-name">orgId:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>EDGI organization Id</p>
+                    </dd>
+                    <dt data-property-name="suborgId" class="has-description">
+                      <span class="json-property-name">suborgId:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>EDGI Suborganization Id</p>
+                    </dd>
+                    <dt data-property-name="subprimerId" class="has-description">
+                      <span class="json-property-name">subprimerId:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>EDGI subprimer Id</p>
+                    </dd>
+                    <dt data-property-name="ftp" class="has-description">
+                      <span class="json-property-name">ftp:</span>
+                      <span class="json-property-type">boolean</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>flag for ftp content</p>
+                    </dd>
+                    <dt data-property-name="database" class="has-description">
+                      <span class="json-property-name">database:</span>
+                      <span class="json-property-type">boolean</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>flag for &#39;database&#39;</p>
+                    </dd>
+                    <dt data-property-name="interactive" class="has-description">
+                      <span class="json-property-name">interactive:</span>
+                      <span class="json-property-type">boolean</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>flag for visualization / interactive content obfuscating data</p>
+                    </dd>
+                    <dt data-property-name="manyFiles" class="has-description">
+                      <span class="json-property-name">manyFiles:</span>
+                      <span class="json-property-type">boolean</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>flag for a page that links to many files</p>
+                    </dd>
+                    <dt data-property-name="comments" class="has-description">
+                      <span class="json-property-name">comments:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dd>
+                      <p>uncrawlable comments</p>
+                    </dd>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;c98255ce-30a2-4fe5-94a6-7e6ec08a46ec&quot;</span>,
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;created&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;creator&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;email&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;eventName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;agency&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;agencyId&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;subagencyId&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;orgId&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;suborgId&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;subprimerId&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;ftp&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;database&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;interactive&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;manyFiles&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;comments&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
             </div>
           </div>
           <div class="doc-row no-margin">
             <div class="doc-copy doc-separator">
-              <a class="powered-by" href="http://sourcey.com/spectacle">Documentation by
+              <a class="powered-by" href="https://sourcey.com/spectacle">Documentation by
                 <span>Spectacle</span>
               </a>
             </div>
