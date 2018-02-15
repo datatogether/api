@@ -4,9 +4,13 @@
 
 [![GitHub](https://img.shields.io/badge/project-Data_Together-487b57.svg?style=flat-square)](http://github.com/datatogether)
 [![Slack](https://img.shields.io/badge/slack-Archivers-b44e88.svg?style=flat-square)](https://archivers-slack.herokuapp.com/)
-[![License](https://img.shields.io/github/license/datatogether/api.svg)](./LICENSE) 
+[![License](https://img.shields.io/github/license/datatogether/api.svg?style=flat-square)](./LICENSE)
 
-This component of Data Together serves the JSON API. In isolation it doesn't do much, but when connected to the project as a whole it provides a variety of endpoints over https, which can be used to extract information from the Data Together database. 
+Serves the Data Together JSON API.
+
+This component in isolation doesn't do much, but when connected to the project as a whole it provides a variety of endpoints over https, which can be used to extract information from the Data Together database.
+
+**API Documentation:** [`https://api.archivers.co/docs/`](https://api.archivers.co/docs/)
 
 ## License & Copyright
 
