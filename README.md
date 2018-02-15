@@ -4,7 +4,7 @@
 
 [![GitHub](https://img.shields.io/badge/project-Data_Together-487b57.svg?style=flat-square)](http://github.com/datatogether)
 [![Slack](https://img.shields.io/badge/slack-Archivers-b44e88.svg?style=flat-square)](https://archivers-slack.herokuapp.com/)
-[![License](https://img.shields.io/github/license/datatogether/api.svg)](./LICENSE)
+[![License](https://img.shields.io/github/license/datatogether/api.svg?style=flat-square)](./LICENSE)
 
 Serves the Data Together JSON API.
 
