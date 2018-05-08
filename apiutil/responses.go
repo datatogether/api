@@ -65,7 +65,7 @@ func WriteErrResponse(w http.ResponseWriter, code int, err error) error {
 }
 
 func jsonResponse(w http.ResponseWriter, env interface{}) error {
-	res, err := json.MarshalIndent(env, "", "  ")
+	res, err := json.Marshal(env)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return err
