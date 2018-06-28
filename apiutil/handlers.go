@@ -9,7 +9,7 @@ import (
 // health reporting
 func HealthCheckHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{ "meta": { "code": 200, "status": "ok" }, "data": [] }`))
+	w.Write([]byte(`{ "meta": { "code": 200, "status": "ok" }, "data": null }`))
 }
 
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
