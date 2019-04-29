@@ -3,6 +3,7 @@ package apiutil
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 func WriteResponse(w http.ResponseWriter, data interface{}) error {
@@ -28,8 +29,17 @@ func WritePageResponse(w http.ResponseWriter, data interface{}, r *http.Request,
 	return jsonResponse(w, env)
 }
 
-// TODO
 func nextPageUrl(r *http.Request, p Page) string {
+	q := r.URL.Query()
+	pageNum := 1
+	if val, ok := q["page"]; ok {
+		var err error
+		if pageNum, err = strconv.Atoi(val[0]); err != nil {
+			return r.URL.String()
+		}
+	}
+	q.Set("page", strconv.Itoa(pageNum+1))
+	r.URL.RawQuery = q.Encode()
 	return r.URL.String()
 }
 
