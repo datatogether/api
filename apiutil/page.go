@@ -28,16 +28,27 @@ func PageFromRequest(r *http.Request) Page {
 	if i, err := ReqParamInt("page", r); err == nil {
 		number = i
 	}
-	if number == 0 {
+	if number <= 0 {
 		number = 1
 	}
 
 	if i, err := ReqParamInt("pageSize", r); err == nil {
 		size = i
 	}
-	if size == 0 {
+	if size <= 0 {
 		size = DEFAULT_PAGE_SIZE
 	}
 
+	return NewPage(number, size)
+}
+
+// NewPageFromOffsetAndLimit converts a offset and Limit to a Page struct
+func NewPageFromOffsetAndLimit(offset, limit int) Page {
+	var number, size int
+	size = limit
+	if size <= 0 {
+		size = DEFAULT_PAGE_SIZE
+	}
+	number = offset/size + 1
 	return NewPage(number, size)
 }
